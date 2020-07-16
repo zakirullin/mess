@@ -1,0 +1,8 @@
+/vendor
+/build
+/test-reports
+composer.lock
+phpunit.xml
+psalm.xml
+.phpunit.result.cache
+.idea

@@ -1,0 +1,14 @@
+{
+  "timeout": 10,
+  "source": {
+    "directories": [
+      "src"
+    ]
+  },
+  "logs": {
+    "text": "build/log/infection/text.txt",
+    "summary": "build/log/infection/summary.txt",
+    "debug": "build/log/infection/debug.txt",
+    "perMutator": "build/log/infection/per-mutator.md"
+  }
+}

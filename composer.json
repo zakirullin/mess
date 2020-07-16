@@ -1,0 +1,42 @@
+{
+  "name": "zakirullin/typed-accessor",
+  "type": "library",
+  "description": "Convenient array-related routine & better type casting",
+  "keywords": [
+    "array",
+    "type",
+    "cast",
+    "language",
+    "php",
+    "json"
+  ],
+  "homepage": "https://github.com/zakirullin/typed-accessor",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Artem Zakirullin",
+      "email": "artemzr@gmail.com"
+    }
+  ],
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "php": "^7.2"
+  },
+  "require-dev": {
+    "infection/infection": "^0.15",
+    "phpunit/phpunit": "^8.0",
+    "vimeo/psalm": "^3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Zakirullin\\TypedAccessor\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Zakirullin\\TypedAccessor\\Tests\\": "tests/unit"
+    }
+  }
+}
