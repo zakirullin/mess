@@ -4,42 +4,19 @@ declare(strict_types=1);
 namespace Zakirullin\TypedAccessor\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Zakirullin\TypedAccessor\MissingValueAccessor;
-use Zakirullin\TypedAccessor\TypedAccessor;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
-use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
+use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
+use Zakirullin\TypedAccessor\MissingValueAccessor;
+use Zakirullin\TypedAccessor\TypedAccessor;
+use function var_dump;
 
 /**
  * @covers \Zakirullin\TypedAccessor\TypedAccessor
  */
 class TypedAccessorTest extends TestCase
 {
-    /**
-     * Can cast to string
-     */
-    public function providerCanCastToStringValues()
-    {
-        return [
-            'string' => ['crusoe', 'crusoe'],
-            'int' => [1, '1'],
-        ];
-    }
-
-    /**
-     * Cannot cast to string
-     */
-    public function providerCannotCastToStringValues()
-    {
-        return [
-            'object' => [(object) []],
-            'array' => [[]],
-            'function' => [function () {}],
-            'boolean' => [true],
-        ];
-    }
-
     public function testGetInt_IntValue_ReturnsSameIntValue()
     {
         $actualValue = (new TypedAccessor(1))->getInt();
@@ -80,6 +57,62 @@ class TypedAccessorTest extends TestCase
         $this->expectException(UnexpectedTypeException::class);
 
         (new TypedAccessor(1))->getString();
+    }
+
+    public function testGetListOfInt_ListOfIntValue_ReturnsSameListOfIntValue()
+    {
+        $actualValue = (new TypedAccessor([1, 5, 10]))->getListOfInt();
+
+        $this->assertSame([1, 5, 10], $actualValue);
+    }
+
+    public function testGetListOfInt_AssociativeArrayOfInt_ThrowsUnexpectedTypeException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new TypedAccessor([1, 2 => 3]))->getListOfInt();
+    }
+
+    public function testGetListOfInt_ListOfMixed_ThrowsUnexpectedTypeException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new TypedAccessor(['a']))->getListOfInt();
+    }
+
+    public function testGetListOfInt_Int_ThrowsUnexpectedTypeException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new TypedAccessor(1))->getListOfInt();
+    }
+
+    public function testGetListOfString_ListOfStringValue_ReturnsSameListOfStringValue()
+    {
+        $actualValue = (new TypedAccessor(['a', 'b']))->getListOfString();
+
+        $this->assertSame(['a', 'b'], $actualValue);
+    }
+
+    public function testGetListOfString_AssociativeArrayOfString_ThrowsUnexpectedTypeException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new TypedAccessor(['a', 2 => 'b']))->getListOfString();
+    }
+
+    public function testGetListOfString_ListOfMixed_ThrowsUnexpectedTypeException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new TypedAccessor([1]))->getListOfString();
+    }
+
+    public function testGetListOfString_Int_ThrowsUnexpectedTypeException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new TypedAccessor(1))->getListOfString();
     }
 
     /**
@@ -123,7 +156,10 @@ class TypedAccessorTest extends TestCase
         return [
             'object' => [(object) []],
             'array' => [[]],
-            'function' => [function () {}],
+            'function' => [
+                function () {
+                },
+            ],
             'boolean' => [true],
             'float' => [1.1],
             'float in string' => ['1.1'],
@@ -176,7 +212,10 @@ class TypedAccessorTest extends TestCase
         return [
             'object' => [(object) []],
             'array' => [[]],
-            'function' => [function () {}],
+            'function' => [
+                function () {
+                },
+            ],
             'float' => [1.1],
             'True in string' => ['True'],
         ];
@@ -193,6 +232,17 @@ class TypedAccessorTest extends TestCase
     }
 
     /**
+     * Can cast to string
+     */
+    public function providerCanCastToStringValues()
+    {
+        return [
+            'string' => ['crusoe', 'crusoe'],
+            'int' => [1, '1'],
+        ];
+    }
+
+    /**
      * @dataProvider providerCannotCastToStringValues
      */
     public function testGetAsString_GiveUncastableValue_ThrowsUncastableValueException($value)
@@ -200,6 +250,110 @@ class TypedAccessorTest extends TestCase
         $this->expectException(UncastableValueException::class);
 
         (new TypedAccessor($value))->getAsString();
+    }
+
+    /**
+     * Cannot cast to string
+     */
+    public function providerCannotCastToStringValues()
+    {
+        return [
+            'object' => [(object) []],
+            'array' => [[]],
+            'function' => [
+                function () {
+                },
+            ],
+            'boolean' => [true],
+        ];
+    }
+
+    /**
+     * @dataProvider providerCanCastToListOfIntValues
+     */
+    public function testGetAsListOfInt_GivenCastableValue_ReturnsMatchingCastedValue($value, array $castedValue)
+    {
+        $actualValue = (new TypedAccessor($value))->getAsListOfInt();
+
+        $this->assertSame($castedValue, $actualValue);
+    }
+
+    /**
+     * Can cast to list of int
+     */
+    public function providerCanCastToListOfIntValues()
+    {
+        return [
+            'empty list' => [[], []],
+            'list of int' => [[1], [1]],
+            'list of castable to int' => [['1'], [1]],
+        ];
+    }
+
+    /**
+     * @dataProvider providerCannotCastToListOfIntValues
+     */
+    public function testGetAsListOfInt_GivenUncastableValue_ThrowsUuncastableValueException($value)
+    {
+        $this->expectException(UncastableValueException::class);
+
+        (new TypedAccessor($value))->getAsListOfInt();
+    }
+
+    /**
+     * Cannot cast to list of int
+     */
+    public function providerCannotCastToListOfIntValues()
+    {
+        return [
+            'not array' => [1],
+            'associative array' => [[1, 2 => 3]],
+            'list of uncastable values' => [['a']],
+        ];
+    }
+
+    /**
+     * @dataProvider providerCanCastToListOfStringValues
+     */
+    public function testGetAsListOfString_GivenCastableValue_ReturnsMatchingCastedValue($value, array $castedValue)
+    {
+        $actualValue = (new TypedAccessor($value))->getAsListOfString();
+
+        $this->assertSame($castedValue, $actualValue);
+    }
+
+    /**
+     * Can cast to list of string
+     */
+    public function providerCanCastToListOfStringValues()
+    {
+        return [
+            'empty list' => [[], []],
+            'list of string' => [['crusoe'], ['crusoe']],
+            'list of castable to strign' => [[1], ['1']],
+        ];
+    }
+
+    /**
+     * @dataProvider providerCannotCastToListOfStringValues
+     */
+    public function testGetAsListOfString_GivenUncastableValue_ThrowsUncastableValueException($value)
+    {
+        $this->expectException(UncastableValueException::class);
+
+        (new TypedAccessor($value))->getAsListOfString();
+    }
+
+    /**
+     * Cannot cast to list of string
+     */
+    public function providerCannotCastToListOfStringValues()
+    {
+        return [
+            'not array' => [1],
+            'associative array' => [['a', 2 => 'b']],
+            'list of uncastable values' => [[true]],
+        ];
     }
 
     public function testFindInt_IntValue_ReturnsSameIntValue()
@@ -242,6 +396,62 @@ class TypedAccessorTest extends TestCase
         $value = (new TypedAccessor(1))->findString();
 
         $this->assertNull($value);
+    }
+
+    public function testFindListOfInt_ListOfIntValue_ReturnsSameListOfIntValue()
+    {
+        $actualValue = (new TypedAccessor([1, 5, 10]))->findListOfInt();
+
+        $this->assertSame([1, 5, 10], $actualValue);
+    }
+
+    public function testFindListOfInt_AssociativeArrayOfInt_ReturnsNull()
+    {
+        $actualValue = (new TypedAccessor([1, 2 => 3]))->findListOfInt();
+
+        $this->assertNull($actualValue);
+    }
+
+    public function testFindListOfInt_ListOfMixed_ReturnsNull()
+    {
+        $actualValue = (new TypedAccessor(['a']))->findListOfInt();
+
+        $this->assertNull($actualValue);
+    }
+
+    public function testFindListOfInt_Int_ReturnsNull()
+    {
+        $actualValue = (new TypedAccessor(1))->findListOfInt();
+
+        $this->assertNull($actualValue);
+    }
+
+    public function testFindListOfString_ListOfStringValue_ReturnsSameListOfStringValue()
+    {
+        $actualValue = (new TypedAccessor(['a', 'b']))->findListOfString();
+
+        $this->assertSame(['a', 'b'], $actualValue);
+    }
+
+    public function testFindListOfString_AssociativeArrayOfString_ReturnsNull()
+    {
+        $actualValue = (new TypedAccessor(['a', 2 => 'b']))->findListOfString();
+
+        $this->assertNull($actualValue);
+    }
+
+    public function testFindListOfString_ListOfMixed_ReturnsNull()
+    {
+        $actualValue = (new TypedAccessor([1]))->findListOfString();
+
+        $this->assertNull($actualValue);
+    }
+
+    public function testFindListOfString_Int_ReturnsNull()
+    {
+        $actualValue = (new TypedAccessor(1))->findListOfString();
+
+        $this->assertNull($actualValue);
     }
 
     /**
@@ -300,6 +510,46 @@ class TypedAccessorTest extends TestCase
     public function testFindAsString_GivenUncastableValue_ReturnsNull($value)
     {
         $actualValue = (new TypedAccessor($value))->findAsString();
+
+        $this->assertNull($actualValue);
+    }
+
+    /**
+     * @dataProvider providerCanCastToListOfIntValues
+     */
+    public function testFindAsListOfInt_GivenCastableValue_ReturnsMatchingCastedValue($value, array $castedValue)
+    {
+        $actualValue = (new TypedAccessor($value))->findAsListOfInt();
+
+        $this->assertSame($castedValue, $actualValue);
+    }
+
+    /**
+     * @dataProvider providerCannotCastToListOfIntValues
+     */
+    public function testFindAsListOfInt_GivenUncastableValue_ReturnsNull($value)
+    {
+        $actualValue = (new TypedAccessor($value))->findAsListOfInt();
+
+        $this->assertNull($actualValue);
+    }
+
+    /**
+     * @dataProvider providerCanCastToListOfStringValues
+     */
+    public function testFindAsListOfString_GivenCastableValue_ReturnsMatchingCastedValue($value, array $castedValue)
+    {
+        $actualValue = (new TypedAccessor($value))->findAsListOfString();
+
+        $this->assertSame($castedValue, $actualValue);
+    }
+
+    /**
+     * @dataProvider providerCannotCastToListOfStringValues
+     */
+    public function testFindAsListOfString_GivenUncastableValue_ReturnsNull($value)
+    {
+        $actualValue = (new TypedAccessor($value))->findAsListOfString();
 
         $this->assertNull($actualValue);
     }

@@ -5,7 +5,7 @@ namespace Zakirullin\TypedAccessor\Type;
 
 use function is_bool;
 
-final class BoolType implements TypeInterface
+final class Boolean implements TypeInterface
 {
     /**
      * @var mixed

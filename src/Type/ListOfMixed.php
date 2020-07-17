@@ -34,6 +34,10 @@ final class ListOfMixed implements TypeInterface
             return null;
         }
 
+        if (empty($this->value)) {
+            return [];
+        }
+
         $isList = array_keys($this->value) === range(0, count($this->value) - 1);
         if (!$isList) {
             return null;

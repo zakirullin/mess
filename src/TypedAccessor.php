@@ -3,24 +3,21 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
-use Zakirullin\TypedAccessor\Type\BoolType;
+use Zakirullin\TypedAccessor\Type\Boolean;
 use Zakirullin\TypedAccessor\Type\Integer;
 use Zakirullin\TypedAccessor\Type\ListOfInteger;
 use Zakirullin\TypedAccessor\Type\ListOfMixed;
-use Zakirullin\TypedAccessor\Type\ListOfString;
+use Zakirullin\TypedAccessor\Type\ListOfStr;
 use Zakirullin\TypedAccessor\Type\Str;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
-use function array_keys;
-use function count;
 use function is_array;
 use function is_bool;
 use function is_int;
 use function is_string;
 use function key_exists;
-use function range;
 
 /**
  * @psalm-immutable
@@ -98,7 +95,7 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $listOfInt = $this->findListOfInt();
         if ($listOfInt === null) {
-            throw new UncastableValueException('list_of_int', $this->value, $this->keySequence);
+            throw new UnexpectedTypeException('list_of_int', $this->value, $this->keySequence);
         }
 
         return $this->value;
@@ -113,7 +110,7 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $listOfString = $this->findListOfString();
         if ($listOfString === null) {
-            throw new UncastableValueException('list_of_string', $this->value, $this->keySequence);
+            throw new UnexpectedTypeException('list_of_string', $this->value, $this->keySequence);
         }
 
         return $this->value;
@@ -234,7 +231,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfInt(): ?array
     {
-        $listOfMixed = (new ListOfMixed($this->value));
+        $listOfMixed = (new ListOfMixed($this->value))();
         if ($listOfMixed === null) {
             return null;
         }
@@ -283,7 +280,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsBool(): ?bool
     {
-        return (new BoolType($this->value))();
+        return (new Boolean($this->value))();
     }
 
     /**
@@ -310,7 +307,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsListOfString(): ?array
     {
-        return (new ListOfString($this->value))();
+        return (new ListOfStr($this->value))();
     }
 
     /**

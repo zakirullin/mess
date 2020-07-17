@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Type;
 
-final class ListOfString implements TypeInterface
+final class ListOfStr implements TypeInterface
 {
     /**
      * @var mixed
