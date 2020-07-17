@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Caster;
+namespace Zakirullin\TypedAccessor\Type;
 
-interface CasterInterface
+interface TypeInterface
 {
     /**
      * @param $value

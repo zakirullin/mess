@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
-use Zakirullin\TypedAccessor\Caster\Boolean;
-use Zakirullin\TypedAccessor\Caster\Integer;
-use Zakirullin\TypedAccessor\Caster\Str;
+use Zakirullin\TypedAccessor\Type\BoolType;
+use Zakirullin\TypedAccessor\Type\Integer;
+use Zakirullin\TypedAccessor\Type\ListOfInteger;
+use Zakirullin\TypedAccessor\Type\ListOfMixed;
+use Zakirullin\TypedAccessor\Type\ListOfString;
+use Zakirullin\TypedAccessor\Type\Str;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
@@ -231,7 +234,8 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfInt(): ?array
     {
-        if (!$this->isList($this->value)) {
+        $listOfMixed = (new ListOfMixed($this->value));
+        if ($listOfMixed === null) {
             return null;
         }
 
@@ -250,7 +254,8 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfString(): ?array
     {
-        if ($this->isList($this->value)) {
+        $listOfMixed = (new ListOfMixed($this->value))();
+        if ($listOfMixed === null) {
             return null;
         }
 
@@ -278,7 +283,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsBool(): ?bool
     {
-        return (new Boolean($this->value))();
+        return (new BoolType($this->value))();
     }
 
     /**
@@ -296,21 +301,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsListOfInt(): ?array
     {
-        if (!$this->isList($this->value)) {
-            return null;
-        }
-
-        $listOfInt = [];
-        foreach ($this->value as $value) {
-            $intValue = (new Integer($value))();
-            if ($intValue === null) {
-                return null;
-            }
-
-            $listOfInt[] = $intValue;
-        }
-
-        return $listOfInt;
+        return (new ListOfInteger($this->value))();
     }
 
     /**
@@ -319,21 +310,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsListOfString(): ?array
     {
-        if (!$this->isList($this->value)) {
-            return null;
-        }
-
-        $listOfString = [];
-        foreach ($this->value as $value) {
-            $stringValue = (new Str($value))();
-            if ($stringValue === null) {
-                return null;
-            }
-
-            $listOfString[] = $stringValue;
-        }
-
-        return $listOfString;
+        return (new ListOfString($this->value))();
     }
 
     /**
@@ -395,20 +372,6 @@ final class TypedAccessor implements TypedAccessorInterface
         }
 
         return key_exists($offset, $this->value);
-    }
-
-    /**
-     * @psalm-pure
-     * @param array $array
-     * @return bool
-     */
-    private function isList(array $array): bool
-    {
-        if (!is_array($array)) {
-            return false;
-        }
-
-        return array_keys($array) === range(0, count($array) - 1);
     }
 
     /**

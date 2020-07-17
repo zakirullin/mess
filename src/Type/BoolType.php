@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Caster;
+namespace Zakirullin\TypedAccessor\Type;
 
 use function is_bool;
 
-final class Boolean implements CasterInterface
+final class BoolType implements TypeInterface
 {
     /**
      * @var mixed

@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Caster;
+namespace Zakirullin\TypedAccessor\Type;
 
 use function filter_var;
 use function is_bool;
 use const FILTER_VALIDATE_INT;
 
-final class Integer implements CasterInterface
+final class Integer implements TypeInterface
 {
     /**
      * @var mixed

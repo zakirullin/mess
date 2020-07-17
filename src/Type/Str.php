@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Caster;
+namespace Zakirullin\TypedAccessor\Type;
 
 use function is_int;
 use function is_string;
 
-final class Str implements CasterInterface
+final class Str implements TypeInterface
 {
     /**
      * @var mixed
