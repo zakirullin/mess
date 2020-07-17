@@ -10,11 +10,15 @@ use function implode;
 final class MissingKeyException extends RuntimeException implements TypedAccessorExceptionInterface
 {
     /**
+     * @psalm-var list<string>|list<int>
+     *
      * @var array
      */
     private $keySequence;
 
     /**
+     * @psalm-param list<string>|list<int> $keySequence
+     *
      * @param array          $keySequence
      * @param Throwable|null $previous
      */
@@ -28,6 +32,8 @@ final class MissingKeyException extends RuntimeException implements TypedAccesso
     }
 
     /**
+     * @psalm-return list<string>|list<int>
+     *
      * @return array
      */
     public function getKeySequence(): array

@@ -14,17 +14,20 @@ final class UnexpectedKeyTypeException extends RuntimeException implements Typed
     private $key;
 
     /**
-     * @psalm-var list<string>
+     * @psalm-var list<string>|list<int>
+     *
      * @var array
      */
     private $keySequence;
 
     /**
-     * @param                $key
-     * @param                $keySequence
+     * @psalm-param list<string>|list<int> $keySequence
+     *
+     * @param mixed          $key
+     * @param array          $keySequence
      * @param Throwable|null $previous
      */
-    public function __construct($key, $keySequence, Throwable $previous = null)
+    public function __construct($key, array $keySequence, Throwable $previous = null)
     {
         $this->key = $key;
         $this->keySequence = $keySequence;
@@ -44,7 +47,8 @@ final class UnexpectedKeyTypeException extends RuntimeException implements Typed
     }
 
     /**
-     * @psalm-return list<string>
+     * @psalm-return list<string>|list<int>
+     *
      * @return array
      */
     public function getKeySequence(): array

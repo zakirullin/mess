@@ -9,11 +9,15 @@ use Throwable;
 final class CannotModifyAccessorException extends RuntimeException implements TypedAccessorExceptionInterface
 {
     /**
+     * @psalm-var list<string>|list<int>
+     *
      * @var array
      */
     private $keySequence;
 
     /**
+     * @psalm-param list<string>|list<int> $keySequence
+     *
      * @param array          $keySequence
      * @param Throwable|null $previous
      */
@@ -27,7 +31,8 @@ final class CannotModifyAccessorException extends RuntimeException implements Ty
     }
 
     /**
-     * @psalm-return list<string>
+     * @psalm-return list<string>|list<int>
+     *
      * @return array
      */
     public function getKeySequence(): array

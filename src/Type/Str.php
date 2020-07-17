@@ -6,6 +6,9 @@ namespace Zakirullin\TypedAccessor\Type;
 use function is_int;
 use function is_string;
 
+/**
+ * @psalm-immutable
+ */
 final class Str implements TypeInterface
 {
     /**
@@ -14,7 +17,7 @@ final class Str implements TypeInterface
     private $value;
 
     /**
-     * @param $value
+     * @param mixed $value
      */
     public function __construct($value)
     {
@@ -23,6 +26,7 @@ final class Str implements TypeInterface
 
     /**
      * @psalm-pure
+     *
      * @return string|null
      */
     public function __invoke(): ?string

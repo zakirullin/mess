@@ -5,6 +5,9 @@ namespace Zakirullin\TypedAccessor\Type;
 
 use function is_bool;
 
+/**
+ * @psalm-immutable
+ */
 final class Boolean implements TypeInterface
 {
     /**
@@ -13,7 +16,7 @@ final class Boolean implements TypeInterface
     private $value;
 
     /**
-     * @param $value
+     * @param mixed $value
      */
     public function __construct($value)
     {
@@ -22,6 +25,7 @@ final class Boolean implements TypeInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool|null
      */
     public function __invoke(): ?bool

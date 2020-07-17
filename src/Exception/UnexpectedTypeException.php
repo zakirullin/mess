@@ -19,14 +19,17 @@ final class UnexpectedTypeException extends RuntimeException implements TypedAcc
     private $value;
 
     /**
-     * @psalm-var list<string>
+     * @psalm-var list<string>|list<int>
+     *
      * @var array
      */
     private $keySequence;
 
     /**
+     * @psalm-param list<string>|list<int> $keySequence
+     *
      * @param string         $expectedType
-     * @param                $value
+     * @param mixed          $value
      * @param array          $keySequence
      * @param Throwable|null $previous
      */
@@ -59,6 +62,8 @@ final class UnexpectedTypeException extends RuntimeException implements TypedAcc
     }
 
     /**
+     * @psalm-return list<string>|list<int>
+     *
      * @return array
      */
     public function getKeySequence(): array

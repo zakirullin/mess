@@ -16,11 +16,15 @@ final class MissingValueAccessor implements TypedAccessorInterface
 {
     /**
      * @psalm-readonly
+     * @psalm-var list<string>|list<int>
+     *
      * @var array
      */
     private $keySequence;
 
     /**
+     * @psalm-param list<string>|list<int> $keySequence
+     *
      * @param array $keySequence
      */
     public function __construct(array $keySequence)
@@ -30,6 +34,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return int
      */
     public function getInt(): int
@@ -39,6 +44,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool
      */
     public function getBool(): bool
@@ -48,6 +54,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return string
      */
     public function getString(): string
@@ -57,6 +64,8 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<int>
+     *
      * @return array
      */
     public function getListOfInt(): array
@@ -66,6 +75,8 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<string>
+     *
      * @return array
      */
     public function getListOfString(): array
@@ -75,6 +86,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return int
      */
     public function getAsInt(): int
@@ -84,6 +96,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool
      */
     public function getAsBool(): bool
@@ -93,6 +106,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return string
      */
     public function getAsString(): string
@@ -102,6 +116,8 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<int>
+     *
      * @return array
      */
     public function getAsListOfInt(): array
@@ -111,6 +127,8 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<string>
+     *
      * @return array
      */
     public function getAsListOfString(): array
@@ -120,6 +138,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return int|null
      */
     public function findInt(): ?int
@@ -129,6 +148,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool|null
      */
     public function findBool(): ?bool
@@ -138,6 +158,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return string|null
      */
     public function findString(): ?string
@@ -147,6 +168,8 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<int>
+     *
      * @return array|null
      */
     public function findListOfInt(): ?array
@@ -155,6 +178,9 @@ final class MissingValueAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
      * @return array|null
      */
     public function findListOfString(): ?array
@@ -164,6 +190,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return int|null
      */
     public function findAsInt(): ?int
@@ -173,6 +200,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool|null
      */
     public function findAsBool(): ?bool
@@ -182,6 +210,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return string|null
      */
     public function findAsString(): ?string
@@ -191,6 +220,8 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<int>|null
+     *
      * @return array|null
      */
     public function findAsListOfInt(): ?array
@@ -199,6 +230,9 @@ final class MissingValueAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return list<string>|null
+     *
      * @return array|null
      */
     public function findAsListOfString(): ?array
@@ -208,6 +242,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return mixed
      */
     public function getMixed()
@@ -217,6 +252,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return mixed
      */
     public function findMixed()
@@ -227,6 +263,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
     /**
      * @psalm-pure
      * @param mixed $offset
+     *
      * @return bool
      */
     public function offsetExists($offset): bool
@@ -237,6 +274,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
     /**
      * @psalm-pure
      * @param int|string $offset
+     *
      * @return self
      */
     public function offsetGet($offset)
@@ -256,6 +294,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @param mixed $offset
      * @param mixed $value
      */
@@ -266,6 +305,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @param mixed $offset
      */
     public function offsetUnset($offset): void

@@ -8,6 +8,9 @@ use function count;
 use function is_array;
 use function range;
 
+/**
+ * @psalm-immutable
+ */
 final class ListOfMixed implements TypeInterface
 {
     /**
@@ -16,7 +19,7 @@ final class ListOfMixed implements TypeInterface
     private $value;
 
     /**
-     * @param $value
+     * @param mixed $value
      */
     public function __construct($value)
     {
@@ -25,7 +28,8 @@ final class ListOfMixed implements TypeInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list
+     * @psalm-return list|null
+     *
      * @return array|mixed|null
      */
     public function __invoke()
@@ -38,10 +42,18 @@ final class ListOfMixed implements TypeInterface
             return [];
         }
 
-        $isList = array_keys($this->value) === range(0, count($this->value) - 1);
+        /**
+         * @psalm-var list
+         */
+        $keys = array_keys($this->value);
+        $isList = $keys === range(0, count($this->value) - 1);
         if (!$isList) {
             return null;
         }
+
+        /**
+         * @psalm-var list
+         */
 
         return $this->value;
     }

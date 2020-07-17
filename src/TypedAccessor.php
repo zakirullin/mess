@@ -31,6 +31,8 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-allow-private-mutation
+     * @psalm-var list<string>|list<int>
+     *
      * @var array
      */
     private $keySequence = [];
@@ -46,6 +48,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return int
      */
     public function getInt(): int
@@ -60,6 +63,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool
      */
     public function getBool(): bool
@@ -74,6 +78,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return string
      */
     public function getString(): string
@@ -89,6 +94,7 @@ final class TypedAccessor implements TypedAccessorInterface
     /**
      * @psalm-pure
      * @psalm-return list<int>
+     *
      * @return array
      */
     public function getListOfInt(): array
@@ -98,12 +104,13 @@ final class TypedAccessor implements TypedAccessorInterface
             throw new UnexpectedTypeException('list_of_int', $this->value, $this->keySequence);
         }
 
-        return $this->value;
+        return $listOfInt;
     }
 
     /**
      * @psalm-pure
      * @psalm-return list<string>
+     *
      * @return array
      */
     public function getListOfString(): array
@@ -113,11 +120,12 @@ final class TypedAccessor implements TypedAccessorInterface
             throw new UnexpectedTypeException('list_of_string', $this->value, $this->keySequence);
         }
 
-        return $this->value;
+        return $listOfString;
     }
 
     /**
      * @psalm-pure
+     *
      * @return int
      */
     public function getAsInt(): int
@@ -132,6 +140,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool
      */
     public function getAsBool(): bool
@@ -146,6 +155,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return string
      */
     public function getAsString(): string
@@ -160,6 +170,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return array
      */
     public function getAsListOfInt(): array
@@ -174,6 +185,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return array
      */
     public function getAsListOfString(): array
@@ -188,6 +200,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return int|null
      */
     public function findInt(): ?int
@@ -201,6 +214,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool|null
      */
     public function findBool(): ?bool
@@ -214,6 +228,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return string|null
      */
     public function findString(): ?string
@@ -227,6 +242,8 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<int>|null
+     *
      * @return array|null
      */
     public function findListOfInt(): ?array
@@ -236,17 +253,30 @@ final class TypedAccessor implements TypedAccessorInterface
             return null;
         }
 
+        /**
+         * @psalm-var list $listOfMixed
+         */
+
+        /**
+         * @psalm-suppress all
+         */
         foreach ($this->value as $value) {
             if (!is_int($value)) {
                 return null;
             }
         }
 
-        return $this->value;
+        /**
+         * @psalm-var list<int> $listOfMixed
+         */
+
+        return $listOfMixed;
     }
 
     /**
      * @psalm-pure
+     * @psalm-return list<string>|null
+     *
      * @return array|null
      */
     public function findListOfString(): ?array
@@ -256,17 +286,29 @@ final class TypedAccessor implements TypedAccessorInterface
             return null;
         }
 
-        foreach ($this->value as $value) {
+        /**
+         * @psalm-var list $listOfMixed
+         */
+
+        /**
+         * @psalm-suppress all
+         */
+        foreach ($listOfMixed as $value) {
             if (!is_string($value)) {
                 return null;
             }
         }
 
-        return $this->value;
+        /**
+         * @psalm-var list<string> $listOfMixed
+         */
+
+        return $listOfMixed;
     }
 
     /**
      * @psalm-pure
+     *
      * @return int|null
      */
     public function findAsInt(): ?int
@@ -276,6 +318,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return bool|null
      */
     public function findAsBool(): ?bool
@@ -285,6 +328,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return string|null
      */
     public function findAsString(): ?string
@@ -294,6 +338,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-return list<int>|null
+     *
      * @return array|null
      */
     public function findAsListOfInt(): ?array
@@ -303,6 +348,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-return list<string>|null
+     *
      * @return array|null
      */
     public function findAsListOfString(): ?array
@@ -312,6 +358,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return mixed
      */
     public function getMixed()
@@ -321,6 +368,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @return mixed
      */
     public function findMixed()
@@ -330,6 +378,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @param string|int $offset
      * @return TypedAccessorInterface
      */
@@ -359,6 +408,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @param string|int $offset
      * @return bool
      */
@@ -373,6 +423,8 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-param list<string>|list<int> $keySequence
+     *
      * @param array $keySequence
      * @return TypedAccessor
      */
@@ -385,6 +437,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @param mixed $offset
      * @param mixed $value
      */
@@ -395,6 +448,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     *
      * @param mixed $offset
      */
     public function offsetUnset($offset): void

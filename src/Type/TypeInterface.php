@@ -6,7 +6,7 @@ namespace Zakirullin\TypedAccessor\Type;
 interface TypeInterface
 {
     /**
-     * @param $value
+     * @param mixed $value
      */
     public function __construct($value);
 

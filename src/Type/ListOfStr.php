@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Type;
 
+/**
+ * @psalm-immutable
+ */
 final class ListOfStr implements TypeInterface
 {
     /**
@@ -11,7 +14,7 @@ final class ListOfStr implements TypeInterface
     private $value;
 
     /**
-     * @param $value
+     * @param mixed $value
      */
     public function __construct($value)
     {
@@ -21,6 +24,7 @@ final class ListOfStr implements TypeInterface
     /**
      * @psalm-pure
      * @psalm-return list<string>
+     *
      * @return array|null
      */
     public function __invoke(): ?array
@@ -31,12 +35,18 @@ final class ListOfStr implements TypeInterface
         }
 
         $listOfString = [];
+        /**
+         * @psalm-suppress all
+         */
         foreach ($listOfMixed as $value) {
             $stringValue = (new Str($value))();
             if ($stringValue === null) {
                 return null;
             }
 
+            /**
+             * @var string $stringValue
+             */
             $listOfString[] = $stringValue;
         }
 

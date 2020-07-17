@@ -19,13 +19,17 @@ final class UncastableValueException extends RuntimeException implements TypedAc
     private $value;
 
     /**
+     * @psalm-var list<string>|list<int>
+     *
      * @var array
      */
     private $keySequence;
 
     /**
+     * @psalm-param list<string>|list<int> $keySequence
+     *
      * @param string         $desiredType
-     * @param                $value
+     * @param mixed          $value
      * @param array          $keySequence
      * @param Throwable|null $previous
      */
@@ -58,7 +62,8 @@ final class UncastableValueException extends RuntimeException implements TypedAc
     }
 
     /**
-     * @psalm-return list<string>
+     * @psalm-return list<string>|list<int>
+     *
      * @return array
      */
     public function getKeySequence(): array

@@ -7,6 +7,9 @@ use function filter_var;
 use function is_bool;
 use const FILTER_VALIDATE_INT;
 
+/**
+ * @psalm-immutable
+ */
 final class Integer implements TypeInterface
 {
     /**
@@ -15,7 +18,7 @@ final class Integer implements TypeInterface
     private $value;
 
     /**
-     * @param $value
+     * @param mixed $value
      */
     public function __construct($value)
     {
@@ -24,6 +27,7 @@ final class Integer implements TypeInterface
 
     /**
      * @psalm-pure
+     *
      * @return int|null
      */
     public function __invoke(): ?int
