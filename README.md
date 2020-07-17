@@ -1,7 +1,7 @@
 ## In the era of strict typing we face a few problems 😕
 
 - Type casting (`PHP`'s native implementation is way too "smart")
-- Pointless casts like `array => int` are *allowed*
+- Pointless casts like `array => int` are **allowed**
 - Boilerplate code to work with variables/arrays (check if `isset()`, throw an exception, cast the type, etc.)
 
 Consider an example:
@@ -85,7 +85,7 @@ $config => [
 
 No matter if that's a misuse or a result of major update: The system will continue to work.
 And that's the worst thing about it. It will continue to work, though, not in a way it was supposed to work.
-`PHP` is trying to do its best to let it work *at least somehow*.
+`PHP` is trying to do its best to let it work **at least somehow**.
 
 ## The library comes in handy in a variety of scenarios 🚀
 
