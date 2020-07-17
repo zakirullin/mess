@@ -3,20 +3,21 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
+use Zakirullin\TypedAccessor\Caster\Boolean;
+use Zakirullin\TypedAccessor\Caster\Integer;
+use Zakirullin\TypedAccessor\Caster\Str;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
 use function array_keys;
 use function count;
-use function filter_var;
 use function is_array;
 use function is_bool;
 use function is_int;
 use function is_string;
 use function key_exists;
 use function range;
-use const FILTER_VALIDATE_INT;
 
 /**
  * @psalm-immutable
@@ -268,7 +269,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsInt(): ?int
     {
-        return $this->castToInt($this->value);
+        return (new Integer($this->value))();
     }
 
     /**
@@ -277,7 +278,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsBool(): ?bool
     {
-        return $this->castToBool($this->value);
+        return (new Boolean($this->value))();
     }
 
     /**
@@ -286,7 +287,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsString(): ?string
     {
-        return $this->castToString($this->value);
+        return (new Str($this->value))();
     }
 
     /**
@@ -301,7 +302,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
         $listOfInt = [];
         foreach ($this->value as $value) {
-            $intValue = $this->castToInt($value);
+            $intValue = (new Integer($value))();
             if ($intValue === null) {
                 return null;
             }
@@ -324,7 +325,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
         $listOfString = [];
         foreach ($this->value as $value) {
-            $stringValue = $this->castToInt($value);
+            $stringValue = (new Str($value))();
             if ($stringValue === null) {
                 return null;
             }
@@ -394,73 +395,6 @@ final class TypedAccessor implements TypedAccessorInterface
         }
 
         return key_exists($offset, $this->value);
-    }
-
-    /**
-     * @psalm-pure
-     * @param $value
-     * @return bool|null
-     */
-    private function castToBool($value): ?bool
-    {
-        if (is_bool($value)) {
-            return $value;
-        }
-
-        if ($value === 'true') {
-            return true;
-        }
-
-        if ($value === 'false') {
-            return false;
-        }
-
-        $intValue = $this->castToInt($value);
-        if ($intValue === 1) {
-            return true;
-        }
-        if ($intValue === 0) {
-            return false;
-        }
-
-        return null;
-    }
-
-    /**
-     * @psalm-pure
-     * @param mixed $value
-     * @return int|null
-     */
-    private function castToInt($value): ?int
-    {
-        if (is_bool($value)) {
-            return null;
-        }
-
-        $intValue = filter_var($value, FILTER_VALIDATE_INT);
-        if ($intValue === false) {
-            return null;
-        }
-
-        return $intValue;
-    }
-
-    /**
-     * @psalm-pure
-     * @param $value
-     * @return string|null
-     */
-    private function castToString($value): ?string
-    {
-        if (is_string($value)) {
-            return $this->value;
-        }
-
-        if (is_int($this->value)) {
-            return (string) $this->value;
-        }
-
-        return null;
     }
 
     /**

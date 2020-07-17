@@ -6,8 +6,7 @@
 
 Consider an example:
 ```php
-$params = $request->getQueryParams();
-$userId = $params['userId'] ?? null;
+$userId = $queryParams['userId'] ?? null;
 if ($userId === null) {
     throw new BadRequestException();
 }
@@ -17,7 +16,7 @@ $userId = (int)$userId;
 ## Way too verbose. Any ideas? 🤔
 
 ```php
-$userId = (new TypedAccessor($params))['userId']->getAsInt();
+$userId = (new TypedAccessor($queryParams))['userId']->getAsInt();
 ```
 
 ## A few real-world examples 🌎
