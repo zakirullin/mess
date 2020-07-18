@@ -1,4 +1,4 @@
-## In the era of strict typing we face a few problems 😕
+## In the era of strict typing we face a few problems
 
 - Type casting (`PHP`'s native implementation is way too "smart")
 - Pointless casts like `array => int` are **allowed**
@@ -13,13 +13,13 @@ if ($userId === null) {
 $userId = (int)$userId;
 ```
 
-## Way too verbose. Any ideas? 🤔
+## Way too verbose. Any ideas?
 
 ```php
 $userId = (new TypedAccessor($queryParams))['userId']->getAsInt();
 ```
 
-## A few real-world examples 🌎
+## A few real-world examples
 
 ```php
 $value = new TypedAccessor('25');
@@ -43,7 +43,7 @@ $config['param']->findAsInt(); // 1
 
 Having trouble grasping `get()`/`find()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
 
-## The behaviour now is rather predictable 🍀
+## The behaviour now is rather predictable
 
 ```php
 '\d+' => int // OK`
@@ -56,7 +56,7 @@ resource => int // UncastableValueException
 
 Fairly simple, isn't it?
 
-### Why one needs THAT naive type casting? 🤔
+### Why one needs THAT naive type casting?
 
 Let's imagine a library that is configured that way:
 ```php
