@@ -25,6 +25,7 @@ $userId = (new TypedAccessor($queryParams))['userId']->getAsInt();
 $value = new TypedAccessor('25');
 $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // 25
+$value->getString(); // '25'
 
 $value = new TypedAccessor('abc');
 $value->getInt(); // UnexpectedTypeException
@@ -39,9 +40,14 @@ $config['param']->getInt(); // UnexpectedTypeException
 $config['param']->getAsInt(); // 1
 $config['param']->findInt(); // null
 $config['param']->findAsInt(); // 1
+
+$queryParams = new TypedAccessor(['isDeleted' => 'true']);
+$queryParams['isDeleted']->getBool(); // UnexpectedTypeException
+$queryParams['isDeleted']->getAsBool(); // true
 ```
 
-Having trouble grasping `get()`/`find()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
+As you you might notice, no type casting is performed when using `get*()` methods.
+Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
 
 ## The behaviour now is rather predictable
 
