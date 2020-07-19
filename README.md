@@ -49,7 +49,7 @@ $config['param']->findAsInt(); // 1
 As you you might notice, no type casting is performed when using `get*()` methods.
 Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
 
-## The behaviour now is rather predictable
+## Type casting now is rather predictable
 
 ```php
 '\d+' => int // OK`
