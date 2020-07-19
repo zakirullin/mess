@@ -1,4 +1,4 @@
-## We face a few problems in PHP
+## We face a few problems in PHP projects
 
 - Illogical type casting (`PHP`'s native implementation is way too "smart")
 - Pointless casts like `array => float` are **allowed**
