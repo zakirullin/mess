@@ -31,7 +31,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-allow-private-mutation
-     * @psalm-var list<string>|list<int>
+     * @psalm-var list<string|int>
      *
      * @var array
      */
@@ -423,7 +423,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
-     * @psalm-param list<string>|list<int> $keySequence
+     * @psalm-param list<string|int> $keySequence
      *
      * @param array $keySequence
      * @return TypedAccessor

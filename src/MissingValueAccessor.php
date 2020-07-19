@@ -16,14 +16,14 @@ final class MissingValueAccessor implements TypedAccessorInterface
 {
     /**
      * @psalm-readonly
-     * @psalm-var list<string>|list<int>
+     * @psalm-var list<string|int>
      *
      * @var array
      */
     private $keySequence;
 
     /**
-     * @psalm-param list<string>|list<int> $keySequence
+     * @psalm-param list<string|int> $keySequence
      *
      * @param array $keySequence
      */

@@ -14,14 +14,14 @@ final class UnexpectedKeyTypeException extends RuntimeException implements Typed
     private $key;
 
     /**
-     * @psalm-var list<string>|list<int>
+     * @psalm-var list<string|int>
      *
      * @var array
      */
     private $keySequence;
 
     /**
-     * @psalm-param list<string>|list<int> $keySequence
+     * @psalm-param list<string|int> $keySequence
      *
      * @param mixed          $key
      * @param array          $keySequence
@@ -47,7 +47,7 @@ final class UnexpectedKeyTypeException extends RuntimeException implements Typed
     }
 
     /**
-     * @psalm-return list<string>|list<int>
+     * @psalm-return list<string|int>
      *
      * @return array
      */

@@ -6,7 +6,7 @@ namespace Zakirullin\TypedAccessor\Exception;
 interface TypedAccessorExceptionInterface
 {
     /**
-     * @psalm-return list<string>|list<int>
+     * @psalm-return list<string|int>
      *
      * @return array
      */
