@@ -1,4 +1,4 @@
-## We face a few problems in PHP projects
+## We face a few problems
 
 - Illogical type casting (`PHP`'s native implementation is way too "smart")
 - Pointless casts like `array => float` are **allowed**
@@ -8,6 +8,7 @@ Consider an example:
 ```php
 $userId = $queryParams['userId'] ?? null;
 if ($userId === null) {
+
     throw new BadRequestException();
 }
 $userId = (int)$userId;
