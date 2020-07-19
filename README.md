@@ -1,8 +1,8 @@
-## In the era of strict typing we face a few problems
+## We face a few problems in PHP
 
-- Type casting (`PHP`'s native implementation is way too "smart")
-- Pointless casts like `array => int` are **allowed**
-- Boilerplate code to work with variables/arrays (check if `isset()`, throw an exception, cast the type, etc.)
+- Illogical type casting (`PHP`'s native implementation is way too "smart")
+- Pointless casts like `array => float` are **allowed**
+- Arrays & boilerplate code to work with them (check if `isset()`, throw an exception, cast the type, etc.)
 
 Consider an example:
 ```php
@@ -22,6 +22,10 @@ $userId = (new TypedAccessor($queryParams))['userId']->getAsInt();
 ## A few real-world examples
 
 ```php
+$queryParams = new TypedAccessor(['isDeleted' => 'true']);
+$queryParams['isDeleted']->getBool(); // UnexpectedTypeException
+$queryParams['isDeleted']->getAsBool(); // true
+
 $value = new TypedAccessor('25');
 $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // 25
@@ -40,10 +44,6 @@ $config['param']->getInt(); // UnexpectedTypeException
 $config['param']->getAsInt(); // 1
 $config['param']->findInt(); // null
 $config['param']->findAsInt(); // 1
-
-$queryParams = new TypedAccessor(['isDeleted' => 'true']);
-$queryParams['isDeleted']->getBool(); // UnexpectedTypeException
-$queryParams['isDeleted']->getAsBool(); // true
 ```
 
 As you you might notice, no type casting is performed when using `get*()` methods.
