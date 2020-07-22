@@ -47,7 +47,7 @@ $config['param']->findInt(); // null
 $config['param']->findAsInt(); // 1
 ```
 
-As you you might notice, no type casting is performed when using `get*()` methods.
+As you you might notice, no type casting is performed while using `get*()` methods.
 Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
 
 ## Type casting now is rather predictable
