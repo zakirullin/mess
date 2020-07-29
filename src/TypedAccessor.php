@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
+use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
+use Zakirullin\TypedAccessor\Exception\UncastableValueException;
+use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
+use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
 use Zakirullin\TypedAccessor\Type\BooleanType;
 use Zakirullin\TypedAccessor\Type\IntegerType;
 use Zakirullin\TypedAccessor\Type\ListOfIntegerType;
 use Zakirullin\TypedAccessor\Type\ListOfMixedType;
 use Zakirullin\TypedAccessor\Type\ListOfStr;
 use Zakirullin\TypedAccessor\Type\Str;
-use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
-use Zakirullin\TypedAccessor\Exception\UncastableValueException;
-use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
-use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
 use function is_array;
 use function is_bool;
 use function is_int;
@@ -125,7 +125,6 @@ final class TypedAccessor implements TypedAccessorInterface
 
     public function getMapOfStringToInt(): array
     {
-        // TODO: Implement getMapOfStringToInt() method.
     }
 
     public function getMapOfStringToBool(): array
@@ -319,6 +318,54 @@ final class TypedAccessor implements TypedAccessorInterface
          */
 
         return $listOfMixed;
+    }
+
+    public function findMapOfStringToInt(): ?array
+    {
+        $mapOfMixed = Caster::toMapOfStringToMixed($this->value);
+        if ($mapOfMixed === null) {
+            return null;
+        }
+
+        foreach ($mapOfMixed as $val) {
+            if (!is_int($val)) {
+                return null;
+            }
+        }
+
+        return $this->value;
+    }
+
+    public function findMapOfStringToBool(): ?array
+    {
+        $mapOfMixed = Caster::toMapOfStringToMixed($this->value);
+        if ($mapOfMixed === null) {
+            return null;
+        }
+
+        foreach ($mapOfMixed as $val) {
+            if (!is_bool($val)) {
+                return null;
+            }
+        }
+
+        return $this->value;
+    }
+
+    public function findMapOfStringToString(): ?array
+    {
+        $mapOfMixed = Caster::toMapOfStringToMixed($this->value);
+        if ($mapOfMixed === null) {
+            return null;
+        }
+
+        foreach ($mapOfMixed as $val) {
+            if (!is_string($val)) {
+                return null;
+            }
+        }
+
+        return $this->value;
     }
 
     /**

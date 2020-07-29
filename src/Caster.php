@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
-use Zakirullin\TypedAccessor\Type\IntegerType;
-use Zakirullin\TypedAccessor\Type\ListOfMixedType;
 use function array_keys;
 use function count;
 use function filter_var;
@@ -17,7 +15,7 @@ use const FILTER_VALIDATE_INT;
 
 final class Caster
 {
-    public function toInt($value): ?int
+    public static function toInt($value): ?int
     {
         if (is_bool($value)) {
             return null;
@@ -31,7 +29,7 @@ final class Caster
         return $intValue;
     }
 
-    public function toBool($value): ?bool
+    public static function toBool($value): ?bool
     {
         if (is_bool($value)) {
             return $value;
@@ -56,7 +54,7 @@ final class Caster
         return null;
     }
 
-    public function toString($value): ?string
+    public static function toString($value): ?string
     {
         if (is_string($value)) {
             return $value;
@@ -69,29 +67,45 @@ final class Caster
         return null;
     }
 
-    public function toListOfInt($value): ?array
+    public static function toListOfInt($value): ?array
     {
-        return $this->toListOfCasted($value, [$this, 'toInt']);
+        return self::toListOfCasted($value, [$this, 'toInt']);
     }
 
-    public function toListOfString($value): ?array
+    public static function toListOfString($value): ?array
     {
 
     }
 
-    public function toMapOfStringToInt($value): ?array
+    public static function toMapOfStringToInt($value): ?array
     {
-        return $this->toMapOfStringToCasted($value, [$this, 'toInt']);
+        return self::toMapOfStringToCasted($value, [$this, 'toInt']);
     }
 
-    public function toMapOfStringToBool($value): ?array
+    public static function toMapOfStringToBool($value): ?array
     {
-        return $this->toMapOfStringToCasted($value, [$this, 'toBool']);
+        return self::toMapOfStringToCasted($value, [$this, 'toBool']);
     }
 
-    public function toMapOfStringToString($value): ?array
+    public static function toMapOfStringToString($value): ?array
     {
-        return $this->toMapOfStringToCasted($value, [$this, 'toString']);
+        return self::toMapOfStringToCasted($value, [$this, 'toString']);
+    }
+
+    public static function toMapOfStringToMixed($value): ?array
+    {
+        $array = self::toArray($value);
+        if ($array === null) {
+            return null;
+        }
+
+        foreach ($value as $key => $val) {
+            if (!is_string($key)) {
+                return null;
+            }
+        }
+
+        return $value;
     }
 
     public function toArray($value): ?array
@@ -160,25 +174,21 @@ final class Caster
      */
     private function toMapOfStringToCasted($value, callable $caster): ?array
     {
-        $array = $this->toArray($value);
-        if ($array === null) {
+        $mapOfStringToMixed = self::toMapOfStringToMixed($value);
+        if ($mapOfStringToMixed === null) {
             return null;
         }
 
-        $mapOfStringToAny = [];
+        $mapOfStringToCasted = [];
         foreach ($value as $key => $val) {
-            if (!is_string($key)) {
-                return null;
-            }
-
             $castedValue = $caster($val);
             if ($castedValue === null) {
                 return null;
             }
 
-            $mapOfStringToAny[$key] = $castedValue;
+            $mapOfStringToCasted[$key] = $castedValue;
         }
 
-        return $mapOfStringToAny;
+        return $mapOfStringToCasted;
     }
 }
