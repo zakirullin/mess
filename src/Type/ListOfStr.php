@@ -29,7 +29,7 @@ final class ListOfStr implements TypeInterface
      */
     public function __invoke(): ?array
     {
-        $listOfMixed = (new ListOfMixed($this->value))();
+        $listOfMixed = (new ListOfMixedType($this->value))();
         if ($listOfMixed === null) {
             return null;
         }

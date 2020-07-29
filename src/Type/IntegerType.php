@@ -10,7 +10,7 @@ use const FILTER_VALIDATE_INT;
 /**
  * @psalm-immutable
  */
-final class Integer implements TypeInterface
+final class IntegerType implements TypeInterface
 {
     /**
      * @var mixed

@@ -8,7 +8,7 @@ use function is_bool;
 /**
  * @psalm-immutable
  */
-final class Boolean implements TypeInterface
+final class BooleanType implements TypeInterface
 {
     /**
      * @var mixed
@@ -42,7 +42,7 @@ final class Boolean implements TypeInterface
             return false;
         }
 
-        $intValue = (new Integer($this->value))();
+        $intValue = (new IntegerType($this->value))();
         if ($intValue === 1) {
             return true;
         }

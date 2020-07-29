@@ -11,7 +11,7 @@ use function range;
 /**
  * @psalm-immutable
  */
-final class ListOfMixed implements TypeInterface
+final class ListOfMixedType implements TypeInterface
 {
     /**
      * @var mixed

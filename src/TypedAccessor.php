@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
-use Zakirullin\TypedAccessor\Type\Boolean;
-use Zakirullin\TypedAccessor\Type\Integer;
-use Zakirullin\TypedAccessor\Type\ListOfInteger;
-use Zakirullin\TypedAccessor\Type\ListOfMixed;
+use Zakirullin\TypedAccessor\Type\BooleanType;
+use Zakirullin\TypedAccessor\Type\IntegerType;
+use Zakirullin\TypedAccessor\Type\ListOfIntegerType;
+use Zakirullin\TypedAccessor\Type\ListOfMixedType;
 use Zakirullin\TypedAccessor\Type\ListOfStr;
 use Zakirullin\TypedAccessor\Type\Str;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
@@ -121,6 +121,21 @@ final class TypedAccessor implements TypedAccessorInterface
         }
 
         return $listOfString;
+    }
+
+    public function getMapOfStringToInt(): array
+    {
+        // TODO: Implement getMapOfStringToInt() method.
+    }
+
+    public function getMapOfStringToBool(): array
+    {
+        // TODO: Implement getMapOfStringToBool() method.
+    }
+
+    public function getAsMapOfStringToInt(): array
+    {
+        // TODO: Implement getAsMapOfStringToInt() method.
     }
 
     /**
@@ -248,7 +263,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfInt(): ?array
     {
-        $listOfMixed = (new ListOfMixed($this->value))();
+        $listOfMixed = (new ListOfMixedType($this->value))();
         if ($listOfMixed === null) {
             return null;
         }
@@ -281,7 +296,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfString(): ?array
     {
-        $listOfMixed = (new ListOfMixed($this->value))();
+        $listOfMixed = (new ListOfMixedType($this->value))();
         if ($listOfMixed === null) {
             return null;
         }
@@ -313,7 +328,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsInt(): ?int
     {
-        return (new Integer($this->value))();
+        return (new IntegerType($this->value))();
     }
 
     /**
@@ -323,7 +338,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsBool(): ?bool
     {
-        return (new Boolean($this->value))();
+        return (new BooleanType($this->value))();
     }
 
     /**
@@ -343,7 +358,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsListOfInt(): ?array
     {
-        return (new ListOfInteger($this->value))();
+        return (new ListOfIntegerType($this->value))();
     }
 
     /**
