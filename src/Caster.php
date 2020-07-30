@@ -43,7 +43,7 @@ final class Caster
             return false;
         }
 
-        $intValue = $this->toInt($this->value);
+        $intValue = self::toInt($value);
         if ($intValue === 1) {
             return true;
         }
@@ -69,27 +69,27 @@ final class Caster
 
     public static function toListOfInt($value): ?array
     {
-        return self::toListOfCasted($value, [$this, 'toInt']);
+        return self::toListOfCasted($value, [self::class, 'toInt']);
     }
 
     public static function toListOfString($value): ?array
     {
-
+        return self::toListOfCasted($value, [self::class, 'toInt']);
     }
 
     public static function toMapOfStringToInt($value): ?array
     {
-        return self::toMapOfStringToCasted($value, [$this, 'toInt']);
+        return self::toMapOfStringToCasted($value, [self::class, 'toInt']);
     }
 
     public static function toMapOfStringToBool($value): ?array
     {
-        return self::toMapOfStringToCasted($value, [$this, 'toBool']);
+        return self::toMapOfStringToCasted($value, [self::class, 'toBool']);
     }
 
     public static function toMapOfStringToString($value): ?array
     {
-        return self::toMapOfStringToCasted($value, [$this, 'toString']);
+        return self::toMapOfStringToCasted($value, [self::class, 'toString']);
     }
 
     public static function toMapOfStringToMixed($value): ?array
@@ -108,7 +108,7 @@ final class Caster
         return $value;
     }
 
-    public function toArray($value): ?array
+    public static function toArray($value): ?array
     {
         if (is_array($value)) {
             return $value;
@@ -117,7 +117,11 @@ final class Caster
         return null;
     }
 
-    private function toList($value): ?array
+    /**
+     * @param mixed $value
+     * @return array|null
+     */
+    private static function toList($value): ?array
     {
         $array = $this->toArray($value);
         if ($array === null) {
@@ -144,9 +148,9 @@ final class Caster
         return $array;
     }
 
-    private function toListOfCasted($value, callable $caster): ?array
+    private static function toListOfCasted($value, callable $caster): ?array
     {
-        $list = $this->toList($value);
+        $list = self::toList($value);
         if ($list === null) {
             return null;
         }
@@ -168,11 +172,11 @@ final class Caster
     }
 
     /**
-     * @param          $value
+     * @param mixed    $value
      * @param callable $caster
      * @return array|null
      */
-    private function toMapOfStringToCasted($value, callable $caster): ?array
+    private static function toMapOfStringToCasted($value, callable $caster): ?array
     {
         $mapOfStringToMixed = self::toMapOfStringToMixed($value);
         if ($mapOfStringToMixed === null) {
