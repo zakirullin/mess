@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
-use Zakirullin\Enum\TypeEnum;
+use Zakirullin\TypedAccessor\Enum\TypeEnum;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
@@ -125,6 +125,16 @@ final class TypedAccessor implements TypedAccessorInterface
     public function getMapOfStringToBool(): array
     {
         $this->assertType($this->findMapOfStringToBool(), 'map_of_string_to_bool');
+
+        return $this->value;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMapOfStringToString(): array
+    {
+        $this->assertType($this->findMapOfStringToString(), TypeEnum::MAP_OF_STRING_TO_STRING);
 
         return $this->value;
     }
@@ -309,6 +319,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
         return $listOfMixed;
     }
+
 
     /**
      * @psalm-pure
