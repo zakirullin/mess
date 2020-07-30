@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
+use Zakirullin\Enum\TypeEnum;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
@@ -136,9 +137,8 @@ final class TypedAccessor implements TypedAccessorInterface
     public function getAsInt(): int
     {
         $intValue = $this->findAsInt();
-        if ($intValue === null) {
-            throw new UncastableValueException('int', $this->value, $this->keySequence);
-        }
+
+        $this->assertCastable($intValue, TypeEnum::INT);
 
         return $intValue;
     }
@@ -151,9 +151,8 @@ final class TypedAccessor implements TypedAccessorInterface
     public function getAsBool(): bool
     {
         $boolValue = $this->findAsBool();
-        if ($boolValue === null) {
-            throw new UncastableValueException('bool', $this->value, $this->keySequence);
-        }
+
+        $this->assertCastable($boolValue, TypeEnum::BOOL);
 
         return $boolValue;
     }
@@ -166,9 +165,8 @@ final class TypedAccessor implements TypedAccessorInterface
     public function getAsString(): string
     {
         $stringValue = $this->findAsString();
-        if ($stringValue === null) {
-            throw new UncastableValueException('string', $this->value, $this->keySequence);
-        }
+
+        $this->assertCastable($stringValue, TypeEnum::STRING);
 
         return $stringValue;
     }
@@ -181,9 +179,8 @@ final class TypedAccessor implements TypedAccessorInterface
     public function getAsListOfInt(): array
     {
         $listOfInt = $this->findAsListOfInt();
-        if ($listOfInt === null) {
-            throw new UncastableValueException('list_of_int', $this->value, $this->keySequence);
-        }
+
+        $this->assertCastable($listOfInt, TypeEnum::LIST_OF_INT);
 
         return $listOfInt;
     }
