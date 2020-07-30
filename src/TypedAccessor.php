@@ -125,6 +125,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     public function getMapOfStringToInt(): array
     {
+        
     }
 
     public function getMapOfStringToBool(): array
@@ -416,6 +417,30 @@ final class TypedAccessor implements TypedAccessorInterface
     public function findAsListOfString(): ?array
     {
         return (new ListOfStr($this->value))();
+    }
+
+    /**
+     * @return array|null
+     */
+    public function findAsMapOfStringToInt(): ?array
+    {
+        return Caster::toMapOfStringToInt($this->value);
+    }
+
+    /**
+     * @return array|null
+     */
+    public function findAsMapOfStringToBool(): ?array
+    {
+        return Caster::toMapOfStringToBool($this->value);
+    }
+
+    /**
+     * @return array|null
+     */
+    public function findAsMapOfStringToString(): ?array
+    {
+        return Caster::toMapOfStringToString($this->value);
     }
 
     /**
