@@ -10,7 +10,7 @@ final class MapOfStringToStringFinder
 {
     public function find($value)
     {
-        $mapOfMixed = Caster::toMapOfStringToMixed($value);
+        $mapOfMixed = MapOfStringToMixedFinder::find($value);
         if ($mapOfMixed === null) {
             return null;
         }

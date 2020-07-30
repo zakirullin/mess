@@ -10,33 +10,20 @@ use const FILTER_VALIDATE_INT;
 /**
  * @psalm-immutable
  */
-final class IntegerType implements TypeInterface
+final class IntCaster
 {
-    /**
-     * @var mixed
-     */
-    private $value;
-
-    /**
-     * @param mixed $value
-     */
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
-
     /**
      * @psalm-pure
      *
      * @return int|null
      */
-    public function __invoke(): ?int
+    public function cast($value): ?int
     {
-        if (is_bool($this->value)) {
+        if (is_bool($value)) {
             return null;
         }
 
-        $intValue = filter_var($this->value, FILTER_VALIDATE_INT);
+        $intValue = filter_var($value, FILTER_VALIDATE_INT);
         if ($intValue === false) {
             return null;
         }
