@@ -53,7 +53,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getInt(): int
     {
-        $this->assertType($this->findInt(), 'int');
+        $this->assertNotNull($this->findInt(), 'int');
 
         return $this->value;
     }
@@ -65,12 +65,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getBool(): bool
     {
-        $boolValue = $this->findBool();
-        if ($boolValue === null) {
-            throw new UnexpectedTypeException('bool', $this->value, $this->keySequence);
-        }
+        $this->assertNotNull($this->findBool(), 'bool');
 
-        return $boolValue;
+        return $this->value;
     }
 
     /**
@@ -80,12 +77,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getString(): string
     {
-        $stringValue = $this->findString();
-        if ($stringValue === null) {
-            throw new UnexpectedTypeException('string', $this->value, $this->keySequence);
-        }
+        $this->assertNotNull($this->value, 'string');
 
-        return $stringValue;
+        return $this->value;
     }
 
     /**
@@ -96,12 +90,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getListOfInt(): array
     {
-        $listOfInt = $this->findListOfInt();
-        if ($listOfInt === null) {
-            throw new UnexpectedTypeException('list_of_int', $this->value, $this->keySequence);
-        }
+        $this->assertNotNull($this->value, 'list_of_int');
 
-        return $listOfInt;
+        return $this->value;
     }
 
     /**
@@ -112,12 +103,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getListOfString(): array
     {
-        $listOfString = $this->findListOfString();
-        if ($listOfString === null) {
-            throw new UnexpectedTypeException('list_of_string', $this->value, $this->keySequence);
-        }
+        $this->assertNotNull($this->findListOfString(), 'list_of_string');
 
-        return $listOfString;
+        return $this->value;
     }
 
     /**
@@ -125,10 +113,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getMapOfStringToInt(): array
     {
-        $mapOfStringToInt = $this->findMapOfStringToInt();
-        if ($mapOfStringToInt === null) {
-            throw new UnexpectedTypeException('map_of_string_to_int', $this->value, $this->keySequence);
-        }
+        $this->assertNotNull($this->findMapOfStringToInt(), 'map_of_string_to_int');
+
+        return $this->value;
     }
 
     /**
@@ -136,16 +123,13 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getMapOfStringToBool(): array
     {
-        $mapOfStringToBool = $this->findMapOfStringToBool();
-        if ($mapOfStringToBool === null) {
-            throw new UnexpectedTypeException('map_of_string_to_bool', $this->value, $this->keySequence);
-        }
+        $this->assertNotNull($this->findMapOfStringToBool(), 'map_of_string_to_bool');
+
+        return $this->value;
     }
 
     public function getAsMapOfStringToString(): array
     {
-        $mapOfStringToString = $this->findMapOfStringToString();
-        if ($mapOfStringToString )
     }
 
     public function getAsMapOfStringToInt(): array
@@ -557,7 +541,7 @@ final class TypedAccessor implements TypedAccessorInterface
         throw new CannotModifyAccessorException($this->keySequence);
     }
 
-    private function assertType($value, string $expectedType): void
+    private function assertNotNull($value, string $expectedType): void
     {
         if ($value === null) {
             throw new UnexpectedTypeException($expectedType, $value, $this->keySequence);
