@@ -53,12 +53,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getInt(): int
     {
-        $intValue = $this->findInt();
-        if ($intValue === null) {
-            throw new UnexpectedTypeException('int', $this->value, $this->keySequence);
-        }
+        $this->assertType($this->findInt(), 'int');
 
-        return $intValue;
+        return $this->value;
     }
 
     /**
@@ -123,19 +120,36 @@ final class TypedAccessor implements TypedAccessorInterface
         return $listOfString;
     }
 
+    /**
+     * @return array
+     */
     public function getMapOfStringToInt(): array
     {
-        
+        $mapOfStringToInt = $this->findMapOfStringToInt();
+        if ($mapOfStringToInt === null) {
+            throw new UnexpectedTypeException('map_of_string_to_int', $this->value, $this->keySequence);
+        }
     }
 
+    /**
+     * @return array
+     */
     public function getMapOfStringToBool(): array
     {
-        // TODO: Implement getMapOfStringToBool() method.
+        $mapOfStringToBool = $this->findMapOfStringToBool();
+        if ($mapOfStringToBool === null) {
+            throw new UnexpectedTypeException('map_of_string_to_bool', $this->value, $this->keySequence);
+        }
+    }
+
+    public function getAsMapOfStringToString(): array
+    {
+        $mapOfStringToString = $this->findMapOfStringToString();
+        if ($mapOfStringToString )
     }
 
     public function getAsMapOfStringToInt(): array
     {
-        // TODO: Implement getAsMapOfStringToInt() method.
     }
 
     /**
@@ -541,5 +555,12 @@ final class TypedAccessor implements TypedAccessorInterface
     public function offsetUnset($offset): void
     {
         throw new CannotModifyAccessorException($this->keySequence);
+    }
+
+    private function assertType($value, string $expectedType): void
+    {
+        if ($value === null) {
+            throw new UnexpectedTypeException($expectedType, $value, $this->keySequence);
+        }
     }
 }
