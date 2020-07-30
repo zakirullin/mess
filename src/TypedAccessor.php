@@ -53,7 +53,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getInt(): int
     {
-        $this->assertNotNull($this->findInt(), 'int');
+        $this->assertType($this->findInt(), 'int');
 
         return $this->value;
     }
@@ -65,7 +65,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getBool(): bool
     {
-        $this->assertNotNull($this->findBool(), 'bool');
+        $this->assertType($this->findBool(), 'bool');
 
         return $this->value;
     }
@@ -77,7 +77,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getString(): string
     {
-        $this->assertNotNull($this->value, 'string');
+        $this->assertType($this->value, 'string');
 
         return $this->value;
     }
@@ -90,7 +90,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getListOfInt(): array
     {
-        $this->assertNotNull($this->value, 'list_of_int');
+        $this->assertType($this->value, 'list_of_int');
 
         return $this->value;
     }
@@ -103,7 +103,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getListOfString(): array
     {
-        $this->assertNotNull($this->findListOfString(), 'list_of_string');
+        $this->assertType($this->findListOfString(), 'list_of_string');
 
         return $this->value;
     }
@@ -113,7 +113,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getMapOfStringToInt(): array
     {
-        $this->assertNotNull($this->findMapOfStringToInt(), 'map_of_string_to_int');
+        $this->assertType($this->findMapOfStringToInt(), 'map_of_string_to_int');
 
         return $this->value;
     }
@@ -123,17 +123,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getMapOfStringToBool(): array
     {
-        $this->assertNotNull($this->findMapOfStringToBool(), 'map_of_string_to_bool');
+        $this->assertType($this->findMapOfStringToBool(), 'map_of_string_to_bool');
 
         return $this->value;
-    }
-
-    public function getAsMapOfStringToString(): array
-    {
-    }
-
-    public function getAsMapOfStringToInt(): array
-    {
     }
 
     /**
@@ -204,11 +196,35 @@ final class TypedAccessor implements TypedAccessorInterface
     public function getAsListOfString(): array
     {
         $listOfString = $this->findAsListOfString();
-        if ($listOfString === null) {
-            throw new UncastableValueException('list_of_string', $this->value, $this->keySequence);
-        }
+
+        $this->assertCastable($listOfString, 'list_of_string');
 
         return $listOfString;
+    }
+
+    public function getAsMapOfStringToInt(): array
+    {
+        $mapOfStringToInt = $this->findAsMapOfStringToInt();
+
+        $this->assertCastable($mapOfStringToInt, 'map_of_string_to_int');
+
+        return $mapOfStringToInt;
+    }
+
+    public function getAsMapOfStringToBool(): array
+    {
+        $mapOfStringToBool = $this->findAsMapOfStringToBool();
+
+        $this->assertCastable($mapOfStringToBool, 'map_of_string_to_bool');
+    }
+
+    public function getAsMapOfStringToString(): array
+    {
+        $mapOfStringToString = $this->findAsMapOfStringToString();
+
+        $this->assertCastable($mapOfStringToString, 'map_of_string_to_string');
+
+        return $mapOfStringToString;
     }
 
     /**
@@ -508,20 +524,6 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
-     * @psalm-param list<string|int> $keySequence
-     *
-     * @param array $keySequence
-     * @return TypedAccessor
-     */
-    private function setKeySequence(array $keySequence): self
-    {
-        $this->keySequence = $keySequence;
-
-        return $this;
-    }
-
-    /**
-     * @psalm-pure
      *
      * @param mixed $offset
      * @param mixed $value
@@ -541,10 +543,39 @@ final class TypedAccessor implements TypedAccessorInterface
         throw new CannotModifyAccessorException($this->keySequence);
     }
 
-    private function assertNotNull($value, string $expectedType): void
+    /**
+     * @psalm-pure
+     * @psalm-param list<string|int> $keySequence
+     *
+     * @param array $keySequence
+     * @return TypedAccessor
+     */
+    private function setKeySequence(array $keySequence): self
+    {
+        $this->keySequence = $keySequence;
+
+        return $this;
+    }
+
+    /**
+     * @param        $value
+     * @param string $expectedType
+     */
+    private function assertType($value, string $expectedType): void
     {
         if ($value === null) {
             throw new UnexpectedTypeException($expectedType, $value, $this->keySequence);
+        }
+    }
+
+    /**
+     * @param        $value
+     * @param string $desiredType
+     */
+    private function assertCastable($value, string $desiredType): void
+    {
+        if ($value === null) {
+            throw new UncastableValueException($desiredType, $this->value, $this->keySequence);
         }
     }
 }
