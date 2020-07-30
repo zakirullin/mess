@@ -202,6 +202,9 @@ final class TypedAccessor implements TypedAccessorInterface
         return $listOfString;
     }
 
+    /**
+     * @return array
+     */
     public function getAsMapOfStringToInt(): array
     {
         $mapOfStringToInt = $this->findAsMapOfStringToInt();
@@ -211,13 +214,21 @@ final class TypedAccessor implements TypedAccessorInterface
         return $mapOfStringToInt;
     }
 
+    /**
+     * @return array
+     */
     public function getAsMapOfStringToBool(): array
     {
         $mapOfStringToBool = $this->findAsMapOfStringToBool();
 
         $this->assertCastable($mapOfStringToBool, 'map_of_string_to_bool');
+
+        return $mapOfStringToBool;
     }
 
+    /**
+     * @return array
+     */
     public function getAsMapOfStringToString(): array
     {
         $mapOfStringToString = $this->findAsMapOfStringToString();
