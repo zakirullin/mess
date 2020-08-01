@@ -55,7 +55,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getInt(): int
     {
-        $this->assertType($this->findInt(), 'int');
+        $this->assertType($this->findInt(), TypeEnum::INT);
 
         return $this->value;
     }
@@ -67,7 +67,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getBool(): bool
     {
-        $this->assertType($this->findBool(), 'bool');
+        $this->assertType($this->findBool(), TypeEnum::BOOL);
 
         return $this->value;
     }
@@ -79,7 +79,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getString(): string
     {
-        $this->assertType($this->findString(), 'string');
+        $this->assertType($this->findString(), TypeEnum::STRING);
 
         return $this->value;
     }
@@ -92,8 +92,11 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getListOfInt(): array
     {
-        $this->assertType($this->findListOfInt(), 'list_of_int');
+        $this->assertType($this->findListOfInt(), TypeEnum::LIST_OF_INT);
 
+        /**
+         * @psalm-var list<int>
+         */
         return $this->value;
     }
 
@@ -105,8 +108,11 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getListOfString(): array
     {
-        $this->assertType($this->findListOfString(), 'list_of_string');
+        $this->assertType($this->findListOfString(), TypeEnum::LIST_OF_STRING);
 
+        /**
+         * @psalm-var list<string>
+         */
         return $this->value;
     }
 
@@ -118,8 +124,11 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getArrayOfStringToInt(): array
     {
-        $this->assertType($this->findArrayOfStringToInt(), 'array_of_string_to_int');
+        $this->assertType($this->findArrayOfStringToInt(), TypeEnum::ARRAY_OF_STRING_TO_INT);
 
+        /**
+         * @psalm-var array<string,int>
+         */
         return $this->value;
     }
 
@@ -131,8 +140,11 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getArrayOfStringToBool(): array
     {
-        $this->assertType($this->findArrayOfStringToBool(), 'array_of_string_to_bool');
+        $this->assertType($this->findArrayOfStringToBool(), TypeEnum::ARRAY_OF_STRING_TO_BOOL);
 
+        /**
+         * @var array<string,bool>
+         */
         return $this->value;
     }
 
@@ -146,6 +158,9 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $this->assertType($this->findArrayOfStringToString(), TypeEnum::ARRAY_OF_STRING_TO_STRING);
 
+        /**
+         * @psalm-var array<string,string>
+         */
         return $this->value;
     }
 
@@ -160,6 +175,9 @@ final class TypedAccessor implements TypedAccessorInterface
 
         $this->assertCastable($intValue, TypeEnum::INT);
 
+        /**
+         * @var int
+         */
         return $intValue;
     }
 
@@ -261,7 +279,7 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $arrayOfStringToString = $this->findAsArrayOfStringToString();
 
-        $this->assertCastable($arrayOfStringToString, 'array_of_string_to_string');
+        $this->assertCastable($arrayOfStringToString, TypeEnum::ARRAY_OF_STRING_TO_STRING);
 
         return $arrayOfStringToString;
     }
@@ -316,6 +334,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfInt(): ?array
     {
+        /**
+         * @psalm-var list<int>|null
+         */
         return ListOfTypeFinder::find($this->value, 'is_int');
     }
 
@@ -327,6 +348,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfString(): ?array
     {
+        /**
+         * @psalm-var list<string>|null
+         */
         return ListOfTypeFinder::find($this->value, 'is_string');
     }
 
