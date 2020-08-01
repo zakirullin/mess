@@ -1,5 +1,5 @@
 {
-  "name": "zakirullin/typed-accessor",
+  "name": "zakirullin/mess",
   "type": "library",
   "description": "Convenient array-related routine & better type casting",
   "keywords": [
@@ -10,7 +10,7 @@
     "php",
     "json"
   ],
-  "homepage": "https://github.com/zakirullin/typed-accessor",
+  "homepage": "https://github.com/zakirullin/mess",
   "license": "MIT",
   "authors": [
     {
@@ -31,12 +31,13 @@
   },
   "autoload": {
     "psr-4": {
+      "Zakirullin\\Mess\\": "src/",
       "Zakirullin\\TypedAccessor\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Zakirullin\\TypedAccessor\\Tests\\": "tests/unit"
+      "Zakirullin\\Mess\\Tests\\": "tests/unit"
     }
   }
 }

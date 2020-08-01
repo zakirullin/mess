@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor;
+namespace Zakirullin\Mess;
 
 use ArrayAccess;
 
-interface TypedAccessorInterface extends ArrayAccess
+interface MessInterface extends ArrayAccess
 {
     public function getInt(): int;
     public function getBool(): bool;

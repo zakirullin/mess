@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Tests\Exception;
+namespace Zakirullin\Mess\Tests\Exception;
 
 use PHPUnit\Framework\TestCase;
-use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
+use Zakirullin\Mess\Exception\UnexpectedKeyTypeException;
 
 class UnexpectedKeyTypeExceptionTest extends TestCase
 {

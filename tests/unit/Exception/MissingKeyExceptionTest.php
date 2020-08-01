@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Tests\Exception;
+namespace Zakirullin\Mess\Tests\Exception;
 
 use PHPUnit\Framework\TestCase;
-use Zakirullin\TypedAccessor\Exception\MissingKeyException;
+use Zakirullin\Mess\Exception\MissingKeyException;
 
 /**
- * @covers \Zakirullin\TypedAccessor\Exception\MissingKeyException
+ * @covers \Zakirullin\Mess\Exception\MissingKeyException
  */
 class MissingKeyExceptionTest extends TestCase
 {

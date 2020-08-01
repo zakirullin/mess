@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Caster;
+namespace Zakirullin\Mess\Caster;
 
 use function is_int;
 use function is_string;

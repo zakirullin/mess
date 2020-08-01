@@ -2,7 +2,7 @@
 
 - Illogical type casting (`PHP`'s native implementation is way too "smart")
 - Pointless casts like `array => float` are **allowed**
-- Arrays & boilerplate code to work with them (check if `isset()`, throw an exception, cast the type, etc.)
+- Boilerplate code to work with arrays (check if `isset()`, throw an exception, cast the type, etc.)
 
 Consider an example:
 ```php
@@ -16,28 +16,32 @@ $userId = (int)$userId;
 ## Way too verbose. Any ideas?
 
 ```php
-$userId = (new TypedAccessor($queryParams))['userId']->getAsInt();
+$userId = (new Mess($queryParams))['userId']->getAsInt();
+```
+
+```bash
+$ composer require zakirullin/mess
 ```
 
 ## A few real-world examples
 
 ```php
-$queryParams = new TypedAccessor(['isDeleted' => 'true']);
+$queryParams = new Mess(['isDeleted' => 'true']);
 $queryParams['isDeleted']->getBool(); // UnexpectedTypeException
 $queryParams['isDeleted']->getAsBool(); // true
 
-$value = new TypedAccessor('25');
+$value = new Mess('25');
 $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // 25
 $value->getString(); // '25'
 
-$value = new TypedAccessor('abc');
+$value = new Mess('abc');
 $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // UncastableValueException
 $value->findInt(); // null
 $value->findInt() ?? 1; // 1
 
-$config = new TypedAccessor(['param' => '1']);
+$config = new Mess(['param' => '1']);
 $config['a']['b']->getInt(); // MissingKeyException: "MissingKeyException: a.b"
 $config['a']->findInt(); // null
 $config['param']->getInt(); // UnexpectedTypeException 
@@ -95,11 +99,9 @@ And that's the worst thing about it. It will continue to work, though, not in a 
 
 ## The library comes in handy in a variety of scenarios 🚀
 
+Where does mess come from?
+
 - Deserialized data
 - Request `body`/`query` 
 - `API` responses
 - etc.
-
-```bash
-$ composer require zakirullin/typed-accessor
-```

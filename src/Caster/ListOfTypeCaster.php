@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Caster;
+namespace Zakirullin\Mess\Caster;
 
-use Zakirullin\TypedAccessor\Finder\ListOfMixedFinder;
+use Zakirullin\Mess\Finder\ListOfMixedFinder;
 
 final class ListOfTypeCaster
 {
