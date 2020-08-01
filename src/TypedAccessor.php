@@ -519,7 +519,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getObject(): object
     {
-        $this->assertType($this->value, TypeEnum::OBJECT);
+        $this->assertType($this->findObject(), TypeEnum::OBJECT);
 
         /**
          * @var object
@@ -532,7 +532,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getArray(): array
     {
-        $this->assertType($this->value, TypeEnum::ARRAY);
+        $this->assertType($this->findArray(), TypeEnum::ARRAY);
 
         /**
          * @var array

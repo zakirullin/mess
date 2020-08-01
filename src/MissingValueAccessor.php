@@ -394,7 +394,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
-     *            
+     *
      * @return array
      */
     public function getArray(): array
