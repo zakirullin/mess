@@ -2,7 +2,7 @@
 
 - Illogical type casting (`PHP`'s native implementation is way too "smart")
 - Pointless casts like `array => float` are **allowed**
-- Arrays & boilerplate code to work with them (check if `isset()`, throw an exception, cast the type, etc.)
+- Boilerplate code to work with arrays (check if `isset()`, throw an exception, cast the type, etc.)
 
 Consider an example:
 ```php
