@@ -14,7 +14,7 @@ final class StringCaster
     /**
      * @psalm-pure
      *
-     * @param $value
+     * @param mixed $value
      * @return string|null
      */
     public static function cast($value): ?string

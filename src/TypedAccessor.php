@@ -57,6 +57,9 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $this->assertType($this->findInt(), TypeEnum::INT);
 
+        /**
+         * @var int
+         */
         return $this->value;
     }
 
@@ -69,6 +72,9 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $this->assertType($this->findBool(), TypeEnum::BOOL);
 
+        /**
+         * @var bool
+         */
         return $this->value;
     }
 
@@ -81,6 +87,9 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $this->assertType($this->findString(), TypeEnum::STRING);
 
+        /**
+         * @var string
+         */
         return $this->value;
     }
 

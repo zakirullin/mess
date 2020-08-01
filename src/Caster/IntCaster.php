@@ -15,6 +15,7 @@ final class IntCaster
     /**
      * @psalm-pure
      *
+     * @param mixed $value
      * @return int|null
      */
     public static function cast($value): ?int

@@ -12,7 +12,7 @@ final class ListOfMixedFinder
 {
     /**
      * @psalm-pure
-     * @psalm-return list
+     * @psalm-return list|null
      *
      * @param mixed $value
      * @return array|null

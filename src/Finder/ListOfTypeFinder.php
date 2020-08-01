@@ -7,6 +7,7 @@ final class ListOfTypeFinder
 {
     /**
      * @psalm-pure
+     * @psalm-return list|null
      *
      * @param mixed    $value
      * @param callable $typeChecker
@@ -21,10 +22,7 @@ final class ListOfTypeFinder
 
         /**
          * @psalm-var list $listOfMixed
-         */
-
-        /**
-         * @psalm-suppress all
+         * @var mixed $val
          */
         foreach ($listOfMixed as $val) {
             if (!$typeChecker($val)) {

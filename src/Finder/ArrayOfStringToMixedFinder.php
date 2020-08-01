@@ -20,6 +20,10 @@ final class ArrayOfStringToMixedFinder
             return null;
         }
 
+        /**
+         * @var array $value
+         * @var mixed $val
+         */
         foreach ($value as $key => $val) {
             if (!is_string($key)) {
                 return null;

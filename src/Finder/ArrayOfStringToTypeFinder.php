@@ -7,6 +7,7 @@ final class ArrayOfStringToTypeFinder
 {
     /**
      * @psalm-pure
+     * @psalm-return array<string,mixed>|null
      *
      * @param mixed    $value
      * @param callable $typeChecker
@@ -19,12 +20,19 @@ final class ArrayOfStringToTypeFinder
             return null;
         }
 
+        /**
+         * @psalm-var array<string,mixed> $arrayOfMixed
+         * @var mixed $val
+         */
         foreach ($arrayOfMixed as $val) {
             if (!$typeChecker($val)) {
                 return null;
             }
         }
 
+        /**
+         * @psalm-var array<string,mixed>
+         */
         return $value;
     }
 }

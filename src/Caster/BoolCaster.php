@@ -13,7 +13,7 @@ final class BoolCaster
     /**
      * @psalm-pure
      *
-     * @param $value
+     * @param mixed $value
      * @return bool|null
      */
     public static function cast($value): ?bool

@@ -23,12 +23,22 @@ final class ArrayOfStringToTypeCaster
         }
 
         $arrayOfStringToCasted = [];
+        /**
+         * @var string $key
+         * @var mixed  $val
+         */
         foreach ($value as $key => $val) {
+            /**
+             * @var mixed
+             */
             $castedValue = $caster($val);
             if ($castedValue === null) {
                 return null;
             }
 
+            /**
+             * @var mixed
+             */
             $arrayOfStringToCasted[$key] = $castedValue;
         }
 
