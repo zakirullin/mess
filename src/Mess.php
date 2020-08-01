@@ -692,7 +692,7 @@ class Mess implements MessInterface
     private function assertType($value, string $expectedType): void
     {
         if ($value === null) {
-            throw new UnexpectedTypeException($expectedType, $value, $this->keySequence);
+            throw new UnexpectedTypeException($expectedType, $this->value, $this->keySequence);
         }
     }
 
