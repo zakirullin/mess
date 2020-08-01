@@ -338,6 +338,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findArrayOfStringToInt(): ?array
     {
+        /**
+         * @psalm-var array<string,int>|null
+         */
         return ArrayOfStringToTypeFinder::find($this->value, 'is_int');
     }
 
@@ -349,6 +352,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findArrayOfStringToBool(): ?array
     {
+        /**
+         * @psalm-var array<string,bool>|null
+         */
         return ArrayOfStringToTypeFinder::find($this->value, 'is_bool');
     }
 
@@ -360,6 +366,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findArrayOfStringToString(): ?array
     {
+        /**
+         * @psalm-var array<string,string>|null
+         */
         return ArrayOfStringToTypeFinder::find($this->value, 'is_string');
     }
 

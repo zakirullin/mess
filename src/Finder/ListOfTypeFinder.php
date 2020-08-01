@@ -7,7 +7,7 @@ final class ListOfTypeFinder
 {
     /**
      * @psalm-pure
-     *            
+     *
      * @param mixed    $value
      * @param callable $typeChecker
      * @return array|null
