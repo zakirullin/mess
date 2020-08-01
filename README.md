@@ -16,28 +16,28 @@ $userId = (int)$userId;
 ## Way too verbose. Any ideas?
 
 ```php
-$userId = (new TypedAccessor($queryParams))['userId']->getAsInt();
+$userId = (new Mess($queryParams))['userId']->getAsInt();
 ```
 
 ## A few real-world examples
 
 ```php
-$queryParams = new TypedAccessor(['isDeleted' => 'true']);
+$queryParams = new Mess(['isDeleted' => 'true']);
 $queryParams['isDeleted']->getBool(); // UnexpectedTypeException
 $queryParams['isDeleted']->getAsBool(); // true
 
-$value = new TypedAccessor('25');
+$value = new Mess('25');
 $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // 25
 $value->getString(); // '25'
 
-$value = new TypedAccessor('abc');
+$value = new Mess('abc');
 $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // UncastableValueException
 $value->findInt(); // null
 $value->findInt() ?? 1; // 1
 
-$config = new TypedAccessor(['param' => '1']);
+$config = new Mess(['param' => '1']);
 $config['a']['b']->getInt(); // MissingKeyException: "MissingKeyException: a.b"
 $config['a']->findInt(); // null
 $config['param']->getInt(); // UnexpectedTypeException 

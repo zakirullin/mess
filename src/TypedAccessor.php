@@ -25,7 +25,7 @@ use function key_exists;
 /**
  * @psalm-immutable
  */
-final class TypedAccessor implements TypedAccessorInterface
+class TypedAccessor implements TypedAccessorInterface
 {
     /**
      * @var mixed
