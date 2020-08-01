@@ -86,6 +86,39 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array
+     */
+    public function getMapOfStringToInt(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array
+     */
+    public function getMapOfStringToBool(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array
+     */
+    public function getMapOfStringToString(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
      *
      * @return int
      */
@@ -132,6 +165,39 @@ final class MissingValueAccessor implements TypedAccessorInterface
      * @return array
      */
     public function getAsListOfString(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array
+     */
+    public function getAsMapOfStringToInt(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array
+     */
+    public function getAsMapOfStringToBool(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array
+     */
+    public function getAsMapOfStringToString(): array
     {
         throw new MissingKeyException($this->keySequence);
     }
@@ -190,6 +256,39 @@ final class MissingValueAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array|null
+     */
+    public function findMapOfStringToInt(): ?array
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array|null
+     */
+    public function findMapOfStringToBool(): ?array
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array|null
+     */
+    public function findMapOfStringToString(): ?array
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
      *
      * @return int|null
      */
@@ -236,6 +335,39 @@ final class MissingValueAccessor implements TypedAccessorInterface
      * @return array|null
      */
     public function findAsListOfString(): ?array
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array|null
+     */
+    public function findAsMapOfStringToInt(): ?array
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array|null
+     */
+    public function findAsMapOfStringToBool(): ?array
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return list<string>
+     *
+     * @return array|null
+     */
+    public function findAsMapOfStringToString(): ?array
     {
         return null;
     }
