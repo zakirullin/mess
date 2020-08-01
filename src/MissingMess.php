@@ -12,7 +12,7 @@ use function is_string;
 /**
  * @psalm-immutable
  */
-final class MissingValueAccessor implements TypedAccessorInterface
+final class MissingMess implements MessInterface
 {
     /**
      * @psalm-readonly

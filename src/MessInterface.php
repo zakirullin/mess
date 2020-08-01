@@ -5,7 +5,7 @@ namespace Zakirullin\TypedAccessor;
 
 use ArrayAccess;
 
-interface TypedAccessorInterface extends ArrayAccess
+interface MessInterface extends ArrayAccess
 {
     public function getInt(): int;
     public function getBool(): bool;
