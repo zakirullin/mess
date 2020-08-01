@@ -10,6 +10,7 @@ use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
 use Zakirullin\TypedAccessor\MissingValueAccessor;
 use Zakirullin\TypedAccessor\TypedAccessor;
+use stdClass;
 
 /**
  * @covers \Zakirullin\TypedAccessor\TypedAccessor
@@ -625,11 +626,55 @@ class TypedAccessorTest extends TestCase
         $this->assertSame('1', $actualValue);
     }
 
-    public function testFindMixedValue_AnyValue_ReturnsSameValue()
+    public function testGetObject_Object_ReturnsSameObject()
+    {
+        $object = new stdClass();
+        $actualValue = (new TypedAccessor($object))->getObject();
+
+        $this->assertSame($object, $actualValue);
+    }
+
+    public function testGetObject_Int_ThrowsUnexpectedTypeException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new TypedAccessor(1))->getObject();
+    }
+
+    public function testGetArray_Array_ReturnsSameArray()
+    {
+        $actualValue = (new TypedAccessor([1]))->getArray();
+
+        $this->assertSame([1], $actualValue);
+    }
+
+    public function testGetArray_Int_ThrowsUnexpectedTypeException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new TypedAccessor(1))->getArray();
+    }
+
+    public function testFindMixed_AnyValue_ReturnsSameValue()
     {
         $actualValue = (new TypedAccessor('1'))->findMixed();
 
         $this->assertSame('1', $actualValue);
+    }
+
+    public function testFindObject_Object_ReturnsSameObject()
+    {
+        $object = new stdClass();
+        $actualValue = (new TypedAccessor($object))->findObject();
+
+        $this->assertSame($object, $actualValue);
+    }
+
+    public function testFindArray_Array_ReturnsSameArray()
+    {
+        $actualValue = (new TypedAccessor([1]))->findArray();
+
+        $this->assertSame([1], $actualValue);
     }
 
     public function testOffsetExists_ArrayWithExistingOffset_ReturnsTrue()
