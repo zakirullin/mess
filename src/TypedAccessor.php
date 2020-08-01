@@ -3,16 +3,19 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
+use Zakirullin\TypedAccessor\Caster\IntCaster;
 use Zakirullin\TypedAccessor\Caster\BoolCaster;
+use Zakirullin\TypedAccessor\Caster\StringCaster;
 use Zakirullin\TypedAccessor\Caster\ListOfTypeCaster;
 use Zakirullin\TypedAccessor\Caster\ArrayOfStringToTypeCaster;
-use Zakirullin\TypedAccessor\Caster\StringCaster;
 use Zakirullin\TypedAccessor\Enum\TypeEnum;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
-use Zakirullin\TypedAccessor\Type\IntCaster;
+use Zakirullin\TypedAccessor\Finder\ArrayOfStringToTypeFinder;
+use Zakirullin\TypedAccessor\Finder\ListOfIntFinder;
+use Zakirullin\TypedAccessor\Finder\ListOfTypeFinder;
 use function is_array;
 use function is_bool;
 use function is_int;
@@ -294,31 +297,8 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfInt(): ?array
     {
-        $listOfMixed = (new ListOfMixedType($this->value))();
-        if ($listOfMixed === null) {
-            return null;
-        }
-
-        /**
-         * @psalm-var list $listOfMixed
-         */
-
-        /**
-         * @psalm-suppress all
-         */
-        foreach ($this->value as $value) {
-            if (!is_int($value)) {
-                return null;
-            }
-        }
-
-        /**
-         * @psalm-var list<int> $listOfMixed
-         */
-
-        return $listOfMixed;
+        return ListOfTypeFinder::find($this->value, 'is_int');
     }
-
 
     /**
      * @psalm-pure
@@ -328,45 +308,12 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findListOfString(): ?array
     {
-        $listOfMixed = (new ListOfMixedType($this->value))();
-        if ($listOfMixed === null) {
-            return null;
-        }
-
-        /**
-         * @psalm-var list $listOfMixed
-         */
-
-        /**
-         * @psalm-suppress all
-         */
-        foreach ($listOfMixed as $value) {
-            if (!is_string($value)) {
-                return null;
-            }
-        }
-
-        /**
-         * @psalm-var list<string> $listOfMixed
-         */
-
-        return $listOfMixed;
+        return ListOfTypeFinder::find($this->value, 'is_string');
     }
 
     public function findArrayOfStringToInt(): ?array
     {
-        $arrayOfMixed = Caster::toArrayOfStringToMixed($this->value);
-        if ($arrayOfMixed === null) {
-            return null;
-        }
-
-        foreach ($arrayOfMixed as $val) {
-            if (!is_int($val)) {
-                return null;
-            }
-        }
-
-        return $this->value;
+        return ArrayOfStringToTypeFinder::find($this->value, 'is_int');
     }
 
     public function findArrayOfStringToBool(): ?array

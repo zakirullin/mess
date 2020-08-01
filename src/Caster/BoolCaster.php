@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Caster;
 
-use Zakirullin\TypedAccessor\Type\IntCaster;
+use Zakirullin\TypedAccessor\Caster\IntCaster;
 use function is_bool;
 
 /**

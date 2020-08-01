@@ -12,8 +12,12 @@ final class ListOfMixedFinder
 {
     public static function find($value)
     {
-        if (!is_array($value) || empty($value)) {
+        if (!is_array($value)) {
             return null;
+        }
+
+        if (empty($value)) {
+            return [];
         }
 
         /**

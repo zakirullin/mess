@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Type;
+namespace Zakirullin\TypedAccessor\Caster;
 
 use function filter_var;
 use function is_bool;

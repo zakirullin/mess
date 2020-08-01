@@ -8,7 +8,7 @@ use function is_string;
 
 final class ArrayOfStringToTypeFinder
 {
-    public function find($value, callable $typeChecker)
+    public static function find($value, callable $typeChecker)
     {
         $arrayOfMixed = ArrayOfStringToMixedFinder::find($value);
         if ($arrayOfMixed === null) {

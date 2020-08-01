@@ -22,7 +22,7 @@ final class ListOfTypeFinder
          * @psalm-suppress all
          */
         foreach ($listOfMixed as $val) {
-            if ($typeChecker($val)) {
+            if (!$typeChecker($val)) {
                 return null;
             }
         }
