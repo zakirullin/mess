@@ -177,22 +177,6 @@ class Mess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return array<string,mixed>
-     *
-     * @return array
-     */
-    public function getArrayOfStringToMixed(): array
-    {
-        $this->assertType($this->findArrayOfStringToMixed(), TypeEnum::ARRAY_OF_STRING_TO_MIXED);
-
-        /**
-         * @psalm-var array<string,mixed>
-         */
-        return $this->value;
-    }
-
-    /**
-     * @psalm-pure
      *
      * @return int
      */
@@ -425,20 +409,6 @@ class Mess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return array<string,mixed>|null
-     *
-     * @return array|null
-     */
-    public function findArrayOfStringToMixed(): ?array
-    {
-        /**
-         * @psalm-var array<string,string>|null
-         */
-        return ArrayOfStringToMixedFinder::find($this->value);
-    }
-
-    /**
-     * @psalm-pure
      *
      * @return int|null
      */
@@ -573,6 +543,22 @@ class Mess implements MessInterface
 
     /**
      * @psalm-pure
+     * @psalm-return array<string,mixed>
+     *
+     * @return array
+     */
+    public function getArrayOfStringToMixed(): array
+    {
+        $this->assertType($this->findArrayOfStringToMixed(), TypeEnum::ARRAY_OF_STRING_TO_MIXED);
+
+        /**
+         * @psalm-var array<string,mixed>
+         */
+        return $this->value;
+    }
+
+    /**
+     * @psalm-pure
      *
      * @return mixed
      */
@@ -603,6 +589,20 @@ class Mess implements MessInterface
         }
 
         return $this->value;
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return array<string,mixed>|null
+     *
+     * @return array|null
+     */
+    public function findArrayOfStringToMixed(): ?array
+    {
+        /**
+         * @psalm-var array<string,string>|null
+         */
+        return ArrayOfStringToMixedFinder::find($this->value);
     }
 
     /**

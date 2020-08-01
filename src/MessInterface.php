@@ -49,6 +49,7 @@ interface MessInterface extends ArrayAccess
     public function getMixed();
     public function getObject(): object;
     public function getArray(): array;
+    public function getArrayOfStringToMixed(): array;
 
     /**
      * @return mixed
@@ -56,6 +57,7 @@ interface MessInterface extends ArrayAccess
     public function findMixed();
     public function findObject(): ?object;
     public function findArray(): ?array;
+    public function findArrayOfStringToMixed(): ?array;
 
     /**
      * @param string|int $offset

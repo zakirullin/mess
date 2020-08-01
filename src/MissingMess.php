@@ -405,6 +405,16 @@ final class MissingMess implements MessInterface
     /**
      * @psalm-pure
      *
+     * @return array
+     */
+    public function getArrayOfStringToMixed(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
+     *
      * @return mixed
      */
     public function findMixed()
@@ -428,6 +438,16 @@ final class MissingMess implements MessInterface
      * @return array|null
      */
     public function findArray(): ?array
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @return array|null
+     */
+    public function findArrayOfStringToMixed(): ?array
     {
         return null;
     }
