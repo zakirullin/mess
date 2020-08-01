@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Finder;
 
-use Zakirullin\TypedAccessor\Caster;
-use function is_string;
-
 final class ArrayOfStringToTypeFinder
 {
     public static function find($value, callable $typeChecker)

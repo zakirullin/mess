@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Finder;
 
-use function is_int;
-
 final class ListOfTypeFinder
 {
     public static function find($value, callable $typeChecker): ?array

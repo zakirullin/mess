@@ -14,7 +14,6 @@ use Zakirullin\TypedAccessor\Exception\UncastableValueException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
 use Zakirullin\TypedAccessor\Finder\ArrayOfStringToTypeFinder;
-use Zakirullin\TypedAccessor\Finder\ListOfIntFinder;
 use Zakirullin\TypedAccessor\Finder\ListOfTypeFinder;
 use function is_array;
 use function is_bool;
@@ -112,6 +111,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,int>
+     *
      * @return array
      */
     public function getArrayOfStringToInt(): array
@@ -122,6 +124,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,bool>
+     *
      * @return array
      */
     public function getArrayOfStringToBool(): array
@@ -132,6 +137,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,string>
+     *
      * @return array
      */
     public function getArrayOfStringToString(): array
@@ -206,7 +214,7 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $listOfString = $this->findAsListOfString();
 
-        $this->assertCastable($listOfString, 'list_of_string');
+        $this->assertCastable($listOfString, TypeEnum::LIST_OF_STRING);
 
         return $listOfString;
     }
@@ -218,7 +226,7 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $arrayOfStringToInt = $this->findAsArrayOfStringToInt();
 
-        $this->assertCastable($arrayOfStringToInt, 'array_of_string_to_int');
+        $this->assertCastable($arrayOfStringToInt, TypeEnum::ARRAY_OF_STRING_TO_INT);
 
         return $arrayOfStringToInt;
     }
@@ -230,7 +238,7 @@ final class TypedAccessor implements TypedAccessorInterface
     {
         $arrayOfStringToBool = $this->findAsArrayOfStringToBool();
 
-        $this->assertCastable($arrayOfStringToBool, 'array_of_string_to_bool');
+        $this->assertCastable($arrayOfStringToBool, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
 
         return $arrayOfStringToBool;
     }
@@ -311,41 +319,37 @@ final class TypedAccessor implements TypedAccessorInterface
         return ListOfTypeFinder::find($this->value, 'is_string');
     }
 
+    /**
+     * @psalm-pure
+     * @psalm-return array<string,int>|null
+     *
+     * @return array|null
+     */
     public function findArrayOfStringToInt(): ?array
     {
         return ArrayOfStringToTypeFinder::find($this->value, 'is_int');
     }
 
+    /**
+     * @psalm-pure
+     * @psalm-return array<string,bool>|null
+     *
+     * @return array|null
+     */
     public function findArrayOfStringToBool(): ?array
     {
-        $arrayOfMixed = Caster::toArrayOfStringToMixed($this->value);
-        if ($arrayOfMixed === null) {
-            return null;
-        }
-
-        foreach ($arrayOfMixed as $val) {
-            if (!is_bool($val)) {
-                return null;
-            }
-        }
-
-        return $this->value;
+        return ArrayOfStringToTypeFinder::find($this->value, 'is_bool');
     }
 
+    /**
+     * @psalm-pure
+     * @psalm-return array<string,string>|null
+     *
+     * @return array|null
+     */
     public function findArrayOfStringToString(): ?array
     {
-        $arrayOfMixed = Caster::toArrayOfStringToMixed($this->value);
-        if ($arrayOfMixed === null) {
-            return null;
-        }
-
-        foreach ($arrayOfMixed as $val) {
-            if (!is_string($val)) {
-                return null;
-            }
-        }
-
-        return $this->value;
+        return ArrayOfStringToTypeFinder::find($this->value, 'is_string');
     }
 
     /**

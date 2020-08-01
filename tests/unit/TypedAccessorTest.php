@@ -10,7 +10,6 @@ use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
 use Zakirullin\TypedAccessor\MissingValueAccessor;
 use Zakirullin\TypedAccessor\TypedAccessor;
-use function var_dump;
 
 /**
  * @covers \Zakirullin\TypedAccessor\TypedAccessor
@@ -113,6 +112,27 @@ class TypedAccessorTest extends TestCase
         $this->expectException(UnexpectedTypeException::class);
 
         (new TypedAccessor(1))->getListOfString();
+    }
+
+    public function testGetArrayOfStringToInt_ArrayOfStringToInt_ReturnsSameValue()
+    {
+        $actualValue = (new TypedAccessor(['a' => 1, 'b' => 2]))->getArrayOfStringToInt();
+
+        $this->assertSame(['a' => 1, 'b' => 2], $actualValue);
+    }
+
+    public function testGetArrayOfStringToBool_ArrayOfStringToBool_ReturnsSameValue()
+    {
+        $actualValue = (new TypedAccessor(['a' => true, 'b' => false]))->getAsArrayOfStringToBool();
+
+        $this->assertSame(['a' => true, 'b' => false], $actualValue);
+    }
+
+    public function testGetArrayOfStringToString_ArrayOfStringToString_ReturnsSameValue()
+    {
+        $actualValue = (new TypedAccessor(['a' => 'A', 'b' => 'B']))->getAsArrayOfStringToString();
+
+        $this->assertSame(['a' => 'A', 'b' => 'B'], $actualValue);
     }
 
     /**
@@ -345,7 +365,7 @@ class TypedAccessorTest extends TestCase
     }
 
     /**
-     * Cannot cast to list of string
+     * Cannot cast to list<string>
      */
     public function providerCannotCastToListOfStringValues()
     {
@@ -353,6 +373,50 @@ class TypedAccessorTest extends TestCase
             'not array' => [1],
             'associative array' => [['a', 2 => 'b']],
             'list of uncastable values' => [[true]],
+        ];
+    }
+
+    /**
+     * @dataProvider providerCanCastToArrayOfStringToIntValues
+     */
+    public function testGetAsArrayOfStringToInt_GivenCastableValue_ReturnsMatchingCastedValue($value, array $castedValue)
+    {
+        $actualValue = (new TypedAccessor($value))->getAsArrayOfStringToInt();
+
+        $this->assertSame($castedValue, $actualValue);
+    }
+
+    /**
+     * Can cast to array<string,int>
+     */
+    public function providerCanCastToArrayOfStringToIntValues()
+    {
+        return [
+            'empty array' => [[], []],
+            'array<string,int>' => [['a' => 1], ['a' => 1]],
+            'array<string,castable>' => [['a' => '1'], ['a' => 1]],
+        ];
+    }
+
+    /**
+     * @dataProvider providerCannotCastToArrayOfStringToIntValues
+     */
+    public function testGetAsArrayOfStringToInt_GivenUncastableValue_ThrowsUncastableValueException($value)
+    {
+        $this->expectException(UncastableValueException::class);
+
+        (new TypedAccessor($value))->getAsArrayOfStringToInt();
+    }
+
+    /**
+     * Cannot cast to list<string>
+     */
+    public function providerCannotCastToArrayOfStringToIntValues()
+    {
+        return [
+            'not array' => [1],
+            'array<mixed,int>' => [[1 => 1, 'a' => 'b']],
+            'array<string,uncastable>' => [[true]],
         ];
     }
 

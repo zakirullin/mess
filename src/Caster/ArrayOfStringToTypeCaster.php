@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Caster;
 
+use Zakirullin\TypedAccessor\Finder\ArrayOfStringToMixedFinder;
+
 final class ArrayOfStringToTypeCaster
 {
     /**
@@ -12,7 +14,7 @@ final class ArrayOfStringToTypeCaster
      */
     public static function cast($value, callable $caster): ?array
     {
-        $arrayOfStringToMixed = self::toArrayOfStringToMixed($value);
+        $arrayOfStringToMixed = ArrayOfStringToMixedFinder::find($value);
         if ($arrayOfStringToMixed === null) {
             return null;
         }
