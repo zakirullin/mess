@@ -19,6 +19,10 @@ $userId = (int)$userId;
 $userId = (new Mess($queryParams))['userId']->getAsInt();
 ```
 
+```bash
+$ composer require zakirullin/mess
+```
+
 ## A few real-world examples
 
 ```php
@@ -99,7 +103,3 @@ And that's the worst thing about it. It will continue to work, though, not in a 
 - Request `body`/`query` 
 - `API` responses
 - etc.
-
-```bash
-$ composer require zakirullin/typed-accessor
-```

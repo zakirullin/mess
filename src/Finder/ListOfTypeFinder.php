@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Finder;
+namespace Zakirullin\Mess\Finder;
 
 final class ListOfTypeFinder
 {

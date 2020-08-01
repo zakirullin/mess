@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor;
+namespace Zakirullin\Mess;
 
 use ArrayAccess;
 

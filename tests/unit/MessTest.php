@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Tests;
+namespace Zakirullin\Mess\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
-use Zakirullin\TypedAccessor\Exception\UncastableValueException;
-use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
-use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
-use Zakirullin\TypedAccessor\MissingMess;
-use Zakirullin\TypedAccessor\Mess;
+use Zakirullin\Mess\Exception\CannotModifyMessException;
+use Zakirullin\Mess\Exception\UncastableValueException;
+use Zakirullin\Mess\Exception\UnexpectedKeyTypeException;
+use Zakirullin\Mess\Exception\UnexpectedTypeException;
+use Zakirullin\Mess\MissingMess;
+use Zakirullin\Mess\Mess;
 use stdClass;
 
 /**
- * @covers \Zakirullin\TypedAccessor\Mess
+ * @covers \Zakirullin\Mess\Mess
  */
 class MessTest extends TestCase
 {
@@ -765,7 +765,7 @@ class MessTest extends TestCase
 
     public function testOffsetSet_Offset_ThrowsCannotModifyAccessorException()
     {
-        $this->expectException(CannotModifyAccessorException::class);
+        $this->expectException(CannotModifyMessException::class);
 
         $accessor = new Mess([1]);
         $accessor[0] = 1;
@@ -773,7 +773,7 @@ class MessTest extends TestCase
 
     public function testOffsetUnset_Offset_ThrowsCannotModifyAccessorException()
     {
-        $this->expectException(CannotModifyAccessorException::class);
+        $this->expectException(CannotModifyMessException::class);
 
         $accessor = new Mess([1]);
         unset($accessor[0]);

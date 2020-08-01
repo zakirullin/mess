@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Exception;
+namespace Zakirullin\Mess\Exception;
 
 use RuntimeException;
 use Throwable;
 use function implode;
 
-final class MissingKeyException extends RuntimeException implements TypedAccessorExceptionInterface
+final class MissingKeyException extends RuntimeException implements MessExceptionInterface
 {
     /**
      * @psalm-var list<string|int>

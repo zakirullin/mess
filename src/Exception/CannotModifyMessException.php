@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Exception;
+namespace Zakirullin\Mess\Exception;
 
 use RuntimeException;
 use Throwable;
 
-final class CannotModifyAccessorException extends RuntimeException implements TypedAccessorExceptionInterface
+final class CannotModifyMessException extends RuntimeException implements MessExceptionInterface
 {
     /**
      * @psalm-var list<string|int>
@@ -25,7 +25,7 @@ final class CannotModifyAccessorException extends RuntimeException implements Ty
     {
         $this->keySequence = $keySequence;
 
-        $message = "TypedAccessor cannot modify it's value";
+        $message = "Mess cannot modify it's value";
 
         parent::__construct($message, 0, $previous);
     }

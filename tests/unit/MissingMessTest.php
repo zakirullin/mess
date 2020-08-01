@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Tests;
+namespace Zakirullin\Mess\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Zakirullin\TypedAccessor\MissingMess;
-use Zakirullin\TypedAccessor\Mess;
-use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
-use Zakirullin\TypedAccessor\Exception\MissingKeyException;
+use Zakirullin\Mess\MissingMess;
+use Zakirullin\Mess\Mess;
+use Zakirullin\Mess\Exception\CannotModifyMessException;
+use Zakirullin\Mess\Exception\MissingKeyException;
 
 /**
- * @covers \Zakirullin\TypedAccessor\MissingMess
+ * @covers \Zakirullin\Mess\MissingMess
  */
 class MissingMessTest extends TestCase
 {
@@ -157,7 +157,7 @@ class MissingMessTest extends TestCase
     {
         $accessor = new MissingMess([]);
 
-        $this->expectException(CannotModifyAccessorException::class);
+        $this->expectException(CannotModifyMessException::class);
 
         $accessor[0] = 1;
     }
@@ -166,7 +166,7 @@ class MissingMessTest extends TestCase
     {
         $accessor = new MissingMess([]);
 
-        $this->expectException(CannotModifyAccessorException::class);
+        $this->expectException(CannotModifyMessException::class);
 
         unset($accessor[0]);
     }

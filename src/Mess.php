@@ -1,20 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor;
+namespace Zakirullin\Mess;
 
-use Zakirullin\TypedAccessor\Caster\ArrayOfStringToTypeCaster;
-use Zakirullin\TypedAccessor\Caster\BoolCaster;
-use Zakirullin\TypedAccessor\Caster\IntCaster;
-use Zakirullin\TypedAccessor\Caster\ListOfTypeCaster;
-use Zakirullin\TypedAccessor\Caster\StringCaster;
-use Zakirullin\TypedAccessor\Enum\TypeEnum;
-use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
-use Zakirullin\TypedAccessor\Exception\UncastableValueException;
-use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
-use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
-use Zakirullin\TypedAccessor\Finder\ArrayOfStringToTypeFinder;
-use Zakirullin\TypedAccessor\Finder\ListOfTypeFinder;
+use Zakirullin\Mess\Caster\ArrayOfStringToTypeCaster;
+use Zakirullin\Mess\Caster\BoolCaster;
+use Zakirullin\Mess\Caster\IntCaster;
+use Zakirullin\Mess\Caster\ListOfTypeCaster;
+use Zakirullin\Mess\Caster\StringCaster;
+use Zakirullin\Mess\Enum\TypeEnum;
+use Zakirullin\Mess\Exception\CannotModifyMessException;
+use Zakirullin\Mess\Exception\UncastableValueException;
+use Zakirullin\Mess\Exception\UnexpectedKeyTypeException;
+use Zakirullin\Mess\Exception\UnexpectedTypeException;
+use Zakirullin\Mess\Finder\ArrayOfStringToTypeFinder;
+use Zakirullin\Mess\Finder\ListOfTypeFinder;
 use function is_array;
 use function is_bool;
 use function is_int;
@@ -627,7 +627,7 @@ class Mess implements MessInterface
      */
     public function offsetSet($offset, $value): void
     {
-        throw new CannotModifyAccessorException($this->keySequence);
+        throw new CannotModifyMessException($this->keySequence);
     }
 
     /**
@@ -637,7 +637,7 @@ class Mess implements MessInterface
      */
     public function offsetUnset($offset): void
     {
-        throw new CannotModifyAccessorException($this->keySequence);
+        throw new CannotModifyMessException($this->keySequence);
     }
 
     /**
