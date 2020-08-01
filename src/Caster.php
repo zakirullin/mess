@@ -22,22 +22,22 @@ final class Caster
         return self::toListOfCasted($value, [self::class, 'toInt']);
     }
 
-    public static function toMapOfStringToInt($value): ?array
+    public static function toArrayOfStringToInt($value): ?array
     {
-        return self::toMapOfStringToCasted($value, [self::class, 'toInt']);
+        return self::toArrayOfStringToCasted($value, [self::class, 'toInt']);
     }
 
-    public static function toMapOfStringToBool($value): ?array
+    public static function toArrayOfStringToBool($value): ?array
     {
-        return self::toMapOfStringToCasted($value, [self::class, 'toBool']);
+        return self::toArrayOfStringToCasted($value, [self::class, 'toBool']);
     }
 
-    public static function toMapOfStringToString($value): ?array
+    public static function toArrayOfStringToString($value): ?array
     {
-        return self::toMapOfStringToCasted($value, [self::class, 'toString']);
+        return self::toArrayOfStringToCasted($value, [self::class, 'toString']);
     }
 
-    public static function toMapOfStringToMixed($value): ?array
+    public static function toArrayOfStringToMixed($value): ?array
     {
         $array = self::toArray($value);
         if ($array === null) {
@@ -121,23 +121,23 @@ final class Caster
      * @param callable $caster
      * @return array|null
      */
-    private static function toMapOfStringToCasted($value, callable $caster): ?array
+    private static function toArrayOfStringToCasted($value, callable $caster): ?array
     {
-        $mapOfStringToMixed = self::toMapOfStringToMixed($value);
-        if ($mapOfStringToMixed === null) {
+        $arrayOfStringToMixed = self::toArrayOfStringToMixed($value);
+        if ($arrayOfStringToMixed === null) {
             return null;
         }
 
-        $mapOfStringToCasted = [];
+        $arrayOfStringToCasted = [];
         foreach ($value as $key => $val) {
             $castedValue = $caster($val);
             if ($castedValue === null) {
                 return null;
             }
 
-            $mapOfStringToCasted[$key] = $castedValue;
+            $arrayOfStringToCasted[$key] = $castedValue;
         }
 
-        return $mapOfStringToCasted;
+        return $arrayOfStringToCasted;
     }
 }

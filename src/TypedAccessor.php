@@ -3,17 +3,16 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
+use Zakirullin\TypedAccessor\Caster\BoolCaster;
+use Zakirullin\TypedAccessor\Caster\ListOfTypeCaster;
+use Zakirullin\TypedAccessor\Caster\ArrayOfStringToTypeCaster;
+use Zakirullin\TypedAccessor\Caster\StringCaster;
 use Zakirullin\TypedAccessor\Enum\TypeEnum;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
 use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
-use Zakirullin\TypedAccessor\Type\BooleanType;
-use Zakirullin\TypedAccessor\Type\IntegerType;
-use Zakirullin\TypedAccessor\Type\ListOfIntegerType;
-use Zakirullin\TypedAccessor\Type\ListOfMixedType;
-use Zakirullin\TypedAccessor\Type\ListOfStr;
-use Zakirullin\TypedAccessor\Type\Str;
+use Zakirullin\TypedAccessor\Type\IntCaster;
 use function is_array;
 use function is_bool;
 use function is_int;
@@ -112,9 +111,9 @@ final class TypedAccessor implements TypedAccessorInterface
     /**
      * @return array
      */
-    public function getMapOfStringToInt(): array
+    public function getArrayOfStringToInt(): array
     {
-        $this->assertType($this->findMapOfStringToInt(), 'map_of_string_to_int');
+        $this->assertType($this->findArrayOfStringToInt(), 'array_of_string_to_int');
 
         return $this->value;
     }
@@ -122,9 +121,9 @@ final class TypedAccessor implements TypedAccessorInterface
     /**
      * @return array
      */
-    public function getMapOfStringToBool(): array
+    public function getArrayOfStringToBool(): array
     {
-        $this->assertType($this->findMapOfStringToBool(), 'map_of_string_to_bool');
+        $this->assertType($this->findArrayOfStringToBool(), 'array_of_string_to_bool');
 
         return $this->value;
     }
@@ -132,9 +131,9 @@ final class TypedAccessor implements TypedAccessorInterface
     /**
      * @return array
      */
-    public function getMapOfStringToString(): array
+    public function getArrayOfStringToString(): array
     {
-        $this->assertType($this->findMapOfStringToString(), TypeEnum::MAP_OF_STRING_TO_STRING);
+        $this->assertType($this->findArrayOfStringToString(), TypeEnum::ARRAY_OF_STRING_TO_STRING);
 
         return $this->value;
     }
@@ -212,37 +211,37 @@ final class TypedAccessor implements TypedAccessorInterface
     /**
      * @return array
      */
-    public function getAsMapOfStringToInt(): array
+    public function getAsArrayOfStringToInt(): array
     {
-        $mapOfStringToInt = $this->findAsMapOfStringToInt();
+        $arrayOfStringToInt = $this->findAsArrayOfStringToInt();
 
-        $this->assertCastable($mapOfStringToInt, 'map_of_string_to_int');
+        $this->assertCastable($arrayOfStringToInt, 'array_of_string_to_int');
 
-        return $mapOfStringToInt;
+        return $arrayOfStringToInt;
     }
 
     /**
      * @return array
      */
-    public function getAsMapOfStringToBool(): array
+    public function getAsArrayOfStringToBool(): array
     {
-        $mapOfStringToBool = $this->findAsMapOfStringToBool();
+        $arrayOfStringToBool = $this->findAsArrayOfStringToBool();
 
-        $this->assertCastable($mapOfStringToBool, 'map_of_string_to_bool');
+        $this->assertCastable($arrayOfStringToBool, 'array_of_string_to_bool');
 
-        return $mapOfStringToBool;
+        return $arrayOfStringToBool;
     }
 
     /**
      * @return array
      */
-    public function getAsMapOfStringToString(): array
+    public function getAsArrayOfStringToString(): array
     {
-        $mapOfStringToString = $this->findAsMapOfStringToString();
+        $arrayOfStringToString = $this->findAsArrayOfStringToString();
 
-        $this->assertCastable($mapOfStringToString, 'map_of_string_to_string');
+        $this->assertCastable($arrayOfStringToString, 'array_of_string_to_string');
 
-        return $mapOfStringToString;
+        return $arrayOfStringToString;
     }
 
     /**
@@ -354,14 +353,14 @@ final class TypedAccessor implements TypedAccessorInterface
         return $listOfMixed;
     }
 
-    public function findMapOfStringToInt(): ?array
+    public function findArrayOfStringToInt(): ?array
     {
-        $mapOfMixed = Caster::toMapOfStringToMixed($this->value);
-        if ($mapOfMixed === null) {
+        $arrayOfMixed = Caster::toArrayOfStringToMixed($this->value);
+        if ($arrayOfMixed === null) {
             return null;
         }
 
-        foreach ($mapOfMixed as $val) {
+        foreach ($arrayOfMixed as $val) {
             if (!is_int($val)) {
                 return null;
             }
@@ -370,14 +369,14 @@ final class TypedAccessor implements TypedAccessorInterface
         return $this->value;
     }
 
-    public function findMapOfStringToBool(): ?array
+    public function findArrayOfStringToBool(): ?array
     {
-        $mapOfMixed = Caster::toMapOfStringToMixed($this->value);
-        if ($mapOfMixed === null) {
+        $arrayOfMixed = Caster::toArrayOfStringToMixed($this->value);
+        if ($arrayOfMixed === null) {
             return null;
         }
 
-        foreach ($mapOfMixed as $val) {
+        foreach ($arrayOfMixed as $val) {
             if (!is_bool($val)) {
                 return null;
             }
@@ -386,14 +385,14 @@ final class TypedAccessor implements TypedAccessorInterface
         return $this->value;
     }
 
-    public function findMapOfStringToString(): ?array
+    public function findArrayOfStringToString(): ?array
     {
-        $mapOfMixed = Caster::toMapOfStringToMixed($this->value);
-        if ($mapOfMixed === null) {
+        $arrayOfMixed = Caster::toArrayOfStringToMixed($this->value);
+        if ($arrayOfMixed === null) {
             return null;
         }
 
-        foreach ($mapOfMixed as $val) {
+        foreach ($arrayOfMixed as $val) {
             if (!is_string($val)) {
                 return null;
             }
@@ -409,7 +408,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsInt(): ?int
     {
-        return (new IntegerType($this->value))();
+        return IntCaster::cast($this->value);
     }
 
     /**
@@ -419,7 +418,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsBool(): ?bool
     {
-        return (new BooleanType($this->value))();
+        return BoolCaster::cast($this->value);
     }
 
     /**
@@ -429,7 +428,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsString(): ?string
     {
-        return (new Str($this->value))();
+        return StringCaster::cast($this->value);
     }
 
     /**
@@ -439,7 +438,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsListOfInt(): ?array
     {
-        return (new ListOfIntegerType($this->value))();
+        return ListOfTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
     }
 
     /**
@@ -449,31 +448,31 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsListOfString(): ?array
     {
-        return (new ListOfStr($this->value))();
+        return ListOfTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
     }
 
     /**
      * @return array|null
      */
-    public function findAsMapOfStringToInt(): ?array
+    public function findAsArrayOfStringToInt(): ?array
     {
-        return Caster::toMapOfStringToInt($this->value);
+        return ArrayOfStringToTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
     }
 
     /**
      * @return array|null
      */
-    public function findAsMapOfStringToBool(): ?array
+    public function findAsArrayOfStringToBool(): ?array
     {
-        return Caster::toMapOfStringToBool($this->value);
+        return ArrayOfStringToTypeCaster::cast($this->value, [BoolCaster::class, 'cast']);
     }
 
     /**
      * @return array|null
      */
-    public function findAsMapOfStringToString(): ?array
+    public function findAsArrayOfStringToString(): ?array
     {
-        return Caster::toMapOfStringToString($this->value);
+        return ArrayOfStringToTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
     }
 
     /**

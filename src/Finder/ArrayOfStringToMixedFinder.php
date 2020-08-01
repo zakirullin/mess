@@ -6,7 +6,7 @@ namespace Zakirullin\TypedAccessor\Finder;
 use function is_array;
 use function is_string;
 
-final class MapOfStringToMixedFinder
+final class ArrayOfStringToMixedFinder
 {
     public static function find($value): ?array
     {

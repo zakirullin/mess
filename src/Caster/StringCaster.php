@@ -9,7 +9,7 @@ use function is_string;
 /**
  * @psalm-immutable
  */
-final class StringCaster implements TypeInterface
+final class StringCaster
 {
     /**
      * @psalm-pure

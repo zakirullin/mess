@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Caster;
 
-final class MapOfStringToTypeCaster
+final class ArrayOfStringToTypeCaster
 {
     /**
      * @param mixed    $value
@@ -12,21 +12,21 @@ final class MapOfStringToTypeCaster
      */
     public static function cast($value, callable $caster): ?array
     {
-        $mapOfStringToMixed = self::toMapOfStringToMixed($value);
-        if ($mapOfStringToMixed === null) {
+        $arrayOfStringToMixed = self::toArrayOfStringToMixed($value);
+        if ($arrayOfStringToMixed === null) {
             return null;
         }
 
-        $mapOfStringToCasted = [];
+        $arrayOfStringToCasted = [];
         foreach ($value as $key => $val) {
             $castedValue = $caster($val);
             if ($castedValue === null) {
                 return null;
             }
 
-            $mapOfStringToCasted[$key] = $castedValue;
+            $arrayOfStringToCasted[$key] = $castedValue;
         }
 
-        return $mapOfStringToCasted;
+        return $arrayOfStringToCasted;
     }
 }

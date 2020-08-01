@@ -90,7 +90,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array
      */
-    public function getMapOfStringToInt(): array
+    public function getArrayOfStringToInt(): array
     {
         throw new MissingKeyException($this->keySequence);
     }
@@ -101,7 +101,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array
      */
-    public function getMapOfStringToBool(): array
+    public function getArrayOfStringToBool(): array
     {
         throw new MissingKeyException($this->keySequence);
     }
@@ -112,7 +112,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array
      */
-    public function getMapOfStringToString(): array
+    public function getArrayOfStringToString(): array
     {
         throw new MissingKeyException($this->keySequence);
     }
@@ -175,7 +175,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array
      */
-    public function getAsMapOfStringToInt(): array
+    public function getAsArrayOfStringToInt(): array
     {
         throw new MissingKeyException($this->keySequence);
     }
@@ -186,7 +186,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array
      */
-    public function getAsMapOfStringToBool(): array
+    public function getAsArrayOfStringToBool(): array
     {
         throw new MissingKeyException($this->keySequence);
     }
@@ -197,7 +197,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array
      */
-    public function getAsMapOfStringToString(): array
+    public function getAsArrayOfStringToString(): array
     {
         throw new MissingKeyException($this->keySequence);
     }
@@ -260,7 +260,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array|null
      */
-    public function findMapOfStringToInt(): ?array
+    public function findArrayOfStringToInt(): ?array
     {
         return null;
     }
@@ -271,7 +271,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array|null
      */
-    public function findMapOfStringToBool(): ?array
+    public function findArrayOfStringToBool(): ?array
     {
         return null;
     }
@@ -282,7 +282,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array|null
      */
-    public function findMapOfStringToString(): ?array
+    public function findArrayOfStringToString(): ?array
     {
         return null;
     }
@@ -345,7 +345,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array|null
      */
-    public function findAsMapOfStringToInt(): ?array
+    public function findAsArrayOfStringToInt(): ?array
     {
         return null;
     }
@@ -356,7 +356,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array|null
      */
-    public function findAsMapOfStringToBool(): ?array
+    public function findAsArrayOfStringToBool(): ?array
     {
         return null;
     }
@@ -367,7 +367,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      *
      * @return array|null
      */
-    public function findAsMapOfStringToString(): ?array
+    public function findAsArrayOfStringToString(): ?array
     {
         return null;
     }
