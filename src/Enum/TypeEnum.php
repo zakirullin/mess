@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Enum;
+namespace Zakirullin\Mess\Enum;
 
 final class TypeEnum
 {

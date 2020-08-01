@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor;
+namespace Zakirullin\Mess;
 
-use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
-use Zakirullin\TypedAccessor\Exception\MissingKeyException;
-use Zakirullin\TypedAccessor\Exception\UnexpectedKeyTypeException;
+use Zakirullin\Mess\Exception\CannotModifyMessException;
+use Zakirullin\Mess\Exception\MissingKeyException;
+use Zakirullin\Mess\Exception\UnexpectedKeyTypeException;
 use function is_int;
 use function is_string;
 
 /**
  * @psalm-immutable
  */
-final class MissingValueAccessor implements TypedAccessorInterface
+final class MissingMess implements MessInterface
 {
     /**
      * @psalm-readonly
@@ -472,7 +472,7 @@ final class MissingValueAccessor implements TypedAccessorInterface
      */
     public function offsetSet($offset, $value): void
     {
-        throw new CannotModifyAccessorException($this->keySequence);
+        throw new CannotModifyMessException($this->keySequence);
     }
 
     /**
@@ -482,6 +482,6 @@ final class MissingValueAccessor implements TypedAccessorInterface
      */
     public function offsetUnset($offset): void
     {
-        throw new CannotModifyAccessorException($this->keySequence);
+        throw new CannotModifyMessException($this->keySequence);
     }
 }

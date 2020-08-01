@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Tests\Exception;
+namespace Zakirullin\Mess\Tests\Exception;
 
 use PHPUnit\Framework\TestCase;
-use Zakirullin\TypedAccessor\Exception\UnexpectedTypeException;
+use Zakirullin\Mess\Exception\UnexpectedTypeException;
 
 /**
- * @covers \Zakirullin\TypedAccessor\Exception\UnexpectedTypeException
+ * @covers \Zakirullin\Mess\Exception\UnexpectedTypeException
  */
 class UnexpectedTypeExceptionTest extends TestCase
 {

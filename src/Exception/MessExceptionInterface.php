@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Exception;
+namespace Zakirullin\Mess\Exception;
 
-interface TypedAccessorExceptionInterface
+interface MessExceptionInterface
 {
     /**
      * @psalm-return list<string|int>

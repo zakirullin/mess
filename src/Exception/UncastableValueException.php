@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\TypedAccessor\Exception;
+namespace Zakirullin\Mess\Exception;
 
 use RuntimeException;
 use Throwable;
 
-final class UncastableValueException extends RuntimeException implements TypedAccessorExceptionInterface
+final class UncastableValueException extends RuntimeException implements MessExceptionInterface
 {
     /**
      * @var string
