@@ -26,7 +26,7 @@ final class MissingKeyException extends RuntimeException implements TypedAccesso
     {
         $this->keySequence = $keySequence;
 
-        $message = "Missing key: '{$this->getKey()}'";
+        $message = "Missing key: '{$this->getAbsoluteKey()}'";
 
         parent::__construct($message, 0, $previous);
     }
@@ -44,10 +44,8 @@ final class MissingKeyException extends RuntimeException implements TypedAccesso
     /**
      * @return string
      */
-    private function getKey(): string
+    private function getAbsoluteKey(): string
     {
-        $absoluteKey = implode('.', $this->keySequence);
-
-        return $absoluteKey;
+        return implode('.', $this->keySequence);
     }
 }

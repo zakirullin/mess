@@ -458,10 +458,10 @@ final class MissingValueAccessor implements TypedAccessorInterface
             throw new UnexpectedKeyTypeException($offset, $this->keySequence);
         }
 
-        $keySequence = $this->keySequence;
-        $keySequence[] = $offset;
+        $clonedKeySequence = $this->keySequence;
+        $clonedKeySequence[] = $offset;
 
-        return new self($keySequence);
+        return new self($clonedKeySequence);
     }
 
     /**

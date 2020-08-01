@@ -670,11 +670,25 @@ class TypedAccessorTest extends TestCase
         $this->assertSame($object, $actualValue);
     }
 
+    public function testFindObject_Array_ReturnsNull()
+    {
+        $actualValue = (new TypedAccessor([]))->findObject();
+
+        $this->assertNull($actualValue);
+    }
+
     public function testFindArray_Array_ReturnsSameArray()
     {
         $actualValue = (new TypedAccessor([1]))->findArray();
 
         $this->assertSame([1], $actualValue);
+    }
+
+    public function testFindArray_Int_ReturnsNull()
+    {
+        $actualValue = (new TypedAccessor(1))->findArray();
+
+        $this->assertNull($actualValue);
     }
 
     public function testOffsetExists_ArrayWithExistingOffset_ReturnsTrue()
