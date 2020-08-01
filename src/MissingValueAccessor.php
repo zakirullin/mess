@@ -385,9 +385,49 @@ final class MissingValueAccessor implements TypedAccessorInterface
     /**
      * @psalm-pure
      *
+     * @return object
+     */
+    public function getObject(): object
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
+     *            
+     * @return array
+     */
+    public function getArray(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
+     * @psalm-pure
+     *
      * @return mixed
      */
     public function findMixed()
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @return object|null
+     */
+    public function findObject(): ?object
+    {
+        return null;
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @return array|null
+     */
+    public function findArray(): ?array
     {
         return null;
     }

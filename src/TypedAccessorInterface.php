@@ -47,11 +47,15 @@ interface TypedAccessorInterface extends ArrayAccess
      * @return mixed
      */
     public function getMixed();
+    public function getObject(): object;
+    public function getArray(): array;
 
     /**
      * @return mixed
      */
     public function findMixed();
+    public function findObject(): ?object;
+    public function findArray(): ?array;
 
     /**
      * @param string|int $offset

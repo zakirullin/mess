@@ -18,6 +18,7 @@ use Zakirullin\TypedAccessor\Finder\ListOfTypeFinder;
 use function is_array;
 use function is_bool;
 use function is_int;
+use function is_object;
 use function is_string;
 use function key_exists;
 
@@ -514,12 +515,62 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @return object
+     */
+    public function getObject(): object
+    {
+        $this->assertType($this->value, TypeEnum::OBJECT);
+
+        /**
+         * @var object
+         */
+        return $this->value;
+    }
+
+    /**
+     * @return array
+     */
+    public function getArray(): array
+    {
+        $this->assertType($this->value, TypeEnum::ARRAY);
+
+        /**
+         * @var array
+         */
+        return $this->value;
+    }
+
+    /**
      * @psalm-pure
      *
      * @return mixed
      */
     public function findMixed()
     {
+        return $this->value;
+    }
+
+    /**
+     * @return object|null
+     */
+    public function findObject(): ?object
+    {
+        if (!is_object($this->value)) {
+            return null;
+        }
+
+        return $this->value;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function findArray(): ?array
+    {
+        if (!is_array($this->value)) {
+            return null;
+        }
+
         return $this->value;
     }
 
