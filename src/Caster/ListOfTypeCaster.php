@@ -7,6 +7,14 @@ use Zakirullin\TypedAccessor\Finder\ListOfMixedFinder;
 
 final class ListOfTypeCaster
 {
+    /**
+     * @psalm-pure
+     * @psalm-return list
+     *
+     * @param mixed    $value
+     * @param callable $caster
+     * @return array|null
+     */
     public static function cast($value, callable $caster): ?array
     {
         $list = ListOfMixedFinder::find($value);

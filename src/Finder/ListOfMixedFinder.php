@@ -10,6 +10,13 @@ use function range;
 
 final class ListOfMixedFinder
 {
+    /**
+     * @psalm-pure
+     * @psalm-return list
+     *
+     * @param mixed $value
+     * @return array|null
+     */
     public static function find($value)
     {
         if (!is_array($value)) {

@@ -8,6 +8,12 @@ use function is_string;
 
 final class ArrayOfStringToMixedFinder
 {
+    /**
+     * @psalm-pure
+     *
+     * @param mixed $value
+     * @return array|null
+     */
     public static function find($value): ?array
     {
         if (!is_array($value)) {

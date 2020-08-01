@@ -8,6 +8,9 @@ use Zakirullin\TypedAccessor\Finder\ArrayOfStringToMixedFinder;
 final class ArrayOfStringToTypeCaster
 {
     /**
+     * @psalm-pure
+     * @psalm-return array<string,mixed>|null
+     *
      * @param mixed    $value
      * @param callable $caster
      * @return array|null

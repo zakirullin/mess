@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor;
 
-use Zakirullin\TypedAccessor\Caster\IntCaster;
-use Zakirullin\TypedAccessor\Caster\BoolCaster;
-use Zakirullin\TypedAccessor\Caster\StringCaster;
-use Zakirullin\TypedAccessor\Caster\ListOfTypeCaster;
 use Zakirullin\TypedAccessor\Caster\ArrayOfStringToTypeCaster;
+use Zakirullin\TypedAccessor\Caster\BoolCaster;
+use Zakirullin\TypedAccessor\Caster\IntCaster;
+use Zakirullin\TypedAccessor\Caster\ListOfTypeCaster;
+use Zakirullin\TypedAccessor\Caster\StringCaster;
 use Zakirullin\TypedAccessor\Enum\TypeEnum;
 use Zakirullin\TypedAccessor\Exception\CannotModifyAccessorException;
 use Zakirullin\TypedAccessor\Exception\UncastableValueException;
@@ -400,6 +400,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsListOfInt(): ?array
     {
+        /**
+         * @psalm-var list<int>|null
+         */
         return ListOfTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
     }
 
@@ -410,6 +413,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsListOfString(): ?array
     {
+        /**
+         * @psalm-var list<string>|null
+         */
         return ListOfTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
     }
 
@@ -421,6 +427,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsArrayOfStringToInt(): ?array
     {
+        /**
+         * @psalm-var array<string,int>|null
+         */
         return ArrayOfStringToTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
     }
 
@@ -432,6 +441,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsArrayOfStringToBool(): ?array
     {
+        /**
+         * @psalm-var array<string,bool>|null
+         */
         return ArrayOfStringToTypeCaster::cast($this->value, [BoolCaster::class, 'cast']);
     }
 
@@ -443,6 +455,9 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function findAsArrayOfStringToString(): ?array
     {
+        /**
+         * @psalm-var array<string,string>|null
+         */
         return ArrayOfStringToTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
     }
 
@@ -547,7 +562,7 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
-     * @param        $value
+     * @param mixed  $value
      * @param string $expectedType
      */
     private function assertType($value, string $expectedType): void
@@ -558,7 +573,7 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
-     * @param        $value
+     * @param mixed  $value
      * @param string $desiredType
      */
     private function assertCastable($value, string $desiredType): void

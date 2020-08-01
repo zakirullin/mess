@@ -12,6 +12,8 @@ use function is_string;
 final class StringCaster
 {
     /**
+     * @psalm-pure
+     *
      * @param $value
      * @return string|null
      */

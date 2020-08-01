@@ -5,6 +5,13 @@ namespace Zakirullin\TypedAccessor\Finder;
 
 final class ListOfTypeFinder
 {
+    /**
+     * @psalm-pure
+     *            
+     * @param mixed    $value
+     * @param callable $typeChecker
+     * @return array|null
+     */
     public static function find($value, callable $typeChecker): ?array
     {
         $listOfMixed = ListOfMixedFinder::find($value);
