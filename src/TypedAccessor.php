@@ -589,11 +589,11 @@ final class TypedAccessor implements TypedAccessorInterface
             throw new UnexpectedKeyTypeException($offset, $this->keySequence);
         }
 
-        $cloneKeySequence = $this->keySequence;
-        $cloneKeySequence[] = $offset;
+        $clonedKeySequence = $this->keySequence;
+        $clonedKeySequence[] = $offset;
 
         if (!$this->offsetExists($offset)) {
-            return new MissingValueAccessor($cloneKeySequence);
+            return new MissingValueAccessor($clonedKeySequence);
         }
 
         /**
@@ -601,7 +601,7 @@ final class TypedAccessor implements TypedAccessorInterface
          */
         $array = $this->value;
 
-        return (new self($array[$offset]))->setKeySequence($cloneKeySequence);
+        return (new self($array[$offset]))->setKeySequence($clonedKeySequence);
     }
 
     /**
