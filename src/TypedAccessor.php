@@ -193,6 +193,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<int>
      *
      * @return array
      */
@@ -207,6 +208,7 @@ final class TypedAccessor implements TypedAccessorInterface
 
     /**
      * @psalm-pure
+     * @psalm-return list<string>
      *
      * @return array
      */
@@ -220,6 +222,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,int>
+     *
      * @return array
      */
     public function getAsArrayOfStringToInt(): array
@@ -232,6 +237,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,bool>
+     *
      * @return array
      */
     public function getAsArrayOfStringToBool(): array
@@ -244,6 +252,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,string>
+     *
      * @return array
      */
     public function getAsArrayOfStringToString(): array
@@ -403,6 +414,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,int>|null
+     *
      * @return array|null
      */
     public function findAsArrayOfStringToInt(): ?array
@@ -411,6 +425,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,bool>|null
+     *
      * @return array|null
      */
     public function findAsArrayOfStringToBool(): ?array
@@ -419,6 +436,9 @@ final class TypedAccessor implements TypedAccessorInterface
     }
 
     /**
+     * @psalm-pure
+     * @psalm-return array<string,string>|null
+     *
      * @return array|null
      */
     public function findAsArrayOfStringToString(): ?array
