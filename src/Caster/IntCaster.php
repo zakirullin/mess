@@ -17,7 +17,7 @@ final class IntCaster
      *
      * @return int|null
      */
-    public function cast($value): ?int
+    public static function cast($value): ?int
     {
         if (is_bool($value)) {
             return null;

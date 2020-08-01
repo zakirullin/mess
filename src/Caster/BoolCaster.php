@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Caster;
 
+use Zakirullin\TypedAccessor\Type\IntCaster;
 use function is_bool;
 
 /**
@@ -13,6 +14,7 @@ final class BoolCaster
     /**
      * @psalm-pure
      *
+     * @param $value
      * @return bool|null
      */
     public function cast($value): ?bool
@@ -29,7 +31,7 @@ final class BoolCaster
             return false;
         }
 
-        $intValue = (new IntegerType($this->value))();
+        $intValue = IntCaster::cast($value);
         if ($intValue === 1) {
             return true;
         }

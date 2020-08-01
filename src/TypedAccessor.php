@@ -78,7 +78,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getString(): string
     {
-        $this->assertType($this->value, 'string');
+        $this->assertType($this->findString(), 'string');
 
         return $this->value;
     }
@@ -91,7 +91,7 @@ final class TypedAccessor implements TypedAccessorInterface
      */
     public function getListOfInt(): array
     {
-        $this->assertType($this->value, 'list_of_int');
+        $this->assertType($this->findListOfInt(), 'list_of_int');
 
         return $this->value;
     }

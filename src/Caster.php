@@ -5,67 +5,12 @@ namespace Zakirullin\TypedAccessor;
 
 use function array_keys;
 use function count;
-use function filter_var;
 use function is_array;
-use function is_bool;
-use function is_int;
 use function is_string;
 use function range;
-use const FILTER_VALIDATE_INT;
 
 final class Caster
 {
-    public static function toInt($value): ?int
-    {
-        if (is_bool($value)) {
-            return null;
-        }
-
-        $intValue = filter_var($value, FILTER_VALIDATE_INT);
-        if ($intValue === false) {
-            return null;
-        }
-
-        return $intValue;
-    }
-
-    public static function toBool($value): ?bool
-    {
-        if (is_bool($value)) {
-            return $value;
-        }
-
-        if ($value === 'true') {
-            return true;
-        }
-
-        if ($value === 'false') {
-            return false;
-        }
-
-        $intValue = self::toInt($value);
-        if ($intValue === 1) {
-            return true;
-        }
-        if ($intValue === 0) {
-            return false;
-        }
-
-        return null;
-    }
-
-    public static function toString($value): ?string
-    {
-        if (is_string($value)) {
-            return $value;
-        }
-
-        if (is_int($value)) {
-            return (string) $value;
-        }
-
-        return null;
-    }
 
     public static function toListOfInt($value): ?array
     {

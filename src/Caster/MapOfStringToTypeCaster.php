@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\TypedAccessor\Caster;
 
-final class MapOfStringToCallbackCaster
+final class MapOfStringToTypeCaster
 {
     /**
      * @param mixed    $value
