@@ -13,6 +13,7 @@ use Zakirullin\Mess\Exception\CannotModifyMessException;
 use Zakirullin\Mess\Exception\UncastableValueException;
 use Zakirullin\Mess\Exception\UnexpectedKeyTypeException;
 use Zakirullin\Mess\Exception\UnexpectedTypeException;
+use Zakirullin\Mess\Finder\ArrayOfStringToMixedFinder;
 use Zakirullin\Mess\Finder\ArrayOfStringToTypeFinder;
 use Zakirullin\Mess\Finder\ListOfTypeFinder;
 use function is_array;
@@ -170,6 +171,22 @@ class Mess implements MessInterface
 
         /**
          * @psalm-var array<string,string>
+         */
+        return $this->value;
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return array<string,mixed>
+     *
+     * @return array
+     */
+    public function getArrayOfStringToMixed(): array
+    {
+        $this->assertType($this->findArrayOfStringToMixed(), TypeEnum::ARRAY_OF_STRING_TO_MIXED);
+
+        /**
+         * @psalm-var array<string,mixed>
          */
         return $this->value;
     }
@@ -404,6 +421,20 @@ class Mess implements MessInterface
          * @psalm-var array<string,string>|null
          */
         return ArrayOfStringToTypeFinder::find($this->value, 'is_string');
+    }
+
+    /**
+     * @psalm-pure
+     * @psalm-return array<string,mixed>|null
+     *
+     * @return array|null
+     */
+    public function findArrayOfStringToMixed(): ?array
+    {
+        /**
+         * @psalm-var array<string,string>|null
+         */
+        return ArrayOfStringToMixedFinder::find($this->value);
     }
 
     /**

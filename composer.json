@@ -37,7 +37,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Zakirullin\\Mess\\Tests\\": "tests/unit"
+      "Zakirullin\\Mess\\Tests\\": "tests/unit/"
     }
   }
 }

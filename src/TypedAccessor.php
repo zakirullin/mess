@@ -11,5 +11,4 @@ use Zakirullin\Mess\Mess;
  */
 final class TypedAccessor extends Mess
 {
-
 }

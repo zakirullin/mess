@@ -15,4 +15,5 @@ final class TypeEnum
     public const ARRAY_OF_STRING_TO_INT = 'array<string,int>';
     public const ARRAY_OF_STRING_TO_BOOL = 'array<string,bool>';
     public const ARRAY_OF_STRING_TO_STRING = 'array<string,string>';
+    public const ARRAY_OF_STRING_TO_MIXED = 'array<string,mixed>';
 }
