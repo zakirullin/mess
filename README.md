@@ -19,10 +19,6 @@ $userId = (int)$userId;
 $userId = (new Mess($queryParams))['userId']->getAsInt();
 ```
 
-```bash
-$ composer require zakirullin/mess
-```
-
 ## A few real-world examples
 
 ```php
@@ -52,6 +48,12 @@ $config['param']->findAsInt(); // 1
 
 As you you might notice, no type casting is performed while using `get*()` methods.
 Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
+
+## Installation
+
+```bash
+$ composer require zakirullin/mess
+```
 
 ## Type casting now is rather predictable
 
