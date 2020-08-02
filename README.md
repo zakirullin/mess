@@ -19,7 +19,7 @@ $userId = (int)$userId;
 $userId = (new Mess($queryParams))['userId']->getAsInt();
 ```
 
-## A few real-world examples
+## Dealing with mess
 
 ```php
 $queryParams = new Mess(['isDeleted' => 'true']);
