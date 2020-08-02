@@ -24,6 +24,14 @@ final class BoolCaster
             return $value;
         }
 
+        $intValue = IntCaster::cast($value);
+        if ($intValue === 1) {
+            return true;
+        }
+        if ($intValue === 0) {
+            return false;
+        }
+
         if (is_string($value)) {
             $stringValue = strtolower($value);
             if ($stringValue === 'true') {
@@ -33,15 +41,6 @@ final class BoolCaster
             if ($stringValue === 'false') {
                 return false;
             }
-        }
-
-
-        $intValue = IntCaster::cast($value);
-        if ($intValue === 1) {
-            return true;
-        }
-        if ($intValue === 0) {
-            return false;
         }
 
         return null;
