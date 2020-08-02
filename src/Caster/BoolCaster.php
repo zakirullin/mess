@@ -22,14 +22,6 @@ final class BoolCaster
             return $value;
         }
 
-        if ($value === 'true') {
-            return true;
-        }
-
-        if ($value === 'false') {
-            return false;
-        }
-
         $intValue = IntCaster::cast($value);
         if ($intValue === 1) {
             return true;
