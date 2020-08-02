@@ -210,6 +210,8 @@ class MessTest extends TestCase
             '1' => [1, true],
             '0 in string' => ['0', false],
             '1 in string' => ['1', true],
+            'true in string' => ['true', true],
+            'false in string' => ['false', false],
         ];
     }
 
@@ -236,7 +238,7 @@ class MessTest extends TestCase
                 },
             ],
             'float' => [1.1],
-            'True in string' => ['True'],
+            'true with spaces' => [' true'],
         ];
     }
 
