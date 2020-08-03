@@ -22,6 +22,7 @@ use function is_int;
 use function is_object;
 use function is_string;
 use function key_exists;
+use function property_exists;
 
 /**
  * @psalm-immutable
@@ -627,12 +628,7 @@ class Mess implements MessInterface
             return new MissingMess($clonedKeySequence);
         }
 
-        /**
-         * @var array
-         */
-        $array = $this->value;
-
-        return (new self($array[$offset]))->setKeySequence($clonedKeySequence);
+        return (new self($this->getByOffset($offset)))->setKeySequence($clonedKeySequence);
     }
 
     /**
@@ -643,11 +639,15 @@ class Mess implements MessInterface
      */
     public function offsetExists($offset): bool
     {
-        if (!is_array($this->value)) {
-            return false;
+        if (is_array($this->value)) {
+            return key_exists($offset, $this->value);
         }
 
-        return key_exists($offset, $this->value);
+        if (is_object($this->value) && is_string($offset)) {
+            return property_exists($this->value, $offset);
+        }
+
+        return false;
     }
 
     /**
@@ -705,5 +705,24 @@ class Mess implements MessInterface
         if ($value === null) {
             throw new UncastableValueException($desiredType, $this->value, $this->keySequence);
         }
+    }
+
+    /**
+     * @param string|int $offset
+     * @return mixed
+     */
+    private function getByOffset($offset)
+    {
+        /**
+         * @var object|array $this->value
+         */
+        if (is_object($this->value) && is_string($offset)) {
+            return $this->value->$offset;
+        }
+
+        /**
+         * @var array $this->value
+         */
+        return $this->value[$offset];
     }
 }
