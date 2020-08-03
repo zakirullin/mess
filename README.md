@@ -40,11 +40,10 @@ $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // 25
 $value->getString(); // '25'
 
-$value = new Mess('abc');
+$value = new Mess('25a');
 $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // UncastableValueException
 $value->findInt(); // null
-$value->findInt() ?? 1; // 1
 
 $config = new Mess(['param' => '1']);
 $config['a']['b']->getInt(); // MissingKeyException: "MissingKeyException: a.b"
