@@ -28,6 +28,19 @@ $userId = (int)$userId;
 $userId = (new Mess($queryParams))['userId']->getAsInt();
 ```
 
+## Type casting with Mess is rather predictable
+
+```php
+'\d+' => int // OK`
+'buzz12' => int // UncastableValueException
+bool => int // UncastableValueException
+array => int // UncastableValueException
+object => int // UncastableValueException
+resource => int // UncastableValueException
+```
+
+Fairly simple, isn't it?
+
 ## Dealing with mess
 
 ```php
@@ -54,7 +67,7 @@ $config['param']->findInt(); // null
 $config['param']->findAsInt(); // 1
 ```
 
-As you you might notice, no type casting is performed while using `get*()` methods.
+As you you might notice, type casting is performed while using `(find|get)As*` methods.
 Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
 
 ## Installation
@@ -62,19 +75,6 @@ Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slid
 ```bash
 $ composer require zakirullin/mess
 ```
-
-## Type casting now is rather predictable
-
-```php
-'\d+' => int // OK`
-'buzz12' => int // UncastableValueException
-bool => int // UncastableValueException
-array => int // UncastableValueException
-object => int // UncastableValueException
-resource => int // UncastableValueException
-```
-
-Fairly simple, isn't it?
 
 ### Why one needs THAT naive type casting?
 
