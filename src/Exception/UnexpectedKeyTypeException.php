@@ -5,6 +5,7 @@ namespace Zakirullin\Mess\Exception;
 
 use RuntimeException;
 use Throwable;
+use function gettype;
 
 final class UnexpectedKeyTypeException extends RuntimeException implements MessExceptionInterface
 {
