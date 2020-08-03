@@ -31,7 +31,7 @@ $userId = (new Mess($queryParams))['userId']->getAsInt();
 ## Type casting with Mess is rather predictable
 
 ```php
-'\d+' => int // OK`
+'\d+' => int // OK
 'buzz12' => int // UncastableValueException
 bool => int // UncastableValueException
 array => int // UncastableValueException
@@ -113,5 +113,6 @@ Where does mess come from?
 
 - Deserialized data
 - Request `body`/`query` 
-- `API` responses
+- `API` response
+- Config
 - etc.
