@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Zakirullin\Mess\Exception;
 
-interface MessExceptionInterface
+use Throwable;
+
+interface MessExceptionInterface extends Throwable
 {
     /**
      * @psalm-return list<string|int>
