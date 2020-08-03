@@ -1,3 +1,10 @@
+## Mess
+
+[![Build Status](https://img.shields.io/travis/zakirullin/mess.svg?style=flat-square)](https://travis-ci.org/zakirullin/mess)
+![PHP from Packagist](https://img.shields.io/packagist/php-v/zakirullin/mess.svg?style=flat-square)
+![GitHub commits](https://img.shields.io/github/commits-since/zakirullin/mess/0.1.0.svg?style=flat-square)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
 ## We face a few problems in our PHP projects
 
 - Illogical type casting (`PHP`'s native implementation is way too "smart")
