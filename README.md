@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/travis/zakirullin/mess.svg?style=flat-square)](https://travis-ci.org/zakirullin/mess)
 ![Psalm coverage](https://shepherd.dev/github/zakirullin/mess/coverage.svg?)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/zakirullin/mess.svg?style=flat-square)
-[![Latest Stable Version](https://poser.pugx.org/zakirullin/mess/v/stable.svg)](https://packagist.org/packages/webmozart/assert)
+[![Latest Stable Version](https://poser.pugx.org/zakirullin/mess/v/stable.svg)](https://packagist.org/packages/zakirullin/mess)
 ![GitHub commits](https://img.shields.io/github/commits-since/zakirullin/mess/0.1.0.svg?style=flat-square)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
