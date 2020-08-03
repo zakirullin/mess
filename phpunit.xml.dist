@@ -14,6 +14,11 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/</directory>
+            <exclude>
+                <directory>src/Enum</directory>
+                <directory>src/Caster</directory>
+                <directory>src/Finder</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
