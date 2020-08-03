@@ -1,0 +1,12 @@
+language: php
+sudo: false
+
+php:
+  - 7.2
+
+before_script:
+  - composer self-update
+  - composer install -n
+
+script:
+  - composer test

@@ -35,6 +35,12 @@
       "Zakirullin\\TypedAccessor\\": "src/"
     }
   },
+  "scripts": {
+    "test": [
+      "phpunit --stderr --coverage-text"
+    ],
+    "coverage": "phpunit --coverage-html=coverage"
+  },
   "autoload-dev": {
     "psr-4": {
       "Zakirullin\\Mess\\Tests\\": "tests/unit/"

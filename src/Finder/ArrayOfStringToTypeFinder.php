@@ -11,7 +11,7 @@ final class ArrayOfStringToTypeFinder
      *
      * @param mixed    $value
      * @param callable $typeChecker
-     * @return null
+     * @return array|null
      */
     public static function find($value, callable $typeChecker)
     {
