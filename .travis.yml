@@ -10,3 +10,5 @@ before_script:
 
 script:
   - composer test
+  - vendor/bin/phpunit
+  - vendor/bin/psalm --shepherd
