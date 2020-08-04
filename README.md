@@ -60,7 +60,6 @@ $value->getAsInt(); // UncastableValueException
 $config = new Mess(['param' => '1']);
 $config['a']['b']->getInt(); // MissingKeyException: "MissingKeyException: a.b"
 $config['a']['b']->findInt(); // null
-$config['a']->findInt(); // null
 $config['param']->getInt(); // UnexpectedTypeException 
 $config['param']->getAsInt(); // 1
 $config['param']->findInt(); // UnexpectedTypeException
@@ -108,8 +107,6 @@ And that's the worst thing about it. It will continue to work, though, not in a 
 `PHP` is trying to do its best to let it work **at least somehow**.
 
 ## The library comes in handy in a variety of scenarios 🚀
-
-Where does mess come from?
 
 - Deserialized data
 - Request `body`/`query` 
