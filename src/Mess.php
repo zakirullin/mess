@@ -485,7 +485,7 @@ class Mess implements MessInterface
 
         $bool = BoolCaster::cast($this->value);
 
-        $this->assertType($bool !== null, TypeEnum::BOOL);
+        $this->assertCastable($bool !== null, TypeEnum::BOOL);
 
         return $bool;
     }
@@ -524,7 +524,7 @@ class Mess implements MessInterface
          */
         $list = ListOfTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
 
-        $this->assertType($list !== null, TypeEnum::LIST_OF_INT);
+        $this->assertCastable($list !== null, TypeEnum::LIST_OF_INT);
 
         return $list;
     }
@@ -545,7 +545,7 @@ class Mess implements MessInterface
          */
         $list = ListOfTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
 
-        $this->assertType($list !== null, TypeEnum::LIST_OF_STRING);
+        $this->assertCastable($list !== null, TypeEnum::LIST_OF_STRING);
 
         return $list;
     }
@@ -567,7 +567,7 @@ class Mess implements MessInterface
          */
         $array = ArrayOfStringToTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
 
-        $this->assertType($array !== null, TypeEnum::ARRAY_OF_STRING_TO_INT);
+        $this->assertCastable($array !== null, TypeEnum::ARRAY_OF_STRING_TO_INT);
 
         return $array;
     }
@@ -589,7 +589,7 @@ class Mess implements MessInterface
          */
         $array = ArrayOfStringToTypeCaster::cast($this->value, [BoolCaster::class, 'cast']);
 
-        $this->assertType($array !== null, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
+        $this->assertCastable($array !== null, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
 
         return $array;
     }
@@ -611,7 +611,7 @@ class Mess implements MessInterface
          */
         $array = ArrayOfStringToTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
 
-        $this->assertType($array !== null, TypeEnum::ARRAY_OF_STRING_TO_STRING);
+        $this->assertCastable($array !== null, TypeEnum::ARRAY_OF_STRING_TO_STRING);
 
         return $array;
     }

@@ -435,7 +435,7 @@ class MessTest extends TestCase
         (new Mess('crusoe'))->findInt();
     }
 
-    public function testFindInt_NullValue_ReturnsNull()
+    public function testFindInt_Null_ReturnsNull()
     {
         $actualValue = (new Mess(null))->findInt();
 
@@ -456,7 +456,7 @@ class MessTest extends TestCase
         (new Mess('crusoe'))->findBool();
     }
 
-    public function testFindBool_NullValue_ReturnsNull()
+    public function testFindBool_Null_ReturnsNull()
     {
         $actualValue = (new Mess(null))->findBool();
 
@@ -473,7 +473,15 @@ class MessTest extends TestCase
     public function testFindString_GivenUncastableValue_ThrowsException()
     {
         $this->expectException(UnexpectedTypeException::class);
-        $value = (new Mess(1))->findString();
+
+        (new Mess(1))->findString();
+    }
+
+    public function testFindString_Null_ReturnsSameNull()
+    {
+        $actualValue = (new Mess(null))->findString();
+
+        $this->assertNull($actualValue);
     }
 
     public function testFindListOfInt_ListOfIntValue_ReturnsSameListOfIntValue()
@@ -483,23 +491,30 @@ class MessTest extends TestCase
         $this->assertSame([1, 5, 10], $actualValue);
     }
 
-    public function testFindListOfInt_AssociativeArrayOfInt_ReturnsNull()
+    public function testFindListOfInt_AssociativeArrayOfInt_ThrowsException()
     {
-        $actualValue = (new Mess([1, 2 => 3]))->findListOfInt();
+        $this->expectException(UnexpectedTypeException::class);
 
-        $this->assertNull($actualValue);
+        (new Mess([1, 2 => 3]))->findListOfInt();
+    }
+    
+    public function testFindListOfInt_ListOfMixed_ThrowsException()
+    {
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new Mess(['a']))->findListOfInt();
     }
 
-    public function testFindListOfInt_ListOfMixed_ReturnsNull()
+    public function testFindListOfInt_Int_ThrowsException()
     {
-        $actualValue = (new Mess(['a']))->findListOfInt();
-
-        $this->assertNull($actualValue);
+        $this->expectException(UnexpectedTypeException::class);
+        
+        (new Mess(1))->findListOfInt();
     }
-
-    public function testFindListOfInt_Int_ReturnsNull()
+    
+    public function testFindListOfInt_Null_ReturnsNull()
     {
-        $actualValue = (new Mess(1))->findListOfInt();
+        $actualValue = (new Mess(null))->findListOfInt();
 
         $this->assertNull($actualValue);
     }
@@ -511,23 +526,30 @@ class MessTest extends TestCase
         $this->assertSame(['a', 'b'], $actualValue);
     }
 
-    public function testFindListOfString_AssociativeArrayOfString_ReturnsNull()
+    public function testFindListOfString_AssociativeArrayOfString_ThrowsException()
     {
-        $actualValue = (new Mess(['a', 2 => 'b']))->findListOfString();
+        $this->expectException(UnexpectedTypeException::class);
 
-        $this->assertNull($actualValue);
+        (new Mess(['a', 2 => 'b']))->findListOfString();
     }
 
-    public function testFindListOfString_ListOfMixed_ReturnsNull()
+    public function testFindListOfString_ListOfMixed_ThrowsException()
     {
-        $actualValue = (new Mess([1]))->findListOfString();
+        $this->expectException(UnexpectedTypeException::class);
 
-        $this->assertNull($actualValue);
+        (new Mess([1]))->findListOfString();
     }
 
-    public function testFindListOfString_Int_ReturnsNull()
+    public function testFindListOfString_Int_ThrowsException()
     {
-        $actualValue = (new Mess(1))->findListOfString();
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new Mess(1))->findListOfString();
+    }
+
+    public function testFindListOfString_Null_ReturnsNull()
+    {
+        $actualValue = (new Mess(null))->findListOfString();
 
         $this->assertNull($actualValue);
     }
@@ -547,9 +569,9 @@ class MessTest extends TestCase
      */
     public function testFindAsInt_GivenUncastableValue_ReturnsNull($value)
     {
-        $actualValue = (new Mess($value))->findAsInt();
+        $this->expectException(UncastableValueException::class);
 
-        $this->assertNull($actualValue);
+        (new Mess($value))->findAsInt();
     }
 
     /**
@@ -567,9 +589,9 @@ class MessTest extends TestCase
      */
     public function testFindAsBool_GivenUncastableValue_ReturnsNull($value)
     {
-        $actualValue = (new Mess($value))->findAsBool();
+        $this->expectException(UncastableValueException::class);
 
-        $this->assertNull($actualValue);
+        (new Mess($value))->findAsBool();
     }
 
     /**
