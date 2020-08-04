@@ -56,14 +56,14 @@ $value->getString(); // '25'
 $value = new Mess('25a');
 $value->getInt(); // UnexpectedTypeException
 $value->getAsInt(); // UncastableValueException
-$value->findInt(); // null
 
 $config = new Mess(['param' => '1']);
 $config['a']['b']->getInt(); // MissingKeyException: "MissingKeyException: a.b"
+$config['a']['b']->findInt(); // null
 $config['a']->findInt(); // null
 $config['param']->getInt(); // UnexpectedTypeException 
 $config['param']->getAsInt(); // 1
-$config['param']->findInt(); // null
+$config['param']->findInt(); // UnexpectedTypeException
 $config['param']->findAsInt(); // 1
 ```
 
