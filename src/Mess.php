@@ -185,7 +185,7 @@ class Mess implements MessInterface
     {
         $intValue = $this->findAsInt();
 
-        $this->assertCastable($intValue, TypeEnum::INT);
+        $this->assertCastable($intValue !== null, TypeEnum::INT);
 
         /**
          * @var int
@@ -202,7 +202,7 @@ class Mess implements MessInterface
     {
         $boolValue = $this->findAsBool();
 
-        $this->assertCastable($boolValue, TypeEnum::BOOL);
+        $this->assertCastable($boolValue !== null, TypeEnum::BOOL);
 
         return $boolValue;
     }
@@ -216,7 +216,7 @@ class Mess implements MessInterface
     {
         $stringValue = $this->findAsString();
 
-        $this->assertCastable($stringValue, TypeEnum::STRING);
+        $this->assertCastable($stringValue !== null, TypeEnum::STRING);
 
         return $stringValue;
     }
@@ -231,7 +231,7 @@ class Mess implements MessInterface
     {
         $listOfInt = $this->findAsListOfInt();
 
-        $this->assertCastable($listOfInt, TypeEnum::LIST_OF_INT);
+        $this->assertCastable($listOfInt !== null, TypeEnum::LIST_OF_INT);
 
         return $listOfInt;
     }
@@ -246,7 +246,7 @@ class Mess implements MessInterface
     {
         $listOfString = $this->findAsListOfString();
 
-        $this->assertCastable($listOfString, TypeEnum::LIST_OF_STRING);
+        $this->assertCastable($listOfString !== null, TypeEnum::LIST_OF_STRING);
 
         return $listOfString;
     }
@@ -261,7 +261,7 @@ class Mess implements MessInterface
     {
         $arrayOfStringToInt = $this->findAsArrayOfStringToInt();
 
-        $this->assertCastable($arrayOfStringToInt, TypeEnum::ARRAY_OF_STRING_TO_INT);
+        $this->assertCastable($arrayOfStringToInt !== null, TypeEnum::ARRAY_OF_STRING_TO_INT);
 
         return $arrayOfStringToInt;
     }
@@ -276,7 +276,7 @@ class Mess implements MessInterface
     {
         $arrayOfStringToBool = $this->findAsArrayOfStringToBool();
 
-        $this->assertCastable($arrayOfStringToBool, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
+        $this->assertCastable($arrayOfStringToBool !== null, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
 
         return $arrayOfStringToBool;
     }
@@ -291,7 +291,7 @@ class Mess implements MessInterface
     {
         $arrayOfStringToString = $this->findAsArrayOfStringToString();
 
-        $this->assertCastable($arrayOfStringToString, TypeEnum::ARRAY_OF_STRING_TO_STRING);
+        $this->assertCastable($arrayOfStringToString !== null, TypeEnum::ARRAY_OF_STRING_TO_STRING);
 
         return $arrayOfStringToString;
     }
@@ -467,7 +467,7 @@ class Mess implements MessInterface
 
         $int = IntCaster::cast($this->value);
 
-        $this->assertType($int !== null, TypeEnum::INT);
+        $this->assertCastable($int !== null, TypeEnum::INT);
 
         return $int;
     }
@@ -503,7 +503,7 @@ class Mess implements MessInterface
 
         $string = StringCaster::cast($this->value);
 
-        $this->assertType($string !== null, TypeEnum::STRING);
+        $this->assertCastable($string !== null, TypeEnum::STRING);
 
         return $string;
     }
@@ -817,12 +817,12 @@ class Mess implements MessInterface
     }
 
     /**
-     * @param mixed  $value
+     * @param bool   $isCastable
      * @param string $desiredType
      */
-    private function assertCastable($value, string $desiredType): void
+    private function assertCastable(bool $isCastable, string $desiredType): void
     {
-        if ($value === null) {
+        if (!$isCastable) {
             throw new UncastableValueException($desiredType, $this->value, $this->keySequence);
         }
     }

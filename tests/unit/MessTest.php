@@ -428,9 +428,16 @@ class MessTest extends TestCase
         $this->assertSame(1, $actualValue);
     }
 
-    public function testFindInt_StringValue_ReturnsNull()
+    public function testFindInt_StringValue_ThrowsException()
     {
-        $actualValue = (new Mess('crusoe'))->findInt();
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new Mess('crusoe'))->findInt();
+    }
+
+    public function testFindInt_NullValue_ReturnsNull()
+    {
+        $actualValue = (new Mess(null))->findInt();
 
         $this->assertNull($actualValue);
     }
@@ -442,9 +449,16 @@ class MessTest extends TestCase
         $this->assertSame(true, $actualValue);
     }
 
-    public function testFindBool_StringValue_ReturnsNull()
+    public function testFindBool_StringValue_ThrowsException()
     {
-        $actualValue = (new Mess('crusoe'))->findBool();
+        $this->expectException(UnexpectedTypeException::class);
+
+        (new Mess('crusoe'))->findBool();
+    }
+
+    public function testFindBool_NullValue_ReturnsNull()
+    {
+        $actualValue = (new Mess(null))->findBool();
 
         $this->assertNull($actualValue);
     }
@@ -456,11 +470,10 @@ class MessTest extends TestCase
         $this->assertSame('crusoe', $actualValue);
     }
 
-    public function testFindString_GivenUncastableValue_ReturnsNull()
+    public function testFindString_GivenUncastableValue_ThrowsException()
     {
+        $this->expectException(UnexpectedTypeException::class);
         $value = (new Mess(1))->findString();
-
-        $this->assertNull($value);
     }
 
     public function testFindListOfInt_ListOfIntValue_ReturnsSameListOfIntValue()
