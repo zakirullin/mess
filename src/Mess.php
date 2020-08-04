@@ -697,9 +697,11 @@ class Mess implements MessInterface
      */
     public function findArray(): ?array
     {
-        if (!is_array($this->value)) {
+        if ($this->value === null) {
             return null;
         }
+
+        $this->assertType(is_array($this->value), TypeEnum::ARRAY);
 
         return $this->value;
     }
@@ -841,7 +843,7 @@ class Mess implements MessInterface
         }
 
         /**
-         * @var array $this ->value
+         * @var array $this->value
          */
         return $this->value[$offset];
     }
