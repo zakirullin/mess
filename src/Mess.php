@@ -837,7 +837,7 @@ class Mess implements MessInterface
         }
 
         /**
-         * @var array $this ->value
+         * @var array $this->value
          */
         return $this->value[$offset];
     }

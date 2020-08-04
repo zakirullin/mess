@@ -12,7 +12,6 @@ final class ListOfMixedChecker
 {
     /**
      * @psalm-pure
-     * @psalm-return list|null
      *
      * @param mixed $value
      * @return bool

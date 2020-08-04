@@ -7,7 +7,6 @@ final class ListOfTypeChecker
 {
     /**
      * @psalm-pure
-     * @psalm-return list|null
      *
      * @param mixed    $value
      * @param callable $typeChecker
