@@ -104,7 +104,7 @@ $config => [
 
 No matter if that's a misuse or a result of major update: The system will continue to work.
 And that's the worst thing about it. It will continue to work, though, not in a way it was supposed to work.
-`PHP` is trying to do its best to let it work **at least somehow**.
+`PHP` is trying to do its best to let it work **at least somehow**. We don't need that.
 
 ## The library comes in handy in a variety of scenarios 🚀
 
