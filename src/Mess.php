@@ -8,14 +8,14 @@ use Zakirullin\Mess\Caster\BoolCaster;
 use Zakirullin\Mess\Caster\IntCaster;
 use Zakirullin\Mess\Caster\ListOfTypeCaster;
 use Zakirullin\Mess\Caster\StringCaster;
+use Zakirullin\Mess\Checker\ArrayOfStringToMixedChecker;
+use Zakirullin\Mess\Checker\ArrayOfStringToTypeChecker;
+use Zakirullin\Mess\Checker\ListOfTypeChecker;
 use Zakirullin\Mess\Enum\TypeEnum;
 use Zakirullin\Mess\Exception\CannotModifyMessException;
 use Zakirullin\Mess\Exception\UncastableValueException;
 use Zakirullin\Mess\Exception\UnexpectedKeyTypeException;
 use Zakirullin\Mess\Exception\UnexpectedTypeException;
-use Zakirullin\Mess\Finder\ArrayOfStringToMixedFinder;
-use Zakirullin\Mess\Finder\ArrayOfStringToTypeFinder;
-use Zakirullin\Mess\Finder\ListOfTypeFinder;
 use function is_array;
 use function is_bool;
 use function is_int;
@@ -356,14 +356,12 @@ class Mess implements MessInterface
             return null;
         }
 
+        $this->assertType(ListOfTypeChecker::check($this->value, 'is_int'), TypeEnum::LIST_OF_INT);
+
         /**
          * @psalm-var list<int>|null
          */
-        $list = ListOfTypeFinder::find($this->value, 'is_int');
-
-        $this->assertType($list !== null, TypeEnum::LIST_OF_INT);
-
-        return $list;
+        return $this->value;
     }
 
     /**
@@ -378,14 +376,12 @@ class Mess implements MessInterface
             return null;
         }
 
+        $this->assertType(ListOfTypeChecker::check($this->value, 'is_string'), TypeEnum::LIST_OF_STRING);
+
         /**
          * @psalm-var list<string>|null
          */
-        $list = ListOfTypeFinder::find($this->value, 'is_string');
-
-        $this->assertType($list !== null, TypeEnum::LIST_OF_STRING);
-
-        return $list;
+        return $this->value;
     }
 
     /**
@@ -400,14 +396,12 @@ class Mess implements MessInterface
             return null;
         }
 
+        $this->assertType(ArrayOfStringToTypeChecker::check($this->value, 'is_int'), TypeEnum::ARRAY_OF_STRING_TO_INT);
+
         /**
-         * @psalm-var array<string,int>|null
+         * @psalm-var array<string,int>
          */
-        $array =  ArrayOfStringToTypeFinder::find($this->value, 'is_int');
-
-        $this->assertType($array !== null, TypeEnum::ARRAY_OF_STRING_TO_INT);
-
-        return $array;
+        return $this->value;
     }
 
     /**
@@ -422,14 +416,15 @@ class Mess implements MessInterface
             return null;
         }
 
+        $this->assertType(
+            ArrayOfStringToTypeChecker::check($this->value, 'is_bool'),
+            TypeEnum::ARRAY_OF_STRING_TO_BOOL
+        );
+
         /**
          * @psalm-var array<string,bool>|null
          */
-        $array = ArrayOfStringToTypeFinder::find($this->value, 'is_bool');
-
-        $this->assertType($array !== null, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
-
-        return $array;
+        return $this->value;
     }
 
     /**
@@ -444,14 +439,15 @@ class Mess implements MessInterface
             return null;
         }
 
+        $this->assertType(
+            ArrayOfStringToTypeChecker::check($this->value, 'is_string'),
+            TypeEnum::ARRAY_OF_STRING_TO_STRING
+        );
+
         /**
-         * @psalm-var array<string,string>|null
+         * @psalm-var array<string,string>
          */
-        $array = ArrayOfStringToTypeFinder::find($this->value, 'is_string');
-
-        $this->assertType($array !== null, TypeEnum::ARRAY_OF_STRING_TO_STRING);
-
-        return $array;
+        return $this->value;
     }
 
     /**
@@ -718,14 +714,12 @@ class Mess implements MessInterface
             return null;
         }
 
+        $this->assertType(ArrayOfStringToMixedChecker::check($this->value), TypeEnum::ARRAY_OF_STRING_TO_MIXED);
+
         /**
          * @psalm-var array<string,string>|null
          */
-        $array = ArrayOfStringToMixedFinder::find($this->value);
-
-        $this->assertType($array !== null, TypeEnum::ARRAY_OF_STRING_TO_MIXED);
-
-        return $array;
+        return $this->value;
     }
 
     /**
@@ -843,7 +837,7 @@ class Mess implements MessInterface
         }
 
         /**
-         * @var array $this->value
+         * @var array $this ->value
          */
         return $this->value[$offset];
     }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\Mess\Caster;
 
-use Zakirullin\Mess\Finder\ArrayOfStringToMixedFinder;
+use Zakirullin\Mess\Checker\ArrayOfStringToMixedChecker;
 
 final class ArrayOfStringToTypeCaster
 {
@@ -17,8 +17,7 @@ final class ArrayOfStringToTypeCaster
      */
     public static function cast($value, callable $caster): ?array
     {
-        $arrayOfStringToMixed = ArrayOfStringToMixedFinder::find($value);
-        if ($arrayOfStringToMixed === null) {
+        if (!ArrayOfStringToMixedChecker::check($value)) {
             return null;
         }
 

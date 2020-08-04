@@ -1,30 +1,30 @@
 <?php
 declare(strict_types=1);
 
-namespace Zakirullin\Mess\Finder;
+namespace Zakirullin\Mess\Checker;
 
 use function array_keys;
 use function count;
 use function is_array;
 use function range;
 
-final class ListOfMixedFinder
+final class ListOfMixedChecker
 {
     /**
      * @psalm-pure
      * @psalm-return list|null
      *
      * @param mixed $value
-     * @return array|null
+     * @return bool
      */
-    public static function find($value)
+    public static function check($value): bool
     {
         if (!is_array($value)) {
-            return null;
+            return false;
         }
 
         if (empty($value)) {
-            return [];
+            return true;
         }
 
         /**
@@ -33,13 +33,9 @@ final class ListOfMixedFinder
         $keys = array_keys($value);
         $isList = $keys === range(0, count($value) - 1);
         if (!$isList) {
-            return null;
+            return false;
         }
 
-        /**
-         * @psalm-var list
-         */
-
-        return $value;
+        return true;
     }
 }

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\Mess\Caster;
 
-use Zakirullin\Mess\Finder\ListOfMixedFinder;
+use Zakirullin\Mess\Checker\ListOfMixedChecker;
 
 final class ListOfTypeCaster
 {
@@ -17,8 +17,7 @@ final class ListOfTypeCaster
      */
     public static function cast($value, callable $caster): ?array
     {
-        $list = ListOfMixedFinder::find($value);
-        if ($list === null) {
+        if (!ListOfMixedChecker::check($value)) {
             return null;
         }
 
@@ -26,7 +25,7 @@ final class ListOfTypeCaster
         /**
          * @psalm-suppress all
          */
-        foreach ($list as $val) {
+        foreach ($value as $val) {
             $castedValue = $caster($val);
             if ($castedValue === null) {
                 return null;
