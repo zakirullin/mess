@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.7.0] - 2020-08-04
 ### Changed
 - `find*` methods can now throw `UnexpectedValueException` & `UncastableValueException`
+- renamed `Finder` to `Checker` (not to confuse with the logic in `find*` methods)
 
 ## [0.6.0] - 2020-08-03
 ### Added
