@@ -28,7 +28,7 @@ $userId = (int)$userId;
 $userId = (new Mess($queryParams))['userId']->getAsInt();
 ```
 
-You can mess with arrays as well:
+You can mess with API responses/configs/whatever:
 
 ```php
 $mess = new Mess($response);
