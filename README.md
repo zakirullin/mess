@@ -28,6 +28,17 @@ $userId = (int)$userId;
 $userId = (new Mess($queryParams))['userId']->getAsInt();
 ```
 
+You can mess with arrays as well:
+
+```php
+$mess = new Mess($response);
+$book = new Book(
+    $mess['info']['title']->getString(),
+    $mess['rating']->getInt(),
+    $mess['is_bestseller']->getBool()
+);
+```
+
 ## Type casting with Mess is rather predictable
 
 ```php
