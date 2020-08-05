@@ -33,9 +33,9 @@ You can mess with arrays as well:
 ```php
 $mess = new Mess($response);
 $book = new Book(
-    $mess['info']['title']->getString(),
-    $mess['rating']->getInt(),
-    $mess['is_bestseller']->getBool()
+    $mess['title']->getString(),
+    $mess['is_bestseller']->getBool(),
+    $mess['stats']['rating']->getInt()
 );
 ```
 
