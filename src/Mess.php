@@ -58,7 +58,7 @@ class Mess implements MessInterface
      */
     public function getInt(): int
     {
-        $this->assertType($this->findInt() !== null, TypeEnum::INT);
+        $this->assertType(is_int($this->value), TypeEnum::INT);
 
         /**
          * @var int
@@ -73,7 +73,7 @@ class Mess implements MessInterface
      */
     public function getBool(): bool
     {
-        $this->assertType($this->findBool() !== null, TypeEnum::BOOL);
+        $this->assertType(is_bool($this->value), TypeEnum::BOOL);
 
         /**
          * @var bool
@@ -88,7 +88,7 @@ class Mess implements MessInterface
      */
     public function getString(): string
     {
-        $this->assertType($this->findString() !== null, TypeEnum::STRING);
+        $this->assertType(is_string($this->value), TypeEnum::STRING);
 
         /**
          * @var string
@@ -104,7 +104,7 @@ class Mess implements MessInterface
      */
     public function getListOfInt(): array
     {
-        $this->assertType($this->findListOfInt() !== null, TypeEnum::LIST_OF_INT);
+        $this->assertType(ListOfTypeChecker::check($this->value, 'is_int'), TypeEnum::LIST_OF_INT);
 
         /**
          * @psalm-var list<int>
@@ -120,7 +120,7 @@ class Mess implements MessInterface
      */
     public function getListOfString(): array
     {
-        $this->assertType($this->findListOfString() !== null, TypeEnum::LIST_OF_STRING);
+        $this->assertType(ListOfTypeChecker::check($this->value, 'is_string'), TypeEnum::LIST_OF_STRING);
 
         /**
          * @psalm-var list<string>
@@ -136,7 +136,7 @@ class Mess implements MessInterface
      */
     public function getArrayOfStringToInt(): array
     {
-        $this->assertType($this->findArrayOfStringToInt() !== null, TypeEnum::ARRAY_OF_STRING_TO_INT);
+        $this->assertType(ArrayOfStringToTypeChecker::check($this->value, 'is_int'), TypeEnum::ARRAY_OF_STRING_TO_INT);
 
         /**
          * @psalm-var array<string,int>
@@ -152,7 +152,10 @@ class Mess implements MessInterface
      */
     public function getArrayOfStringToBool(): array
     {
-        $this->assertType($this->findArrayOfStringToBool() !== null, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
+        $this->assertType(
+            ArrayOfStringToTypeChecker::check($this->value, 'is_bool'),
+            TypeEnum::ARRAY_OF_STRING_TO_BOOL
+        );
 
         /**
          * @var array<string,bool>
@@ -168,7 +171,10 @@ class Mess implements MessInterface
      */
     public function getArrayOfStringToString(): array
     {
-        $this->assertType($this->findArrayOfStringToString() !== null, TypeEnum::ARRAY_OF_STRING_TO_STRING);
+        $this->assertType(
+            ArrayOfStringToTypeChecker::check($this->value, 'is_string'),
+            TypeEnum::ARRAY_OF_STRING_TO_STRING
+        );
 
         /**
          * @psalm-var array<string,string>
@@ -183,14 +189,14 @@ class Mess implements MessInterface
      */
     public function getAsInt(): int
     {
-        $intValue = $this->findAsInt();
+        $int = IntCaster::cast($this->value);
 
-        $this->assertCastable($intValue !== null, TypeEnum::INT);
+        $this->assertCastable($int !== null, TypeEnum::INT);
 
         /**
          * @var int
          */
-        return $intValue;
+        return $int;
     }
 
     /**
@@ -200,11 +206,11 @@ class Mess implements MessInterface
      */
     public function getAsBool(): bool
     {
-        $boolValue = $this->findAsBool();
+        $bool = BoolCaster::cast($this->value);
 
-        $this->assertCastable($boolValue !== null, TypeEnum::BOOL);
+        $this->assertCastable($bool !== null, TypeEnum::BOOL);
 
-        return $boolValue;
+        return $bool;
     }
 
     /**
@@ -214,11 +220,11 @@ class Mess implements MessInterface
      */
     public function getAsString(): string
     {
-        $stringValue = $this->findAsString();
+        $string = StringCaster::cast($this->value);
 
-        $this->assertCastable($stringValue !== null, TypeEnum::STRING);
+        $this->assertCastable($string !== null, TypeEnum::STRING);
 
-        return $stringValue;
+        return $string;
     }
 
     /**
@@ -229,7 +235,10 @@ class Mess implements MessInterface
      */
     public function getAsListOfInt(): array
     {
-        $listOfInt = $this->findAsListOfInt();
+        /**
+         * @psalm-var list<int>|null
+         */
+        $listOfInt = ListOfTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
 
         $this->assertCastable($listOfInt !== null, TypeEnum::LIST_OF_INT);
 
@@ -244,7 +253,10 @@ class Mess implements MessInterface
      */
     public function getAsListOfString(): array
     {
-        $listOfString = $this->findAsListOfString();
+        /**
+         * @psalm-var list<string>|null
+         */
+        $listOfString = ListOfTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
 
         $this->assertCastable($listOfString !== null, TypeEnum::LIST_OF_STRING);
 
@@ -259,7 +271,10 @@ class Mess implements MessInterface
      */
     public function getAsArrayOfStringToInt(): array
     {
-        $arrayOfStringToInt = $this->findAsArrayOfStringToInt();
+        /**
+         * @psalm-var array<string,int>|null
+         */
+        $arrayOfStringToInt = ArrayOfStringToTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
 
         $this->assertCastable($arrayOfStringToInt !== null, TypeEnum::ARRAY_OF_STRING_TO_INT);
 
@@ -274,7 +289,10 @@ class Mess implements MessInterface
      */
     public function getAsArrayOfStringToBool(): array
     {
-        $arrayOfStringToBool = $this->findAsArrayOfStringToBool();
+        /**
+         * @psalm-var array<string,bool>|null
+         */
+        $arrayOfStringToBool = ArrayOfStringToTypeCaster::cast($this->value, [BoolCaster::class, 'cast']);
 
         $this->assertCastable($arrayOfStringToBool !== null, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
 
@@ -289,7 +307,10 @@ class Mess implements MessInterface
      */
     public function getAsArrayOfStringToString(): array
     {
-        $arrayOfStringToString = $this->findAsArrayOfStringToString();
+        /**
+         * @psalm-var array<string,string>|null
+         */
+        $arrayOfStringToString = ArrayOfStringToTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
 
         $this->assertCastable($arrayOfStringToString !== null, TypeEnum::ARRAY_OF_STRING_TO_STRING);
 
@@ -307,9 +328,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(is_int($this->value), TypeEnum::INT);
-
-        return $this->value;
+        return $this->getInt();
     }
 
     /**
@@ -323,9 +342,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(is_bool($this->value), TypeEnum::BOOL);
-
-        return $this->value;
+        return $this->getBool();
     }
 
     /**
@@ -339,9 +356,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(is_string($this->value), TypeEnum::STRING);
-
-        return $this->value;
+        return $this->getString();
     }
 
     /**
@@ -356,12 +371,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(ListOfTypeChecker::check($this->value, 'is_int'), TypeEnum::LIST_OF_INT);
-
-        /**
-         * @psalm-var list<int>|null
-         */
-        return $this->value;
+        return $this->getListOfInt();
     }
 
     /**
@@ -376,12 +386,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(ListOfTypeChecker::check($this->value, 'is_string'), TypeEnum::LIST_OF_STRING);
-
-        /**
-         * @psalm-var list<string>|null
-         */
-        return $this->value;
+        return $this->getListOfString();
     }
 
     /**
@@ -396,12 +401,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(ArrayOfStringToTypeChecker::check($this->value, 'is_int'), TypeEnum::ARRAY_OF_STRING_TO_INT);
-
-        /**
-         * @psalm-var array<string,int>
-         */
-        return $this->value;
+        return $this->getArrayOfStringToInt();
     }
 
     /**
@@ -416,15 +416,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(
-            ArrayOfStringToTypeChecker::check($this->value, 'is_bool'),
-            TypeEnum::ARRAY_OF_STRING_TO_BOOL
-        );
-
-        /**
-         * @psalm-var array<string,bool>|null
-         */
-        return $this->value;
+        return $this->getArrayOfStringToBool();
     }
 
     /**
@@ -439,15 +431,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(
-            ArrayOfStringToTypeChecker::check($this->value, 'is_string'),
-            TypeEnum::ARRAY_OF_STRING_TO_STRING
-        );
-
-        /**
-         * @psalm-var array<string,string>
-         */
-        return $this->value;
+        return $this->getArrayOfStringToString();
     }
 
     /**
@@ -461,11 +445,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $int = IntCaster::cast($this->value);
-
-        $this->assertCastable($int !== null, TypeEnum::INT);
-
-        return $int;
+        return $this->getAsInt();
     }
 
     /**
@@ -479,11 +459,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $bool = BoolCaster::cast($this->value);
-
-        $this->assertCastable($bool !== null, TypeEnum::BOOL);
-
-        return $bool;
+        return $this->getAsBool();
     }
 
     /**
@@ -497,11 +473,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $string = StringCaster::cast($this->value);
-
-        $this->assertCastable($string !== null, TypeEnum::STRING);
-
-        return $string;
+        return $this->getAsString();
     }
 
     /**
@@ -515,14 +487,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        /**
-         * @psalm-var list<int>|null
-         */
-        $list = ListOfTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
-
-        $this->assertCastable($list !== null, TypeEnum::LIST_OF_INT);
-
-        return $list;
+        return $this->getAsListOfInt();
     }
 
     /**
@@ -536,14 +501,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        /**
-         * @psalm-var list<string>|null
-         */
-        $list = ListOfTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
-
-        $this->assertCastable($list !== null, TypeEnum::LIST_OF_STRING);
-
-        return $list;
+        return $this->getAsListOfString();
     }
 
     /**
@@ -558,14 +516,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        /**
-         * @psalm-var array<string,int>|null
-         */
-        $array = ArrayOfStringToTypeCaster::cast($this->value, [IntCaster::class, 'cast']);
-
-        $this->assertCastable($array !== null, TypeEnum::ARRAY_OF_STRING_TO_INT);
-
-        return $array;
+        return $this->getAsArrayOfStringToInt();
     }
 
     /**
@@ -580,14 +531,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        /**
-         * @psalm-var array<string,bool>|null
-         */
-        $array = ArrayOfStringToTypeCaster::cast($this->value, [BoolCaster::class, 'cast']);
-
-        $this->assertCastable($array !== null, TypeEnum::ARRAY_OF_STRING_TO_BOOL);
-
-        return $array;
+        return $this->getAsArrayOfStringToBool();
     }
 
     /**
@@ -602,14 +546,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        /**
-         * @psalm-var array<string,string>|null
-         */
-        $array = ArrayOfStringToTypeCaster::cast($this->value, [StringCaster::class, 'cast']);
-
-        $this->assertCastable($array !== null, TypeEnum::ARRAY_OF_STRING_TO_STRING);
-
-        return $array;
+        return $this->getAsArrayOfStringToString();
     }
 
     /**
@@ -627,7 +564,7 @@ class Mess implements MessInterface
      */
     public function getObject(): object
     {
-        $this->assertType($this->findObject() !== null, TypeEnum::OBJECT);
+        $this->assertType(is_object($this->value), TypeEnum::OBJECT);
 
         /**
          * @var object
@@ -640,7 +577,7 @@ class Mess implements MessInterface
      */
     public function getArray(): array
     {
-        $this->assertType($this->findArray() !== null, TypeEnum::ARRAY);
+        $this->assertType(is_array($this->value), TypeEnum::ARRAY);
 
         /**
          * @var array
@@ -656,7 +593,7 @@ class Mess implements MessInterface
      */
     public function getArrayOfStringToMixed(): array
     {
-        $this->assertType($this->findArrayOfStringToMixed() !== null, TypeEnum::ARRAY_OF_STRING_TO_MIXED);
+        $this->assertType(ArrayOfStringToMixedChecker::check($this->value), TypeEnum::ARRAY_OF_STRING_TO_MIXED);
 
         /**
          * @psalm-var array<string,mixed>
@@ -683,9 +620,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(is_object($this->value), TypeEnum::OBJECT);
-
-        return $this->value;
+        return $this->getObject();
     }
 
     /**
@@ -697,9 +632,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(is_array($this->value), TypeEnum::ARRAY);
-
-        return $this->value;
+        return $this->getArray();
     }
 
     /**
@@ -714,12 +647,7 @@ class Mess implements MessInterface
             return null;
         }
 
-        $this->assertType(ArrayOfStringToMixedChecker::check($this->value), TypeEnum::ARRAY_OF_STRING_TO_MIXED);
-
-        /**
-         * @psalm-var array<string,string>|null
-         */
-        return $this->value;
+        return $this->getArrayOfStringToMixed();
     }
 
     /**
