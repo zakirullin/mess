@@ -33,7 +33,10 @@
     "psr-4": {
       "Zakirullin\\Mess\\": "src/",
       "Zakirullin\\TypedAccessor\\": "src/"
-    }
+    },
+    "files": [
+      "src/functions.php"
+    ]
   },
   "scripts": {
     "test": [
