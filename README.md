@@ -52,6 +52,12 @@ resource => int // UncastableValueException
 
 Fairly simple, isn't it?
 
+## Installation
+
+```bash
+$ composer require zakirullin/mess
+```
+
 ## Dealing with mess
 
 ```php
@@ -79,12 +85,6 @@ $config['param']->findAsInt(); // 1
 
 As you you might notice, type casting is performed while using `(find|get)As*` methods.
 Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
-
-## Installation
-
-```bash
-$ composer require zakirullin/mess
-```
 
 ### Why one needs THAT naive type casting?
 
