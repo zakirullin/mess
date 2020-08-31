@@ -86,7 +86,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, int>
      *
      * @return array
      */
@@ -97,7 +97,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, bool>
      *
      * @return array
      */
@@ -108,7 +108,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, string>
      *
      * @return array
      */
@@ -171,7 +171,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, int>
      *
      * @return array
      */
@@ -182,7 +182,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, bool>
      *
      * @return array
      */
@@ -193,7 +193,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, string>
      *
      * @return array
      */
@@ -256,7 +256,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, int>|null
      *
      * @return array|null
      */
@@ -267,7 +267,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, bool>|null
      *
      * @return array|null
      */
@@ -278,7 +278,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, string>|null
      *
      * @return array|null
      */
@@ -341,7 +341,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, int>|null
      *
      * @return array|null
      */
@@ -352,7 +352,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, bool>|null
      *
      * @return array|null
      */
@@ -363,7 +363,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
-     * @psalm-return list<string>
+     * @psalm-return array<string, string>|null
      *
      * @return array|null
      */
@@ -404,6 +404,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
+     * @psalm-return array<string, mixed>
      *
      * @return array
      */
@@ -444,6 +445,7 @@ final class MissingMess implements MessInterface
 
     /**
      * @psalm-pure
+     * @psalm-return array<string, mixed>|null
      *
      * @return array|null
      */
