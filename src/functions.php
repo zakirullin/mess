@@ -166,7 +166,7 @@ namespace Zakirullin\Mess
             return false;
         }
 
-        if (empty($value)) {
+        if ($value === []) {
             return true;
         }
 
@@ -174,12 +174,8 @@ namespace Zakirullin\Mess
          * @psalm-var list
          */
         $keys = array_keys($value);
-        $isList = $keys === range(0, count($value) - 1);
-        if (!$isList) {
-            return false;
-        }
 
-        return true;
+        return $keys === range(0, count($value) - 1);
     }
 
     /**
