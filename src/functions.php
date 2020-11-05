@@ -118,7 +118,6 @@ namespace Zakirullin\Mess
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string,mixed>|null
      *
      * @param mixed    $value
@@ -130,7 +129,7 @@ namespace Zakirullin\Mess
         if (!isArrayOfStringToMixed($value)) {
             return null;
         }
-
+        /** @var array<string, mixed> $value */
         $arrayOfStringToCasted = [];
         /**
          * @var string $key

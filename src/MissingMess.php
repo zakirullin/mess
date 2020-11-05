@@ -33,7 +33,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return int
      */
@@ -43,7 +43,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return bool
      */
@@ -53,7 +53,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return string
      */
@@ -63,7 +63,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<int>
      *
      * @return array
@@ -74,7 +74,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<string>
      *
      * @return array
@@ -85,7 +85,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, int>
      *
      * @return array
@@ -96,7 +96,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, bool>
      *
      * @return array
@@ -107,7 +107,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, string>
      *
      * @return array
@@ -118,7 +118,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return int
      */
@@ -128,7 +128,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return bool
      */
@@ -138,7 +138,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return string
      */
@@ -148,7 +148,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<int>
      *
      * @return array
@@ -159,7 +159,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<string>
      *
      * @return array
@@ -170,7 +170,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, int>
      *
      * @return array
@@ -181,7 +181,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, bool>
      *
      * @return array
@@ -192,7 +192,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, string>
      *
      * @return array
@@ -203,7 +203,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return int|null
      */
@@ -213,7 +213,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return bool|null
      */
@@ -223,7 +223,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return string|null
      */
@@ -233,7 +233,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<int>
      *
      * @return array|null
@@ -244,7 +244,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<string>
      *
      * @return array|null
@@ -255,7 +255,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, int>|null
      *
      * @return array|null
@@ -266,7 +266,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, bool>|null
      *
      * @return array|null
@@ -277,7 +277,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, string>|null
      *
      * @return array|null
@@ -288,7 +288,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return int|null
      */
@@ -298,7 +298,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return bool|null
      */
@@ -308,7 +308,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return string|null
      */
@@ -318,7 +318,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<int>|null
      *
      * @return array|null
@@ -329,7 +329,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<string>|null
      *
      * @return array|null
@@ -340,7 +340,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, int>|null
      *
      * @return array|null
@@ -351,7 +351,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, bool>|null
      *
      * @return array|null
@@ -362,7 +362,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, string>|null
      *
      * @return array|null
@@ -373,7 +373,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return mixed
      */
@@ -383,7 +383,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return object
      */
@@ -393,7 +393,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return array
      */
@@ -403,7 +403,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, mixed>
      *
      * @return array
@@ -414,7 +414,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return mixed
      */
@@ -424,7 +424,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return object|null
      */
@@ -434,7 +434,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return array|null
      */
@@ -444,7 +444,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string, mixed>|null
      *
      * @return array|null
@@ -455,7 +455,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @param mixed $offset
      *
      * @return bool
@@ -466,7 +466,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @param int|string $offset
      *
      * @return self
@@ -487,7 +487,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param mixed $offset
      * @param mixed $value
@@ -498,7 +498,7 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param mixed $offset
      */

@@ -44,7 +44,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return int
      */
@@ -59,7 +59,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return bool
      */
@@ -74,7 +74,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return string
      */
@@ -89,7 +89,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<int>
      *
      * @return array
@@ -105,7 +105,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<string>
      *
      * @return array
@@ -121,7 +121,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,int>
      *
      * @return array
@@ -137,7 +137,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,bool>
      *
      * @return array
@@ -156,7 +156,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,string>
      *
      * @return array
@@ -175,7 +175,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return int
      */
@@ -192,7 +192,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return bool
      */
@@ -206,7 +206,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return string
      */
@@ -220,7 +220,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<int>
      *
      * @return array
@@ -238,7 +238,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<string>
      *
      * @return array
@@ -256,7 +256,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,int>
      *
      * @return array
@@ -274,7 +274,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,bool>
      *
      * @return array
@@ -292,7 +292,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,string>
      *
      * @return array
@@ -310,7 +310,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return int|null
      */
@@ -324,7 +324,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return bool|null
      */
@@ -338,7 +338,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return string|null
      */
@@ -352,7 +352,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<int>|null
      *
      * @return array|null
@@ -367,7 +367,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return list<string>|null
      *
      * @return array|null
@@ -382,7 +382,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,int>|null
      *
      * @return array|null
@@ -397,7 +397,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,bool>|null
      *
      * @return array|null
@@ -412,7 +412,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,string>|null
      *
      * @return array|null
@@ -427,7 +427,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return int|null
      */
@@ -441,7 +441,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return bool|null
      */
@@ -455,7 +455,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return string|null
      */
@@ -497,7 +497,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,int>|null
      *
      * @return array|null
@@ -512,7 +512,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,bool>|null
      *
      * @return array|null
@@ -527,7 +527,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,string>|null
      *
      * @return array|null
@@ -542,7 +542,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return mixed
      */
@@ -578,7 +578,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,mixed>
      *
      * @return array
@@ -594,7 +594,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @return mixed
      */
@@ -628,7 +628,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      * @psalm-return array<string,mixed>|null
      *
      * @return array|null
@@ -643,7 +643,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param string|int $offset
      * @return MessInterface
@@ -668,7 +668,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param string|int $offset
      * @return bool
@@ -687,7 +687,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param mixed $offset
      * @param mixed $value
@@ -698,7 +698,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-mutation-free
      *
      * @param mixed $offset
      */
@@ -708,7 +708,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-external-mutation-free
      * @psalm-param list<string|int> $keySequence
      *
      * @param array $keySequence
