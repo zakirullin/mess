@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Zakirullin\Mess
 {
-
     use function array_keys;
     use function count;
     use function filter_var;
