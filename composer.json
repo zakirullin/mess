@@ -24,12 +24,12 @@
     "sort-packages": true
   },
   "require": {
-    "php": "^7.2|^8.0",
-    "vimeo/psalm": "4.3.1"
+    "php": "^7.2|^8.0"
   },
   "require-dev": {
     "infection/infection": "^0.15|^0.20",
-    "phpunit/phpunit": "^8.0"
+    "phpunit/phpunit": "^8.0",
+    "vimeo/psalm": "4.3.1"
   },
   "autoload": {
     "psr-4": {
