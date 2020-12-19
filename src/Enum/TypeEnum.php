@@ -11,9 +11,11 @@ final class TypeEnum
     public const STRING = 'string';
     public const OBJECT = 'object';
     public const ARRAY = 'array';
+
     public const LIST_OF_INT = 'list<int>';
     public const LIST_OF_FLOAT = 'list<float>';
     public const LIST_OF_STRING = 'list<string>';
+
     public const ARRAY_OF_STRING_TO_INT = 'array<string,int>';
     public const ARRAY_OF_STRING_TO_FLOAT = 'array<string,float>';
     public const ARRAY_OF_STRING_TO_BOOL = 'array<string,bool>';
