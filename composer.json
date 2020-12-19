@@ -5,6 +5,7 @@
   "keywords": [
     "array",
     "type",
+    "assert",
     "cast",
     "mess",
     "language",
@@ -23,12 +24,12 @@
     "sort-packages": true
   },
   "require": {
-    "php": "^7.2|^8.0"
+    "php": "^7.2|^8.0",
+    "vimeo/psalm": "4.3.1"
   },
   "require-dev": {
     "infection/infection": "^0.15",
-    "phpunit/phpunit": "^8.0",
-    "vimeo/psalm": "3.8"
+    "phpunit/phpunit": "^8.0"
   },
   "autoload": {
     "psr-4": {

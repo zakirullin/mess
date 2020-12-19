@@ -9,8 +9,7 @@ use function implode;
 
 final class MissingKeyException extends RuntimeException implements MessExceptionInterface
 {
-    /**
-     * @psalm-var list<string|int>
+      /** @psalm-var list<string|int>
      *
      * @var array
      */

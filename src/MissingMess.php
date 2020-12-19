@@ -33,8 +33,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return int
      */
     public function getInt(): int
@@ -43,8 +41,14 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
+     * @return float
+     */
+    public function getFloat(): float
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
      * @return bool
      */
     public function getBool(): bool
@@ -53,8 +57,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return string
      */
     public function getString(): string
@@ -63,10 +65,9 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>
      *
-     * @return array
+     * @return int[]
      */
     public function getListOfInt(): array
     {
@@ -74,10 +75,19 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>
+     *
+     * @return float[]
+     */
+    public function getListOfFloat(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
      * @psalm-return list<string>
      *
-     * @return array
+     * @return string[]
      */
     public function getListOfString(): array
     {
@@ -85,7 +95,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, int>
      *
      * @return array
@@ -96,7 +105,16 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return array<string,float>
+     *
+     * @return array
+     */
+    public function getArrayOfStringToFloat(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
      * @psalm-return array<string, bool>
      *
      * @return array
@@ -107,7 +125,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, string>
      *
      * @return array
@@ -118,8 +135,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return int
      */
     public function getAsInt(): int
@@ -128,8 +143,14 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
+     * @return float
+     */
+    public function getAsFloat(): float
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
      * @return bool
      */
     public function getAsBool(): bool
@@ -138,8 +159,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return string
      */
     public function getAsString(): string
@@ -148,10 +167,9 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>
      *
-     * @return array
+     * @return int[]
      */
     public function getAsListOfInt(): array
     {
@@ -159,10 +177,19 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>
+     *
+     * @return float[]
+     */
+    public function getAsListOfFloat(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
      * @psalm-return list<string>
      *
-     * @return array
+     * @return string[]
      */
     public function getAsListOfString(): array
     {
@@ -170,7 +197,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, int>
      *
      * @return array
@@ -181,7 +207,16 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return array<string, float>
+     *
+     * @return array
+     */
+    public function getAsArrayOfStringToFloat(): array
+    {
+        throw new MissingKeyException($this->keySequence);
+    }
+
+    /**
      * @psalm-return array<string, bool>
      *
      * @return array
@@ -192,7 +227,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, string>
      *
      * @return array
@@ -203,8 +237,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return int|null
      */
     public function findInt(): ?int
@@ -213,8 +245,14 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
+     * @return float|null
+     */
+    public function findFloat(): ?float
+    {
+        return null;
+    }
+
+    /**
      * @return bool|null
      */
     public function findBool(): ?bool
@@ -223,8 +261,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return string|null
      */
     public function findString(): ?string
@@ -233,10 +269,9 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>
      *
-     * @return array|null
+     * @return int[]|null
      */
     public function findListOfInt(): ?array
     {
@@ -244,10 +279,19 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>
+     *
+     * @return float[]|null
+     */
+    public function findListOfFloat(): ?array
+    {
+        return null;
+    }
+
+    /**
      * @psalm-return list<string>
      *
-     * @return array|null
+     * @return string[]|null
      */
     public function findListOfString(): ?array
     {
@@ -255,7 +299,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, int>|null
      *
      * @return array|null
@@ -266,7 +309,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, bool>|null
      *
      * @return array|null
@@ -277,7 +319,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, string>|null
      *
      * @return array|null
@@ -288,8 +329,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return int|null
      */
     public function findAsInt(): ?int
@@ -298,8 +337,14 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
+     * @return float|null
+     */
+    public function findAsFloat(): ?float
+    {
+        return null;
+    }
+
+    /**
      * @return bool|null
      */
     public function findAsBool(): ?bool
@@ -308,8 +353,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return string|null
      */
     public function findAsString(): ?string
@@ -318,10 +361,9 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>|null
      *
-     * @return array|null
+     * @return int[]|null
      */
     public function findAsListOfInt(): ?array
     {
@@ -329,10 +371,19 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>|null
+     *
+     * @return float[]|null
+     */
+    public function findAsListOfFloat(): ?array
+    {
+        return null;
+    }
+
+    /**
      * @psalm-return list<string>|null
      *
-     * @return array|null
+     * @return string[]|null
      */
     public function findAsListOfString(): ?array
     {
@@ -340,7 +391,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, int>|null
      *
      * @return array|null
@@ -351,7 +401,26 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return array<string, float>|null
+     *
+     * @return array|null
+     */
+    public function findArrayOfStringToFloat(): ?array
+    {
+        return null;
+    }
+
+    /**
+     * @pslam-pure
+     * @psalm-return array<string,float>|null
+     * @return array|null
+     */
+    public function findAsArrayOfStringToFloat(): ?array
+    {
+        return null;
+    }
+
+    /**
      * @psalm-return array<string, bool>|null
      *
      * @return array|null
@@ -362,7 +431,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, string>|null
      *
      * @return array|null
@@ -373,8 +441,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return mixed
      */
     public function getMixed()
@@ -383,8 +449,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return object
      */
     public function getObject(): object
@@ -393,8 +457,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return array
      */
     public function getArray(): array
@@ -403,7 +465,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, mixed>
      *
      * @return array
@@ -414,8 +475,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return mixed
      */
     public function findMixed()
@@ -424,8 +483,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return object|null
      */
     public function findObject(): ?object
@@ -434,8 +491,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return array|null
      */
     public function findArray(): ?array
@@ -444,7 +499,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return array<string, mixed>|null
      *
      * @return array|null
@@ -455,7 +509,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @param mixed $offset
      *
      * @return bool
@@ -466,7 +519,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @param int|string $offset
      *
      * @return self
@@ -487,8 +539,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @param mixed $offset
      * @param mixed $value
      */
@@ -498,8 +548,6 @@ final class MissingMess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @param mixed $offset
      */
     public function offsetUnset($offset): void

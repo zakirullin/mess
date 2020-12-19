@@ -23,6 +23,16 @@ class MissingMessTest extends TestCase
         $accessor->getInt();
     }
 
+    public function testGetFloat_CorrectAccessor_ThrowsMissingKeyException()
+    {
+        $accessor = new MissingMess([]);
+
+        $this->expectException(MissingKeyException::class);
+
+        $accessor->getFloat();
+    }
+
+
     public function testGetBool_CorrectAccessor_ThrowsMissingKeyException()
     {
         $accessor = new MissingMess([]);
@@ -50,6 +60,15 @@ class MissingMessTest extends TestCase
         $accessor->getInt();
     }
 
+    public function testGetAsFloat_CorrectAccessor_ThrowsMissingKeyException()
+    {
+        $accessor = new MissingMess([]);
+
+        $this->expectException(MissingKeyException::class);
+
+        $accessor->getFloat();
+    }
+
     public function testGetAsBool_CorrectAccessor_ThrowsMissingKeyException()
     {
         $accessor = new MissingMess([]);
@@ -75,6 +94,13 @@ class MissingMessTest extends TestCase
         $this->assertNull($accessor->findInt());
     }
 
+    public function testFindFloat_CorrectAccessor_ReturnsNull()
+    {
+        $accessor = new MissingMess([]);
+
+        $this->assertNull($accessor->findFloat());
+    }
+
     public function testFindBool_CorrectAccessor_ReturnsNull()
     {
         $accessor = new MissingMess([]);
@@ -94,6 +120,13 @@ class MissingMessTest extends TestCase
         $accessor = new MissingMess([]);
 
         $this->assertNull($accessor->findInt());
+    }
+
+    public function testFindAsFloat_CorrectAccessor_ReturnsNull()
+    {
+        $accessor = new MissingMess([]);
+
+        $this->assertNull($accessor->findFloat());
     }
 
     public function testFindAsBool_CorrectAccessor_ReturnsNull()

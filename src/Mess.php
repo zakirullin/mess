@@ -11,6 +11,7 @@ use Zakirullin\Mess\Exception\UnexpectedTypeException;
 use function is_array;
 use function is_bool;
 use function is_int;
+use function is_float;
 use function is_object;
 use function is_string;
 use function key_exists;
@@ -35,7 +36,6 @@ class Mess implements MessInterface
     private $keySequence = [];
 
     /**
-     *
      * @param mixed $value
      */
     public function __construct($value)
@@ -44,8 +44,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return int
      */
     public function getInt(): int
@@ -59,8 +57,19 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
+     * @return float
+     */
+    public function getFloat(): float
+    {
+        $this->assertType(is_float($this->value), TypeEnum::FLOAT);
+
+        /**
+         * @var float
+         */
+        return $this->value;
+    }
+
+    /**
      * @return bool
      */
     public function getBool(): bool
@@ -74,8 +83,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return string
      */
     public function getString(): string
@@ -89,7 +96,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>
      *
      * @return array
@@ -105,7 +111,21 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>
+     *
+     * @return array
+     */
+    public function getListOfFloat(): array
+    {
+        $this->assertType(isListOfType($this->value, 'is_float'), TypeEnum::FLOAT);
+
+        /**
+         * @psalm-var list<float>
+         */
+        return $this->value;
+    }
+
+    /**
      * @psalm-return list<string>
      *
      * @return array
@@ -121,8 +141,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,int>
+     * @psalm-return array<string, int>
      *
      * @return array
      */
@@ -131,14 +150,28 @@ class Mess implements MessInterface
         $this->assertType(isArrayOfStringToType($this->value, 'is_int'), TypeEnum::ARRAY_OF_STRING_TO_INT);
 
         /**
-         * @psalm-var array<string,int>
+         * @psalm-var array<string, int>
          */
         return $this->value;
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,bool>
+     * @psalm-return array<string, float>
+     *
+     * @return array
+     */
+    public function getArrayOfStringToFloat(): array
+    {
+        $this->assertType(isArrayOfStringToType($this->value, 'is_float'), TypeEnum::ARRAY_OF_STRING_TO_FLOAT);
+
+        /**
+         * @psalm-var array<string, float>
+         */
+        return $this->value;
+    }
+
+    /**
+     * @psalm-return array<string, bool>
      *
      * @return array
      */
@@ -150,14 +183,13 @@ class Mess implements MessInterface
         );
 
         /**
-         * @var array<string,bool>
+         * @var array<string, bool>
          */
         return $this->value;
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,string>
+     * @psalm-return array<string, string>
      *
      * @return array
      */
@@ -169,14 +201,12 @@ class Mess implements MessInterface
         );
 
         /**
-         * @psalm-var array<string,string>
+         * @psalm-var array<string, string>
          */
         return $this->value;
     }
 
     /**
-     * @psalm-pure
-     *
      * @return int
      */
     public function getAsInt(): int
@@ -192,8 +222,21 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
+     * @return float
+     */
+    public function getAsFloat(): float
+    {
+        $float = toFloat($this->value);
+
+        $this->assertCastable($float !== null, TypeEnum::FLOAT);
+
+        /**
+         * @var float
+         */
+        return $float;
+    }
+
+    /**
      * @return bool
      */
     public function getAsBool(): bool
@@ -206,8 +249,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return string
      */
     public function getAsString(): string
@@ -220,7 +261,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>
      *
      * @return array
@@ -238,7 +278,23 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>
+     *
+     * @return array
+     */
+    public function getAsListOfFloat(): array
+    {
+        /**
+         * @psalm-var list<float>|null
+         */
+        $listOfFloat = toListOfType($this->value, '\Zakirullin\Mess\toFloat');
+
+        $this->assertCastable($listOfFloat !== null, TypeEnum::LIST_OF_FLOAT);
+
+        return $listOfFloat;
+    }
+
+    /**
      * @psalm-return list<string>
      *
      * @return array
@@ -256,15 +312,14 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,int>
+     * @psalm-return array<string, int>
      *
      * @return array
      */
     public function getAsArrayOfStringToInt(): array
     {
         /**
-         * @psalm-var array<string,int>|null
+         * @psalm-var array<string, int>|null
          */
         $arrayOfStringToInt = toArrayOfStringToType($this->value, '\Zakirullin\Mess\toInt');
 
@@ -274,15 +329,31 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,bool>
+     * @psalm-return array<string, float>
+     *
+     * @return array
+     */
+    public function getAsArrayOfStringToFloat(): array
+    {
+        /**
+         * @psalm-var array<string, float>|null
+         */
+        $arrayOfStringToFloat = toArrayOfStringToType($this->value, '\Zakirullin\Mess\toFloat');
+
+        $this->assertCastable($arrayOfStringToFloat !== null, TypeEnum::ARRAY_OF_STRING_TO_FLOAT);
+
+        return $arrayOfStringToFloat;
+    }
+
+    /**
+     * @psalm-return array<string, bool>
      *
      * @return array
      */
     public function getAsArrayOfStringToBool(): array
     {
         /**
-         * @psalm-var array<string,bool>|null
+         * @psalm-var array<string, bool>|null
          */
         $arrayOfStringToBool = toArrayOfStringToType($this->value, '\Zakirullin\Mess\toBool');
 
@@ -292,15 +363,14 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,string>
+     * @psalm-return array<string, string>
      *
      * @return array
      */
     public function getAsArrayOfStringToString(): array
     {
         /**
-         * @psalm-var array<string,string>|null
+         * @psalm-var array<string, string>|null
          */
         $arrayOfStringToString = toArrayOfStringToType($this->value, '\Zakirullin\Mess\toString');
 
@@ -310,8 +380,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return int|null
      */
     public function findInt(): ?int
@@ -324,8 +392,18 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
+     * @return float|null
+     */
+    public function findFloat(): ?float
+    {
+        if ($this->value === null) {
+            return null;
+        }
+
+        return $this->getFloat();
+    }
+
+    /**
      * @return bool|null
      */
     public function findBool(): ?bool
@@ -338,8 +416,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return string|null
      */
     public function findString(): ?string
@@ -352,10 +428,9 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>|null
      *
-     * @return array|null
+     * @return int[]|null
      */
     public function findListOfInt(): ?array
     {
@@ -367,7 +442,20 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>|null
+     *
+     * @return float[]|null
+     */
+    public function findListOfFloat(): ?array
+    {
+        if ($this->value === null) {
+            return null;
+        }
+
+        return $this->getListOfFloat();
+    }
+
+    /**
      * @psalm-return list<string>|null
      *
      * @return array|null
@@ -382,8 +470,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,int>|null
+     * @psalm-return array<string, int>|null
      *
      * @return array|null
      */
@@ -397,8 +484,21 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,bool>|null
+     * @psalm-return array<string, float>|null
+     *
+     * @return array|null
+     */
+    public function findArrayOfStringToFloat(): ?array
+    {
+        if ($this->value === null) {
+            return null;
+        }
+
+        return $this->getArrayOfStringToFloat();
+    }
+
+    /**
+     * @psalm-return array<string, bool>|null
      *
      * @return array|null
      */
@@ -412,8 +512,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,string>|null
+     * @psalm-return array<string, string>|null
      *
      * @return array|null
      */
@@ -427,8 +526,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return int|null
      */
     public function findAsInt(): ?int
@@ -441,8 +538,18 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
+     * @return float|null
+     */
+    public function findAsFloat(): ?float
+    {
+        if ($this->value === null) {
+            return null;
+        }
+
+        return $this->getAsFloat();
+    }
+
+    /**
      * @return bool|null
      */
     public function findAsBool(): ?bool
@@ -455,8 +562,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return string|null
      */
     public function findAsString(): ?string
@@ -471,7 +576,7 @@ class Mess implements MessInterface
     /**
      * @psalm-return list<int>|null
      *
-     * @return array|null
+     * @return int[]|null
      */
     public function findAsListOfInt(): ?array
     {
@@ -483,9 +588,21 @@ class Mess implements MessInterface
     }
 
     /**
+     * @return float[]|null
+     */
+    public function findAsListOfFloat(): ?array
+    {
+        if ($this->value === null) {
+            return null;
+        }
+
+        return $this->getAsListOfFloat();
+    }
+
+    /**
      * @psalm-return list<string>|null
      *
-     * @return array|null
+     * @return string[]|null
      */
     public function findAsListOfString(): ?array
     {
@@ -497,8 +614,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,int>|null
+     * @psalm-return array<string, int>|null
      *
      * @return array|null
      */
@@ -512,8 +628,21 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,bool>|null
+     * @psalm-return array<string, float>|null
+     *
+     * @return array|null
+     */
+    public function findAsArrayOfStringToFloat(): ?array
+    {
+        if ($this->value === null) {
+            return null;
+        }
+
+        return $this->getAsArrayOfStringToFloat();
+    }
+
+    /**
+     * @psalm-return array<string, bool>|null
      *
      * @return array|null
      */
@@ -527,8 +656,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,string>|null
+     * @psalm-return array<string, string>|null
      *
      * @return array|null
      */
@@ -542,8 +670,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return mixed
      */
     public function getMixed()
@@ -578,8 +704,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,mixed>
+     * @psalm-return array<string, mixed>
      *
      * @return array
      */
@@ -594,8 +719,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @return mixed
      */
     public function findMixed()
@@ -628,8 +751,7 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,mixed>|null
+     * @psalm-return array<string, mixed>|null
      *
      * @return array|null
      */
@@ -643,8 +765,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @param string|int $offset
      * @return MessInterface
      */
@@ -668,8 +788,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @param string|int $offset
      * @return bool
      */
@@ -687,8 +805,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @param mixed $offset
      * @param mixed $value
      */
@@ -698,8 +814,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
-     *
      * @param mixed $offset
      */
     public function offsetUnset($offset): void
@@ -708,7 +822,6 @@ class Mess implements MessInterface
     }
 
     /**
-     * @psalm-pure
      * @psalm-param list<string|int> $keySequence
      *
      * @param array $keySequence

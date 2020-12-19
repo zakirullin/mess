@@ -7,8 +7,7 @@ use Throwable;
 
 interface MessExceptionInterface extends Throwable
 {
-    /**
-     * @psalm-return list<string|int>
+      /** @psalm-return list<string|int>
      *
      * @return array
      */

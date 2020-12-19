@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Zakirullin\Mess
 {
+
     use function array_keys;
     use function count;
     use function filter_var;
@@ -12,6 +13,7 @@ namespace Zakirullin\Mess
     use function is_string;
     use function range;
     use function strtolower;
+    use function trim;
     use const FILTER_VALIDATE_INT;
 
     /**
@@ -38,6 +40,26 @@ namespace Zakirullin\Mess
      * @psalm-pure
      *
      * @param mixed $value
+     * @return float|null
+     */
+    function toFloat($value): ?float
+    {
+        if (is_bool($value)) {
+            return null;
+        }
+
+        $floatValue = filter_var($value, FILTER_VALIDATE_FLOAT);
+        if ($floatValue === false) {
+            return null;
+        }
+
+        return $floatValue;
+    }
+
+    /**
+     * @psalm-pure
+     *
+     * @param mixed $value
      * @return bool|null
      */
     function toBool($value): ?bool
@@ -55,7 +77,7 @@ namespace Zakirullin\Mess
         }
 
         if (is_string($value)) {
-            $stringValue = strtolower($value);
+            $stringValue = trim(strtolower($value));
             if ($stringValue === 'true') {
                 return true;
             }
@@ -122,7 +144,7 @@ namespace Zakirullin\Mess
      * @psalm-return array<string,mixed>|null
      *
      * @param mixed    $value
-     * @param callable $caster
+     * @param pure-callable $caster
      * @return array|null
      */
     function toArrayOfStringToType($value, callable $caster): ?array
@@ -133,6 +155,7 @@ namespace Zakirullin\Mess
 
         $arrayOfStringToCasted = [];
         /**
+         * @var array $value
          * @var string $key
          * @var mixed  $val
          */
@@ -182,7 +205,7 @@ namespace Zakirullin\Mess
      * @psalm-pure
      *
      * @param mixed    $value
-     * @param callable $typeChecker
+     * @param pure-callable $typeChecker
      * @return bool
      */
     function isListOfType($value, callable $typeChecker): bool
@@ -233,7 +256,7 @@ namespace Zakirullin\Mess
      * @psalm-pure
      *
      * @param mixed    $value
-     * @param callable $isType
+     * @param pure-callable $isType
      * @return bool
      */
     function isArrayOfStringToType($value, callable $isType)

@@ -7,91 +7,96 @@ use ArrayAccess;
 
 interface MessInterface extends ArrayAccess
 {
-
     /**
-     * @psalm-pure
-     *
      * @return int
      */
     public function getInt(): int;
 
     /**
-     * @psalm-pure
-     *
+     * @return float
+     */
+    public function getFloat(): float;
+
+    /**
      * @return bool
      */
     public function getBool(): bool;
 
     /**
-     * @psalm-pure
-     *
      * @return string
      */
     public function getString(): string;
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>
      *
-     * @return array
+     * @return int[]
      */
     public function getListOfInt(): array;
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>
+     *
+     * @return float[]
+     */
+    public function getListOfFloat(): array;
+
+    /**
      * @psalm-return list<string>
      *
-     * @return array
+     * @return string[]
      */
     public function getListOfString(): array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,int>
+     * @psalm-return array<string, int>
      *
      * @return array
      */
     public function getArrayOfStringToInt(): array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,bool>
+     * @psalm-return array<string, float>
+     *
+     * @return array
+     */
+    public function getArrayOfStringToFloat(): array;
+
+    /**
+     * @psalm-return array<string, bool>
      *
      * @return array
      */
     public function getArrayOfStringToBool(): array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,string>
+     * @psalm-return array<string, string>
      *
      * @return array
      */
     public function getArrayOfStringToString(): array;
 
     /**
-     * @psalm-pure
-     *
      * @return int
      */
     public function getAsInt(): int;
 
     /**
-     * @psalm-pure
-     *
+     * @return float
+     */
+    public function getAsFloat(): float;
+
+    /**
      * @return bool
      */
     public function getAsBool(): bool;
 
     /**
-     * @psalm-pure
-     *
      * @return string
      */
     public function getAsString(): string;
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>
      *
      * @return array
@@ -99,7 +104,13 @@ interface MessInterface extends ArrayAccess
     public function getAsListOfInt(): array;
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>
+     *
+     * @return array
+     */
+    public function getAsListOfFloat(): array;
+
+    /**
      * @psalm-return list<string>
      *
      * @return array
@@ -107,109 +118,118 @@ interface MessInterface extends ArrayAccess
     public function getAsListOfString(): array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,int>
+     * @psalm-return array<string, int>
      *
      * @return array
      */
     public function getAsArrayOfStringToInt(): array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,bool>
+     * @psalm-return array<string, float>
+     *
+     * @return array
+     */
+    public function getAsArrayOfStringToFloat(): array;
+
+    /**
+     * @psalm-return array<string, bool>
      *
      * @return array
      */
     public function getAsArrayOfStringToBool(): array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,string>
+     * @psalm-return array<string, string>
      *
      * @return array
      */
     public function getAsArrayOfStringToString(): array;
 
-
     /**
-     * @psalm-pure
-     *
      * @return int|null
      */
     public function findInt(): ?int;
 
     /**
-     * @psalm-pure
-     *
+     * @return float|null
+     */
+    public function findFloat(): ?float;
+
+    /**
      * @return bool|null
      */
     public function findBool(): ?bool;
 
     /**
-     * @psalm-pure
-     *
      * @return string|null
      */
     public function findString(): ?string;
 
     /**
-     * @psalm-pure
      * @psalm-return list<int>|null
      *
-     * @return array|null
+     * @return int[]|null
      */
     public function findListOfInt(): ?array;
 
     /**
-     * @psalm-pure
+     * @psalm-return list<float>|null
+     *
+     * @return float[]|null
+     */
+    public function findListOfFloat(): ?array;
+
+    /**
      * @psalm-return list<string>|null
      *
-     * @return array|null
+     * @return string[]|null
      */
     public function findListOfString(): ?array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,int>|null
+     * @psalm-return array<string, int>|null
      *
      * @return array|null
      */
     public function findArrayOfStringToInt(): ?array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,bool>|null
+     * @psalm-return array<string, float>|null
+     *
+     * @return array|null
+     */
+    public function findArrayOfStringToFloat(): ?array;
+
+    /**
+     * @psalm-return array<string, bool>|null
      *
      * @return array|null
      */
     public function findArrayOfStringToBool(): ?array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,string>|null
+     * @psalm-return array<string, string>|null
      *
      * @return array|null
      */
     public function findArrayOfStringToString(): ?array;
 
-
     /**
-     * @psalm-pure
-     *
      * @return int|null
      */
     public function findAsInt(): ?int;
 
     /**
-     * @psalm-pure
-     *
+     * @return float|null
+     */
+    public function findAsFloat(): ?float;
+
+    /**
      * @return bool|null
      */
     public function findAsBool(): ?bool;
 
     /**
-     * @psalm-pure
-     *
      * @return string|null
      */
     public function findAsString(): ?string;
@@ -217,45 +237,53 @@ interface MessInterface extends ArrayAccess
     /**
      * @psalm-return list<int>|null
      *
-     * @return array|null
+     * @return int[]|null
      */
     public function findAsListOfInt(): ?array;
 
     /**
+     * list<float>|null
+     *
+     * @return float[]|null
+     */
+    public function findAsListOfFloat(): ?array;
+
+    /**
      * @psalm-return list<string>|null
      *
-     * @return array|null
+     * @return string[]|null
      */
     public function findAsListOfString(): ?array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,int>|null
+     * @psalm-return array<string, int>|null
      *
      * @return array|null
      */
     public function findAsArrayOfStringToInt(): ?array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,bool>|null
+     * @psalm-return array<string, float>|null
+     *
+     * @return array|null
+     */
+    public function findAsArrayOfStringToFloat(): ?array;
+
+    /**
+     * @psalm-return array<string, bool>|null
      *
      * @return array|null
      */
     public function findAsArrayOfStringToBool(): ?array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,string>|null
+     * @psalm-return array<string, string>|null
      *
      * @return array|null
      */
     public function findAsArrayOfStringToString(): ?array;
 
-
     /**
-     * @psalm-pure
-     *
      * @return mixed
      */
     public function getMixed();
@@ -271,17 +299,13 @@ interface MessInterface extends ArrayAccess
     public function getArray(): array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,mixed>
+     * @psalm-return array<string, mixed>
      *
      * @return array
      */
     public function getArrayOfStringToMixed(): array;
 
-
     /**
-     * @psalm-pure
-     *
      * @return mixed
      */
     public function findMixed();
@@ -297,16 +321,13 @@ interface MessInterface extends ArrayAccess
     public function findArray(): ?array;
 
     /**
-     * @psalm-pure
-     * @psalm-return array<string,mixed>|null
+     * @psalm-return array<string, mixed>|null
      *
      * @return array|null
      */
     public function findArrayOfStringToMixed(): ?array;
 
     /**
-     * @psalm-pure
-     *
      * @param string|int $offset
      * @return MessInterface
      */
