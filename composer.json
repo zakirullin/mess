@@ -28,7 +28,7 @@
     "vimeo/psalm": "4.3.1"
   },
   "require-dev": {
-    "infection/infection": "^0.15",
+    "infection/infection": "^0.15|^0.20",
     "phpunit/phpunit": "^8.0"
   },
   "autoload": {
