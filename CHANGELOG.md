@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.8.0] - 2020-12-19
 ### Added
 - `float` is now supported
-- a new version of Psalm with more checks
 
 ### Changed
 - trim is applied to bool so to have a consistent behaviour among all methods
