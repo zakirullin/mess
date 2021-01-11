@@ -2,7 +2,6 @@ language: php
 sudo: false
 
 php:
-  - 7.2
   - 8.0
 
 before_script:
