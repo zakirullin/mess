@@ -50,7 +50,7 @@ object => int // UncastableValueException
 resource => int // UncastableValueException
 ```
 
-Fairly simple, isn't it?
+Fairly simple, isn't it? Let us **fail fast**!
 
 ## Installation
 
