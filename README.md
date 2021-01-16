@@ -35,7 +35,8 @@ $mess = new Mess($response);
 $book = new Book(
     $mess['title']->getString(),
     $mess['is_bestseller']->getBool(),
-    $mess['stats']['rating']->getInt()
+    $mess['stats']['rating']->getInt(),
+    $mess['tags']->getListOfString()
 );
 ```
 
