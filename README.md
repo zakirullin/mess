@@ -48,6 +48,12 @@ $book = new Book(
 - `getArrayOfStringToBool()`
 - etc.
 
+## Installation
+
+```bash
+$ composer require zakirullin/mess
+```
+
 ## Type casting with Mess is rather predictable
 
 ```php
@@ -60,12 +66,6 @@ resource => int // UncastableValueException
 ```
 
 Fairly simple, isn't it? Let us **fail fast**!
-
-## Installation
-
-```bash
-$ composer require zakirullin/mess
-```
 
 ## Dealing with mess
 
