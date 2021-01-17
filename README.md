@@ -79,7 +79,7 @@ $config['param']->findInt(); // UnexpectedTypeException
 $config['param']->findAsInt(); // 1
 ```
 
-As you you might notice, type casting is performed while using `(find|get)As*` methods.
+As you might notice, type casting is performed while using `(find|get)As*` methods.
 Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
 
 ## Type casting with Mess is rather predictable
