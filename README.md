@@ -34,7 +34,7 @@ You can mess with API responses/configs/whatever:
 $mess = new Mess($response);
 $book = new Book(
     $mess['title']->getString(),
-    $mess['is_bestseller']->getBool(),
+    $mess['isBestseller']->getBool(),
     $mess['stats']['rating']->getInt(),
     $mess['tags']->getListOfString()
 );
