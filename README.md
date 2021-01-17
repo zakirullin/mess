@@ -17,7 +17,7 @@ Consider an example:
 ```php
 $userId = $queryParams['userId'] ?? null;
 if ($userId === null) {
-    throw new BadRequestException();
+    throw ...
 }
 $userId = (int)$userId;
 ```
