@@ -40,6 +40,14 @@ $book = new Book(
 );
 ```
 
+## Generics support (`Psalm` compatible)
+
+- `getListOfString()`
+- `getListOfInt()`
+- `getArrayOfStringToString()`
+- `getArrayOfStringToBool()`
+- etc.
+
 ## Type casting with Mess is rather predictable
 
 ```php
