@@ -54,19 +54,6 @@ $book = new Book(
 $ composer require zakirullin/mess
 ```
 
-## Type casting with Mess is rather predictable
-
-```php
-'\d+' => int // OK
-'buzz12' => int // UncastableValueException
-bool => int // UncastableValueException
-array => int // UncastableValueException
-object => int // UncastableValueException
-resource => int // UncastableValueException
-```
-
-Fairly simple, isn't it? Let us **fail fast**!
-
 ## Dealing with mess
 
 ```php
@@ -94,6 +81,19 @@ $config['param']->findAsInt(); // 1
 
 As you you might notice, type casting is performed while using `(find|get)As*` methods.
 Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
+
+## Type casting with Mess is rather predictable
+
+```php
+'\d+' => int // OK
+'buzz12' => int // UncastableValueException
+bool => int // UncastableValueException
+array => int // UncastableValueException
+object => int // UncastableValueException
+resource => int // UncastableValueException
+```
+
+Fairly simple, isn't it? Let us **fail fast**!
 
 ### Why one needs THAT naive type casting?
 
