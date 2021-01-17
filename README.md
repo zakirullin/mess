@@ -40,7 +40,7 @@ $book = new Book(
 );
 ```
 
-## Generics support (`Psalm` compatible)
+## Generics support (Psalm compatible)
 
 - `getListOfString()`
 - `getListOfInt()`
