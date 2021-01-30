@@ -97,7 +97,7 @@ Fairly simple, isn't it? Let us **fail fast**!
 
 ### Why one needs THAT naive type casting?
 
-Let's imagine a library that is configured that way:
+Let's imagine a library that is configured this way:
 ```php
 $config = [
     'retries' => 5, // int
