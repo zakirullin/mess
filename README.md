@@ -17,7 +17,7 @@ Consider an example:
 ```php
 $userId = $queryParams['userId'] ?? null;
 if ($userId === null) {
-    throw new BadRequestException();
+    throw ...
 }
 $userId = (int)$userId;
 ```
@@ -34,23 +34,19 @@ You can mess with API responses/configs/whatever:
 $mess = new Mess($response);
 $book = new Book(
     $mess['title']->getString(),
-    $mess['is_bestseller']->getBool(),
-    $mess['stats']['rating']->getInt()
+    $mess['isBestseller']->getBool(),
+    $mess['stats']['rating']->getInt(),
+    $mess['tags']->getListOfString()
 );
 ```
 
-## Type casting with Mess is rather predictable
+## Generics support (Psalm compatible)
 
-```php
-'\d+' => int // OK
-'buzz12' => int // UncastableValueException
-bool => int // UncastableValueException
-array => int // UncastableValueException
-object => int // UncastableValueException
-resource => int // UncastableValueException
-```
-
-Fairly simple, isn't it? Let us **fail fast**!
+- `getListOfString()`
+- `getListOfInt()`
+- `getArrayOfStringToString()`
+- `getArrayOfStringToBool()`
+- etc.
 
 ## Installation
 
@@ -83,12 +79,25 @@ $config['param']->findInt(); // UnexpectedTypeException
 $config['param']->findAsInt(); // 1
 ```
 
-As you you might notice, type casting is performed while using `(find|get)As*` methods.
+As you might notice, type casting is performed while using `(find|get)As*` methods.
 Having trouble grasping `get*()`/`find*()`? Check out brilliant [Ocramius's slides](https://ocramius.github.io/doctrine-best-practices/#/94).
+
+## Type casting with Mess is rather predictable
+
+```php
+'\d+' => int // OK
+'buzz12' => int // UncastableValueException
+bool => int // UncastableValueException
+array => int // UncastableValueException
+object => int // UncastableValueException
+resource => int // UncastableValueException
+```
+
+Fairly simple, isn't it? Let us **fail fast**!
 
 ### Why one needs THAT naive type casting?
 
-Let's imagine a library that is configured that way:
+Let's imagine a library that is configured this way:
 ```php
 $config = [
     'retries' => 5, // int
