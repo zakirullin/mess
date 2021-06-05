@@ -6,6 +6,8 @@ namespace Zakirullin\Mess\Exception;
 use RuntimeException;
 use Throwable;
 use function gettype;
+use function implode;
+use function sprintf;
 
 final class UnexpectedTypeException extends RuntimeException implements MessExceptionInterface
 {
@@ -41,7 +43,7 @@ final class UnexpectedTypeException extends RuntimeException implements MessExce
         $this->keySequence = $keySequence;
 
         $actualType = gettype($value);
-        $message = "Expected type is '{$expectedType}', got '{$actualType}' instead";
+        $message = "Expected type for key '{$this->getAbsoluteKey()}' is '{$expectedType}', got '{$actualType}' instead";
 
         parent::__construct($message, 0, $previous);
     }
@@ -70,5 +72,13 @@ final class UnexpectedTypeException extends RuntimeException implements MessExce
     public function getKeySequence(): array
     {
         return $this->keySequence;
+    }
+
+    /**
+     * @return string
+     */
+    private function getAbsoluteKey(): string
+    {
+        return sprintf('[%s]', implode('.', $this->keySequence));
     }
 }
