@@ -238,11 +238,7 @@ namespace Zakirullin\Mess
             return false;
         }
 
-        /**
-         * @var array $value
-         * @var mixed $val
-         */
-        foreach ($value as $key => $val) {
+        foreach (array_keys($value) as $key) {
             if (!is_string($key)) {
                 return false;
             }
