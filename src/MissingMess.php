@@ -523,6 +523,7 @@ final class MissingMess implements MessInterface
      *
      * @return self
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         /**
