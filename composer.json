@@ -21,7 +21,10 @@
     }
   ],
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "infection/extension-installer": true
+    }
   },
   "require": {
     "php": "^7.2|^8.0"
@@ -42,7 +45,7 @@
   },
   "scripts": {
     "test": [
-      "phpunit --stderr --coverage-text"
+      "@php vendor/bin/phpunit --stderr --coverage-text"
     ],
     "coverage": "phpunit --coverage-html=coverage"
   },
