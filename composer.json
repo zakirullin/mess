@@ -21,15 +21,21 @@
     }
   ],
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "infection/extension-installer": true
+    }
   },
   "require": {
     "php": "^7.2|^8.0"
   },
   "require-dev": {
-    "infection/infection": "^0.15|^0.20",
-    "phpunit/phpunit": "^8.0",
-    "vimeo/psalm": "4.16.1"
+    "composer/xdebug-handler": "^1.4|2.0",
+    "infection/infection": "^0.15|^0.20|^0.27",
+    "phpunit/phpunit": "^8.0|^9.0",
+    "symfony/string": "^5.4.43",
+    "sanmai/pipeline": "5.2.1",
+    "vimeo/psalm": "4.16.1|5.*"
   },
   "autoload": {
     "psr-4": {
@@ -42,7 +48,7 @@
   },
   "scripts": {
     "test": [
-      "phpunit --stderr --coverage-text"
+      "@php vendor/bin/phpunit --stderr --coverage-text"
     ],
     "coverage": "phpunit --coverage-html=coverage"
   },

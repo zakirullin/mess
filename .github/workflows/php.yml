@@ -1,0 +1,44 @@
+name: GitHub Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        php-versions: ['7.2', '7.4', '8.0', '8.1', '8.2', '8.3']
+        
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v4
+
+    - name: setup PHP.
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+
+    - name: php version check
+      run: php -v
+
+    - name: Validate composer.json 
+      run: composer validate --strict
+        
+    - name: run composer (install dependencies)
+      run: composer install --prefer-dist --no-progress
+
+    - name: run psalm (static analysis)
+      run: vendor/bin/psalm 
+   
+    - name: run unit tests
+      run: composer test
+    
+

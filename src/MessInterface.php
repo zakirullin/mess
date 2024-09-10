@@ -5,6 +5,9 @@ namespace Zakirullin\Mess;
 
 use ArrayAccess;
 
+/**
+ * @psalm-suppress MissingTemplateParam
+ */
 interface MessInterface extends ArrayAccess
 {
     /**
