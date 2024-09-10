@@ -1,6 +1,6 @@
 ## Mess
 
-[![Build Status](https://img.shields.io/travis/zakirullin/mess.svg?style=flat-square)](https://travis-ci.org/zakirullin/mess)
+![GitHub Build Status](https://github.com/zakirullin/mess/actions/workflows/php.yml/badge.svg)
 ![Psalm coverage](https://shepherd.dev/github/zakirullin/mess/coverage.svg?)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/zakirullin/mess.svg?style=flat-square)
 [![Latest Stable Version](https://poser.pugx.org/zakirullin/mess/v/stable.svg)](https://packagist.org/packages/zakirullin/mess)
