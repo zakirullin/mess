@@ -334,6 +334,5 @@ interface MessInterface extends ArrayAccess
      * @param string|int $offset
      * @return MessInterface
      */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset);
+    public function offsetGet($offset): MessInterface;
 }

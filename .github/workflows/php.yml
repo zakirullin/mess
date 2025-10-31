@@ -36,7 +36,7 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: run psalm (static analysis)
-      run: vendor/bin/psalm 
+      run: vendor/bin/psalm.phar
    
     - name: run unit tests
       run: composer test

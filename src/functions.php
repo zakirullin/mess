@@ -124,9 +124,13 @@ namespace Zakirullin\Mess
 
         $listOfCasted = [];
         /**
-         * @psalm-suppress all
+         * @psalm-suppress ImpureMethodCall
+         * @psalm-suppress MixedAssignment
          */
         foreach ($value as $val) {
+            /**
+             * @psalm-suppress ImpureFunctionCall
+             */
             $castedValue = $caster($val);
             if ($castedValue === null) {
                 return null;
