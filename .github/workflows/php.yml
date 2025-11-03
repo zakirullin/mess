@@ -13,15 +13,15 @@ jobs:
   build:
     strategy:
       matrix:
-        php-versions: ['7.2', '7.4', '8.0', '8.1', '8.2', '8.3']
+        php-versions: ['7.2', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
         
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
 
     - uses: actions/checkout@v4
 
-    - name: setup PHP.
+    - name: setup PHP ${{ matrix.php-versions }}
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-versions }}
@@ -36,9 +36,8 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: run psalm (static analysis)
-      run: vendor/bin/psalm 
+      run: vendor/bin/psalm.phar
    
-    - name: run unit tests
+    - name: run unit tests ( ${{ matrix.php-versions }} )
       run: composer test
     
-

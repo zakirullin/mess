@@ -11,5 +11,11 @@
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
+
     </projectFiles>
+    <issueHandlers>
+        <MissingOverrideAttribute errorLevel="info"/>
+        <UnusedClass errorLevel="info"/>
+        <PossiblyUnusedMethod errorLevel="info"/>
+    </issueHandlers>
 </psalm>

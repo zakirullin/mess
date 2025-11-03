@@ -520,11 +520,8 @@ final class MissingMess implements MessInterface
 
     /**
      * @param int|string $offset
-     *
-     * @return self
      */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet($offset): MessInterface
     {
         /**
          * @psalm-suppress DocblockTypeContradiction

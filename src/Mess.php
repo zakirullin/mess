@@ -768,7 +768,7 @@ class Mess implements MessInterface
      * @param string|int $offset
      * @return MessInterface
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): MessInterface
     {
         /**
          * @psalm-suppress DocblockTypeContradiction
