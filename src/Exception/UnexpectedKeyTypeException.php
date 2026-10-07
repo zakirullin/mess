@@ -28,7 +28,7 @@ final class UnexpectedKeyTypeException extends RuntimeException implements MessE
      * @param array          $keySequence
      * @param Throwable|null $previous
      */
-    public function __construct($key, array $keySequence, Throwable $previous = null)
+    public function __construct($key, array $keySequence, ?Throwable $previous = null)
     {
         $this->key = $key;
         $this->keySequence = $keySequence;

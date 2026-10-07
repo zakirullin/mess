@@ -21,7 +21,7 @@ final class CannotModifyMessException extends RuntimeException implements MessEx
      * @param array          $keySequence
      * @param Throwable|null $previous
      */
-    public function __construct(array $keySequence, Throwable $previous = null)
+    public function __construct(array $keySequence, ?Throwable $previous = null)
     {
         $this->keySequence = $keySequence;
 

@@ -36,7 +36,7 @@ final class UnexpectedTypeException extends RuntimeException implements MessExce
      * @param array          $keySequence
      * @param Throwable|null $previous
      */
-    public function __construct(string $expectedType, $value, array $keySequence, Throwable $previous = null)
+    public function __construct(string $expectedType, $value, array $keySequence, ?Throwable $previous = null)
     {
         $this->expectedType = $expectedType;
         $this->value = $value;

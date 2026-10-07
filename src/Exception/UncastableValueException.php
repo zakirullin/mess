@@ -34,7 +34,7 @@ final class UncastableValueException extends RuntimeException implements MessExc
      * @param array          $keySequence
      * @param Throwable|null $previous
      */
-    public function __construct(string $desiredType, $value, array $keySequence, Throwable $previous = null)
+    public function __construct(string $desiredType, $value, array $keySequence, ?Throwable $previous = null)
     {
         $this->desiredType = $desiredType;
         $this->value = $value;
